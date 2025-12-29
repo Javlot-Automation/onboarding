@@ -239,11 +239,11 @@
         }
 
         .step-content-inner {
-            min-height: 750px;
+            min-height: 600px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 100px 0;
+            padding: 60px 0;
         }
 
         .step-content-body {
@@ -508,6 +508,108 @@
 
         .vantage-section.active {
             display: block;
+        }
+
+        /* Clickable images with max-height */
+        .clickable-image {
+            width: 100%;
+            max-height: 320px;
+            object-fit: contain;
+            object-position: top;
+            border-radius: 12px;
+            box-shadow: 0 2px 14px rgba(0, 0, 0, 0.08);
+            margin: 16px 0 20px;
+            display: block;
+            cursor: zoom-in;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .clickable-image:hover {
+            transform: scale(1.01);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .image-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: -12px;
+            margin-bottom: 16px;
+        }
+
+        .image-hint svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Lightbox overlay */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            cursor: zoom-out;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-overlay.closing {
+            opacity: 0;
+        }
+
+        .lightbox-image {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+            transform: scale(0.95);
+            transition: transform 0.25s ease;
+        }
+
+        .lightbox-overlay.active .lightbox-image {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-close svg {
+            width: 24px;
+            height: 24px;
+            color: #fff;
         }
 
         .vantage-image {
@@ -1077,11 +1179,22 @@
         }</style>
 </head>
 <body>
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox">
+        <button type="button" class="lightbox-close" aria-label="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <img class="lightbox-image" id="lightboxImage" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Enlarged view">
+    </div>
+
     <div class="container">
         <!-- Main Content -->
         <div class="main-content">
             <div class="form-content">
                 <form id="multiStepForm">
+                    <button type="submit" hidden aria-hidden="true">Submit</button>
                 
                 <!-- Step 0: Welcome -->
                 <div class="step-content active" data-step="0">
@@ -1161,7 +1274,7 @@
                                     </div>
                                 </div>
 
-                                <a href="mailto:support@javlot.io" class="welcome-support-link">
+                                <a href="/cdn-cgi/l/email-protection#daa9afaaaab5a8ae9ab0bbacb6b5aef4b3b5" class="welcome-support-link">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                                     </svg>
@@ -1182,7 +1295,7 @@
                         <div class="step-content-body">
                             <div class="step-header">
                                 <h2 class="step-title" data-i18n="step1_title">Quick Intro</h2>
-                                <a href="mailto:support@javlot.io" class="need-help-link">
+                                <a href="/cdn-cgi/l/email-protection#f4878184849b8680b49e9582989b80da9d9b" class="need-help-link">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                                     </svg>
@@ -1232,6 +1345,7 @@
                         </div>
 
                         <div class="button-group">
+                            <button type="button" class="btn-prev" onclick="prevStep()" data-i18n="btn_back">Back</button>
                             <button type="button" class="btn-next" id="step1ContinueBtn" onclick="nextStep()" disabled data-i18n="btn_continue">Continue</button>
                         </div>
                     </div>
@@ -1243,7 +1357,7 @@
                         <div class="step-content-body">
                             <div class="step-header">
                                 <h2 class="step-title" data-i18n="step2_title">Broker Selection</h2>
-                                <a href="mailto:support@javlot.io" class="need-help-link">
+                                <a href="/cdn-cgi/l/email-protection#b4c7c1c4c4dbc6c0f4ded5c2d8dbc09adddb" class="need-help-link">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                                     </svg>
@@ -1330,7 +1444,7 @@
                         <div class="step-content-body">
                             <div class="step-header">
                                 <h2 class="step-title" data-i18n="step3_title">Broker Account Setup</h2>
-                                <a href="mailto:support@javlot.io" class="need-help-link">
+                                <a href="/cdn-cgi/l/email-protection#dfacaaafafb0adab9fb5bea9b3b0abf1b6b0" class="need-help-link">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                                     </svg>
@@ -1345,7 +1459,7 @@
                             <div class="vantage-section active" data-vantage-step="1">
                                 <div data-i18n-html="vantage_3_1_content"><p style="margin-bottom: 16px;">Once your Vantage Markets account is created, you will need to verify your email address, your phone number, and your ID card. After completing these steps, you will unlock the deposit and withdrawal limit of <strong>$50,000/day</strong>.</p><p style="margin-bottom: 16px;">If you plan to invest more than <strong>$50,000</strong>, you will also need to verify your residential address in order to increase your limit up to <strong>$10,000,000/day</strong>.</p></div>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692d7f8ab1a078de89e495c0_Vantage%2050k-p-2600.png" alt="Vantage 50k limit" class="vantage-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692d7f8ab1a078de89e495c0_Vantage%2050k-p-2600.png" alt="Vantage 50k limit" class="vantage-image clickable-image">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1362,14 +1476,14 @@
                                     Simply click on the <strong>“Open Account”</strong> button to get started.
                                 </p>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692d6c2f5bb41fcbeceb42eb_36da3a4007a53a4384a73914f7feeb33_Vantage%20Create-p-2600.png" alt="Vantage - Open account" class="vantage-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692d6c2f5bb41fcbeceb42eb_36da3a4007a53a4384a73914f7feeb33_Vantage%20Create-p-2600.png" alt="Vantage - Open account" class="vantage-image clickable-image">
                             </div>
 
                             <!-- 3.2.2 - Account parameters -->
                             <div class="vantage-section" data-vantage-step="3">
                                 <div data-i18n-html="vantage_3_3_content"><p style="margin-bottom: 12px;">Choose A Trading Platform: <strong>Recommended – MetaTrader 5</strong><br>Choose An Account Type: <strong>RAW ECN</strong><br>Choose An Account Currency: <strong>EUR is mandatory.</strong></p><p style="margin-bottom: 12px;">By ticking the box: make sure to read the user compliance before creating your account.</p><p style="margin-bottom: 16px;">Submit: once you are ready and have double checked your selections, click on <strong>Submit</strong> to create your MT5 account.</p></div>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692d711754435d25555c2604_7b16c2e82ba06faf2f9285808b14d79d_Vantage%20Create%20MT5-p-2600.png" alt="Vantage - Create MT5" class="vantage-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692d711754435d25555c2604_7b16c2e82ba06faf2f9285808b14d79d_Vantage%20Create%20MT5-p-2600.png" alt="Vantage - Create MT5" class="vantage-image clickable-image">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1383,7 +1497,7 @@
                             <div class="vantage-section" data-vantage-step="4">
                                 <p style="margin-bottom: 16px;" data-i18n-html="vantage_3_4_content">Congratulations, your MT5 account is created. You can now head to <strong>Step 4: Make your first deposit.</strong></p>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692d752b52fa1590e119cb5d_Vantage%20Confirm.png" alt="Vantage - Confirm account" class="vantage-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692d752b52fa1590e119cb5d_Vantage%20Confirm.png" alt="Vantage - Confirm account" class="vantage-image clickable-image">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1407,7 +1521,7 @@
                         <div class="step-content-body">
                             <div class="step-header">
                                 <h2 class="step-title" data-i18n="step3_title">Broker Account Setup</h2>
-                                <a href="mailto:support@javlot.io" class="need-help-link">
+                                <a href="/cdn-cgi/l/email-protection#4a393f3a3a25383e0a202b3c26253e642325" class="need-help-link">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                                     </svg>
@@ -1422,7 +1536,7 @@
                             <div class="bullwaves-section active" data-bullwaves-step="1">
                                 <div data-i18n-html="bullwaves_3_1_content"><p style="margin-bottom: 16px;">Bullwaves offers a smooth and straightforward onboarding experience. Simply enter your personal information, and your MT5 account will be created instantly. The only setting you need to review is your account currency.</p><p style="margin-bottom: 16px;">We recommend choosing <strong>EUR</strong>, although it is not mandatory. Also choose your password with care since it will also be your <strong>MT5 Account Password</strong>.</p></div>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/6932eee6ce877b9df2158f60_a8f4de4c232d8abcafa90dee71d4a66b_image.png" alt="Bullwaves account creation" class="bullwaves-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/6932eee6ce877b9df2158f60_a8f4de4c232d8abcafa90dee71d4a66b_image.png" alt="Bullwaves account creation" class="bullwaves-image clickable-image">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1434,9 +1548,9 @@
 
                             <!-- 3.2 - Dashboard verification -->
                             <div class="bullwaves-section" data-bullwaves-step="2">
-                                <p style="margin-bottom: 16px;" data-i18n-html="bullwaves_3_2_content">Arriving on this dashboard confirms that your broker account is fully set up. Please verify that your platform, account type, and leverage settings are identical to the example below <strong>(MT5, Live & 500)</strong>.</p>
+                                <p style="margin-bottom: 16px;" data-i18n-html="bullwaves_3_2_content">Arriving on this dashboard confirms that your broker account is fully set up. Please verify that your platform, account type, and leverage settings are identical to the example below <strong>(MT5, Live &amp; 500)</strong>.</p>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/6932f3628243e4934162a978_96d9a03ffd195eb9c3fc1c01c30f0b57_image12655.png" alt="Bullwaves dashboard" class="bullwaves-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/6932f3628243e4934162a978_96d9a03ffd195eb9c3fc1c01c30f0b57_image12655.png" alt="Bullwaves dashboard" class="bullwaves-image clickable-image">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1460,7 +1574,7 @@
                         <div class="step-content-body">
                             <div class="step-header">
                                 <h2 class="step-title" data-i18n="step3_title">Broker Account Setup</h2>
-                                <a href="mailto:support@javlot.io" class="need-help-link">
+                                <a href="/cdn-cgi/l/email-protection#03707673736c7177436962756f6c772d6a6c" class="need-help-link">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                                     </svg>
@@ -1478,14 +1592,14 @@
                                     After clicking <strong>“Next”</strong>, you will be prompted to set up your trading account.
                                 </p>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/6932fb9f291ed515adc47f50_32324425245-p-2600.png" alt="PU Prime personal details" class="puprime-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/6932fb9f291ed515adc47f50_32324425245-p-2600.png" alt="PU Prime personal details" class="puprime-image clickable-image">
                             </div>
 
                             <!-- 3.2 - Trading account configuration -->
                             <div class="puprime-section" data-puprime-step="2">
                                 <div data-i18n-html="puprime_3_2_content"><p style="margin-bottom: 12px;">Choose Trading Platform: <strong>Recommended – MetaTrader 5</strong><br>Choose Account Type: <strong>Standard</strong><br>Choose An Account Currency: <strong>EUR is recommended.</strong></p><p style="margin-bottom: 12px;">By ticking the box: make sure to read the user compliance before creating your account.</p><p style="margin-bottom: 16px;"><strong>Next:</strong> once you are ready and have double checked your selections, click on <strong>"Next"</strong> to create your MT5 account.</p></div>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/6932fae95fb4165c4530e3f1_image12235123342-p-2600.png" alt="PU Prime MT5 setup" class="puprime-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/6932fae95fb4165c4530e3f1_image12235123342-p-2600.png" alt="PU Prime MT5 setup" class="puprime-image clickable-image">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1502,7 +1616,7 @@
                                     Once it’s done, you should arrive on the page shown below.
                                 </p>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/6932fd370d68c4ddff9f1f12_gvsdfgerzsgzsdf-p-2600.png" alt="PU Prime verified account" class="puprime-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/6932fd370d68c4ddff9f1f12_gvsdfgerzsgzsdf-p-2600.png" alt="PU Prime verified account" class="puprime-image clickable-image">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1526,7 +1640,7 @@
                         <div class="step-content-body">
                             <div class="step-header">
                                 <h2 class="step-title" data-i18n="step3_title">Broker Account Setup</h2>
-                                <a href="mailto:support@javlot.io" class="need-help-link">
+                                <a href="/cdn-cgi/l/email-protection#a3d0d6d3d3ccd1d7e3c9c2d5cfccd78dcacc" class="need-help-link">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                                     </svg>
@@ -1543,14 +1657,14 @@
                                     After creating your Axi account, you’ll arrive on this page. Simply click <strong>“Resume Application”</strong> to complete your trading account setup.
                                 </p>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/6933004e78760a42df93724e_imagezzzertzetr-p-2600.png" alt="Axi resume application" class="axi-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/6933004e78760a42df93724e_imagezzzertzetr-p-2600.png" alt="Axi resume application" class="axi-image clickable-image">
                             </div>
 
                             <!-- 3.2 - Set up your new account -->
                             <div class="axi-section" data-axi-step="2">
                                 <div data-i18n-html="axi_3_2_content"><p style="margin-bottom: 12px;">After entering your personal information, you will reach the <strong>"Set up your new account"</strong> page. Make sure to configure your account using the details shown below:</p><p style="margin-bottom: 12px;">Trading Platform : <strong>MetaTrader 5</strong><br>Account Type : <strong>PRO</strong><br>Join Axi Selection : <strong>Optional</strong></p><p style="margin-bottom: 16px;">Create Account : Once you are ready and have double checked your selections, click on <strong>"Create Account"</strong>.</p></div>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/6933080d2ee9e26b998d1fa3_7b9038a4171f6e1f1b30230c7b194a40_qerrqsdgcqxwcgtszr-p-2600.png" alt="Axi set up your new account" class="axi-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/6933080d2ee9e26b998d1fa3_7b9038a4171f6e1f1b30230c7b194a40_qerrqsdgcqxwcgtszr-p-2600.png" alt="Axi set up your new account" class="axi-image clickable-image">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1564,7 +1678,7 @@
                             <div class="axi-section" data-axi-step="3">
                                 <div data-i18n-html="axi_3_3_content"><p style="margin-bottom: 12px;">After completing the KYC (Know Your Customer) process, you will arrive on the <strong>"Setup your account"</strong> page. Make sure to setup your account with the information below:</p><p style="margin-bottom: 12px;">Account currency : <strong>EUR Recommended</strong><br>Leverage : <strong>1:500</strong></p><p style="margin-bottom: 16px;">Continue : Once you are ready and have double checked your selections, click on <strong>"Continue"</strong>.</p></div>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/69330c405b5ef326d073692f_azeraercgzsed-p-2600.png" alt="Axi setup your account" class="axi-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/69330c405b5ef326d073692f_azeraercgzsed-p-2600.png" alt="Axi setup your account" class="axi-image clickable-image">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1580,7 +1694,7 @@
                                     Congratulations! You’ve now reached your dashboard and your trading account is ready.
                                 </p>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/69330f045c56968f6cb6ae8d_sdfgs-p-2600.png" alt="Axi dashboard ready" class="axi-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/69330f045c56968f6cb6ae8d_sdfgs-p-2600.png" alt="Axi dashboard ready" class="axi-image clickable-image">
                             </div>
                         </div>
                         <div class="button-group">
@@ -1596,7 +1710,7 @@
                         <div class="step-content-body">
                             <div class="step-header">
                                 <h2 class="step-title" data-i18n="step3_title">Broker Account Setup</h2>
-                                <a href="mailto:support@javlot.io" class="need-help-link">
+                                <a href="/cdn-cgi/l/email-protection#fc8f898c8c938e88bc969d8a909388d29593" class="need-help-link">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                                     </svg>
@@ -1616,7 +1730,7 @@
                                     Once completed, click on the <strong>“Next”</strong> button.
                                 </p>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/69331b311626c0035d68d654_azeradqdfeq-p-2600.png" alt="Startrader personal details" class="startrader-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/69331b311626c0035d68d654_azeradqdfeq-p-2600.png" alt="Startrader personal details" class="startrader-image clickable-image">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1630,7 +1744,7 @@
                             <div class="startrader-section" data-startrader-step="2">
                                 <div data-i18n-html="startrader_3_2_content"><p style="margin-bottom: 12px;">Choose Trading Platform : <strong>Recommended – MetaTrader 5</strong><br>Choose Account Type : <strong>RAW ECN</strong><br>Choose Account Currency : <strong>EUR is recommended.</strong></p><p style="margin-bottom: 12px;">By ticking the box : make sure to read Terms and Conditions.</p><p style="margin-bottom: 16px;"><strong>Next :</strong> Once you are ready and have double checked your selections, click on the <strong>"Next"</strong> button.</p></div>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/69331c6ecfb7ab183cbd3886_fgsfdgzcwza-p-2600.png" alt="Startrader account configuration" class="startrader-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/69331c6ecfb7ab183cbd3886_fgsfdgzcwza-p-2600.png" alt="Startrader account configuration" class="startrader-image clickable-image">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1647,7 +1761,7 @@
                                     Once your identity is verified, you will see the confirmation message shown below.
                                 </p>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/69332b0f06c45e9eb5ec752a_wxcgvunisorbguqs-p-2600.png" alt="Startrader account verified" class="startrader-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/69332b0f06c45e9eb5ec752a_wxcgvunisorbguqs-p-2600.png" alt="Startrader account verified" class="startrader-image clickable-image">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1670,7 +1784,7 @@
                         <div class="step-content-body">
                             <div class="step-header">
                                 <h2 class="step-title" data-i18n="step3_title">Broker Account Setup</h2>
-                                <a href="mailto:support@javlot.io" class="need-help-link">
+                                <a href="/cdn-cgi/l/email-protection#1764626767786563577d76617b7863397e78" class="need-help-link">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                                     </svg>
@@ -1687,14 +1801,14 @@
 
                                 <div data-i18n-html="vtmarkets_3_1_content"><p style="margin-bottom: 16px;">Once your VT Markets account is created, you must verify your personal information, your phone number, and your email address. After completing these steps, you will be able to create your MT5 account.</p><p style="margin-bottom: 16px;">On VT Markets, you are not required to verify your residential address; they will only request additional information if they detect any suspicious activity on your account.</p></div>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692da2e4b2d8b0d3df108e10_627d69f61e20fbeff348ca0506291f35_VT%20Markets%20Create%20Personnal-p-2600.png" alt="VT Markets personal verification" class="vtmarkets-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692da2e4b2d8b0d3df108e10_627d69f61e20fbeff348ca0506291f35_VT%20Markets%20Create%20Personnal-p-2600.png" alt="VT Markets personal verification" class="vtmarkets-image clickable-image">
                             </div>
 
                             <!-- 3.2 - Create MT5 -->
                             <div class="vtmarkets-section" data-vtmarkets-step="2">
                                 <div data-i18n-html="vtmarkets_3_2_content"><p style="margin-bottom: 16px;">Once you have completed the <strong>"Personal information"</strong> form, you will be able to create your MetaTrader 5 account.</p><p style="margin-bottom: 12px;">Choose Trading Platform: <strong>MetaTrader 5</strong><br>Choose Account Type: <strong>Standard STP</strong><br>Choose An Account Currency: <strong>EUR is recommended.</strong></p><p style="margin-bottom: 12px;">Tick the box: make sure to read the user compliance before creating your account.</p><p style="margin-bottom: 16px;">Submit: once you are ready and have double checked your selections, click on <strong>Submit</strong> to create your MT5 account.</p></div>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692d9def941396a1d6db7bc9_VT%20Markets%20Create%20MT5-p-2600.png" alt="VT Markets create MT5" class="vtmarkets-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692d9def941396a1d6db7bc9_VT%20Markets%20Create%20MT5-p-2600.png" alt="VT Markets create MT5" class="vtmarkets-image clickable-image">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1708,14 +1822,14 @@
                             <div class="vtmarkets-section" data-vtmarkets-step="3">
                                 <p style="margin-bottom: 16px;" data-i18n-html="vtmarkets_3_3_content">Congratulations, your MT5 account has been created. You now need to complete the second step of the KYC (Know Your Customer) process in order to unlock trading features of your account.</p>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692da4a5feb862ff591d56c3_d87e7ed58db74d887f41810bc789904b_VT%20Markets%20Personnal-p-2600.png" alt="VT Markets KYC" class="vtmarkets-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692da4a5feb862ff591d56c3_d87e7ed58db74d887f41810bc789904b_VT%20Markets%20Personnal-p-2600.png" alt="VT Markets KYC" class="vtmarkets-image clickable-image">
                             </div>
 
                             <!-- 3.4 - Completed -->
                             <div class="vtmarkets-section" data-vtmarkets-step="4">
                                 <p style="margin-bottom: 16px;" data-i18n="vtmarkets_3_4_text">Once done, you are all set.</p>
 
-                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692da6066d6ef9cca98939bd_VT%20Markets%20COmpleted-p-2600.png" alt="VT Markets completed" class="vtmarkets-image">
+                                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692da6066d6ef9cca98939bd_VT%20Markets%20COmpleted-p-2600.png" alt="VT Markets completed" class="vtmarkets-image clickable-image">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1740,7 +1854,7 @@
                         <div class="step-content-body">
                             <div class="step-header">
                                 <h2 class="step-title" data-i18n="step4_title">Initial Deposit</h2>
-                                <a href="mailto:support@javlot.io" class="need-help-link">
+                                <a href="/cdn-cgi/l/email-protection#483b3d3838273a3c0822293e24273c662127" class="need-help-link">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                                     </svg>
@@ -1753,7 +1867,7 @@
 
                             <!-- Step 4.1 (Global) -->
                             <div class="deposit-section active" data-deposit-step="1" data-broker="global">
-                                <div class="info-box" data-i18n-html="step4_info_box"><p style="margin-bottom: 14px; font-weight: 700; color: #000000;">Important – Initial Deposit Instructions</p><p style="margin-bottom: 14px;">To activate your access on the broker side, a first deposit of <strong>exactly €1,000</strong> is required.</p><p style="margin-bottom: 14px;">Please note that there is no benefit in depositing more than <strong>€1,000</strong> at this stage. On the contrary, we strongly recommend not exceeding this amount for now.</p><p style="margin-bottom: 12px; font-weight: 600; color: #000000;">Here is why:</p><p style="margin-bottom: 14px;">The next step of the onboarding process (Step 5) includes a mandatory verification trade required by the broker as part of their anti-bot and account validation procedure. This trade must be placed with a lot size of <strong>1</strong>, which is unusually high for an initial setup.</p><p style="margin-bottom: 14px;">Because of this, depositing more than <strong>€1,000</strong> at this stage would only increase unnecessary exposure, without providing any advantage.</p><p style="margin-bottom: 12px; font-weight: 600; color: #000000;">Rest assured:</p><ul style="margin: 0 0 14px 20px; padding: 0; color: #4B5563;"><li style="margin-bottom: 8px;">This verification step is standard and temporary</li><li style="margin-bottom: 8px;">We will guide you step by step through the process</li><li style="margin-bottom: 8px;">You will receive clear best practices to execute this trade safely</li><li style="margin-bottom: 8px;">There is no need to stress – the goal is validation, not performance</li></ul><p style="margin: 0;">Once this step is completed, your account will be fully validated and ready to operate under normal conditions.</p></div>
+                                <div class="info-box" data-i18n-html="step4_info_box"><p style="margin-bottom: 14px; font-weight: 700; color: #000000;">Important – Initial Deposit Instructions</p><p style="margin-bottom: 14px;">To activate your access on the broker side, a first deposit of <strong>exactly €1,000</strong> is required.</p><p style="margin-bottom: 14px;">Please note that there is no benefit in depositing more than <strong>€1,000</strong> at this stage. On the contrary, we strongly recommend not exceeding this amount for now.</p><p style="margin-bottom: 12px; font-weight: 600; color: #000000;">Here is why:</p><p style="margin-bottom: 14px;">The next step of the onboarding process (Step 7) includes a mandatory verification trade required by the broker as part of their anti-bot and account validation procedure. This trade must be placed with a lot size of <strong>1</strong>, which is unusually high for an initial setup.</p><p style="margin-bottom: 14px;">Because of this, depositing more than <strong>€1,000</strong> at this stage would only increase unnecessary exposure, without providing any advantage.</p><p style="margin-bottom: 12px; font-weight: 600; color: #000000;">Rest assured:</p><ul style="margin: 0 0 14px 20px; padding: 0; color: #4B5563;"><li style="margin-bottom: 8px;">This verification step is standard and temporary</li><li style="margin-bottom: 8px;">We will guide you step by step through the process</li><li style="margin-bottom: 8px;">You will receive clear best practices to execute this trade safely</li><li style="margin-bottom: 8px;">There is no need to stress – the goal is validation, not performance</li></ul><p style="margin: 0;">Once this step is completed, your account will be fully validated and ready to operate under normal conditions.</p></div>
 
                                 <div class="form-group" style="margin-top: 18px;">
                                     <label class="checkbox-label">
@@ -1765,7 +1879,7 @@
                                 <div class="form-group">
                                     <label class="checkbox-label">
                                         <input type="checkbox" id="step4NoMoreThan1000">
-                                        <span data-i18n="step4_checkbox_2">I understand that depositing more than €1,000 at this stage is not recommended and that I will be able to fund my account properly after Step 5 is completed</span>
+                                        <span data-i18n="step4_checkbox_2">I understand that depositing more than €1,000 at this stage is not recommended and that I will be able to fund my account properly after Step 7 is completed</span>
                                     </label>
                                 </div>
                             </div>
@@ -1775,7 +1889,7 @@
                             <div class="deposit-section" data-deposit-step="2" data-broker="bullwaves">
                                 <div data-i18n-html="step4_bullwaves_content"><p style="margin-bottom: 16px;">Once on your Bullwaves dashboard, click on the \'Fund Account\' section in the left-hand panel. You will then be taken to the window displayed below. Make sure to select the correct account and enter 1,000€ (or equivalent) in the amount field.</p><p style="margin-bottom: 16px;">On the right side, choose your preferred payment method and click the \'Deposit Funds\' button. From there, simply complete the deposit process.</p></div>
 
-                                <img class="deposit-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c10bb9f41488c05abb7a9_Bullwaves-3.png" alt="Bullwaves funding window">
+                                <img class="deposit-image clickable-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c10bb9f41488c05abb7a9_Bullwaves-3.png" alt="Bullwaves funding window">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1790,7 +1904,7 @@
                             <div class="deposit-section" data-deposit-step="2" data-broker="puprime">
                                 <p style="margin-bottom: 16px;" data-i18n-html="step4_puprime_2_content">To fund your account, go to the \'Funds\' tab in the left-hand menu. You will then arrive on the page displayed below. Make sure to select your newly created account and enter 1,000 in the amount field. Then, simply click the \'Continue\' button.</p>
 
-                                <img class="deposit-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c21aab9825681bba7956a_0dd459b199db80bf89a3c60cbbedfe92_PU%20Prime%201.png" alt="PU Prime Funds deposit">
+                                <img class="deposit-image clickable-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c21aab9825681bba7956a_0dd459b199db80bf89a3c60cbbedfe92_PU%20Prime%201.png" alt="PU Prime Funds deposit">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1811,7 +1925,7 @@
                             <div class="deposit-section" data-deposit-step="3" data-broker="puprime">
                                 <p style="margin-bottom: 16px;" data-i18n="step4_puprime_3_content">From here, choose your preferred payment method to continue funding your account.</p>
 
-                                <img class="deposit-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c2616f7df854ecc504dd8_PU%20Prime%202.png" alt="PU Prime payment methods">
+                                <img class="deposit-image clickable-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c2616f7df854ecc504dd8_PU%20Prime%202.png" alt="PU Prime payment methods">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1826,14 +1940,14 @@
                             <div class="deposit-section" data-deposit-step="2" data-broker="axi">
                                 <p style="margin-bottom: 16px;" data-i18n-html="step4_axi_2_content">On your Axi Dashboard, click on the "Fund" section on the left hand side, to arrive on the page shown below. From here select your funding method and enter your details.</p>
 
-                                <img class="deposit-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c2b28fd2fa99da520d2ac_Axi%201.png" alt="Axi funding methods">
+                                <img class="deposit-image clickable-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c2b28fd2fa99da520d2ac_Axi%201.png" alt="Axi funding methods">
                             </div>
 
                             <!-- Step 4.3 (Axi) -->
                             <div class="deposit-section" data-deposit-step="3" data-broker="axi">
                                 <p style="margin-bottom: 16px;" data-i18n="step4_axi_3_content">Once you reach the page shown in the image below, make sure to enter €1,000 (or equivalent) in the appropriate field.</p>
 
-                                <img class="deposit-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c2c06546ea970144344d5_Axi%202.png" alt="Axi deposit amount">
+                                <img class="deposit-image clickable-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c2c06546ea970144344d5_Axi%202.png" alt="Axi deposit amount">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1858,7 +1972,7 @@
                                     From there, make sure to select your newly created account and enter a funding amount of at least €1,000 (or equivalent).
                                 </p>
 
-                                <img class="deposit-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c388be295d6aa9f10ec12_847022647436177244db8ce66a24a7d0_Star-!.png" alt="Startrader deposit amount">
+                                <img class="deposit-image clickable-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c388be295d6aa9f10ec12_847022647436177244db8ce66a24a7d0_Star-!.png" alt="Startrader deposit amount">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1879,7 +1993,7 @@
                             <div class="deposit-section" data-deposit-step="3" data-broker="startrader">
                                 <p style="margin-bottom: 16px;" data-i18n="step4_startrader_3_content">From this page, select your preferred payment method to proceed with account funding.</p>
 
-                                <img class="deposit-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c3a99dc6330ec33f5e228_Star-2.png" alt="Startrader payment method selection">
+                                <img class="deposit-image clickable-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c3a99dc6330ec33f5e228_Star-2.png" alt="Startrader payment method selection">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1897,7 +2011,7 @@
                                     From there, make sure to select your newly created account and enter a funding amount of at least €1,000 (or equivalent).
                                 </p>
 
-                                <img class="deposit-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c402fc3cf3c956b6c9a72_VTM-1.png" alt="VT Markets deposit amount">
+                                <img class="deposit-image clickable-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c402fc3cf3c956b6c9a72_VTM-1.png" alt="VT Markets deposit amount">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1918,7 +2032,7 @@
                             <div class="deposit-section" data-deposit-step="3" data-broker="vtmarkets">
                                 <p style="margin-bottom: 16px;" data-i18n="step4_vtmarkets_3_content">From this page, select your preferred payment method to proceed with account funding.</p>
 
-                                <img class="deposit-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c40c5dfb0e717b0c05728_VTM-2.png" alt="VT Markets payment method selection">
+                                <img class="deposit-image clickable-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c40c5dfb0e717b0c05728_VTM-2.png" alt="VT Markets payment method selection">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1934,14 +2048,14 @@
                                     On the Vantage Markets dashboard, use the ‘Deposit’ button on your newly created MetaTrader 5 account to fund it.
                                 </p>
 
-                                <img class="deposit-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693bf67a65e52957cb20fece_VT-1.png" alt="Vantage Markets Deposit button">
+                                <img class="deposit-image clickable-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693bf67a65e52957cb20fece_VT-1.png" alt="Vantage Markets Deposit button">
                             </div>
 
                             <!-- Step 4.3 (Vantage Markets) -->
                             <div class="deposit-section" data-deposit-step="3" data-broker="vantage">
                                 <p style="margin-bottom: 16px;" data-i18n="step4_vantage_3_content">On reaching this windows, make sure to verify you selected your newly created account (normaly automatic). And introduce your desired fund amount (at least 1000€ or equivalent in for your currency).</p>
 
-                                <img class="deposit-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693bf77e7839cc0d1b99a8fd_b75b2bbf21b277bfc589ab5b8dd715fd_VT-2.png" alt="Vantage Markets deposit amount">
+                                <img class="deposit-image clickable-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693bf77e7839cc0d1b99a8fd_b75b2bbf21b277bfc589ab5b8dd715fd_VT-2.png" alt="Vantage Markets deposit amount">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1962,7 +2076,7 @@
                             <div class="deposit-section" data-deposit-step="4" data-broker="vantage">
                                 <p style="margin-bottom: 16px;" data-i18n="step4_vantage_4_content">From here, choose your preferred payment method to continue funding your account.</p>
 
-                                <img class="deposit-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693bf949b320cbc9c7abc53a_VT-3.png" alt="Vantage Markets payment method">
+                                <img class="deposit-image clickable-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693bf949b320cbc9c7abc53a_VT-3.png" alt="Vantage Markets payment method">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -1987,7 +2101,7 @@
                         <div class="step-content-body">
                             <div class="step-header">
                                 <h2 class="step-title" data-i18n="step5_title">MetaTrader 5</h2>
-                                <a href="mailto:support@javlot.io" class="need-help-link">
+                                <a href="/cdn-cgi/l/email-protection#34474144445b4640745e5542585b401a5d5b" class="need-help-link">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                                     </svg>
@@ -2065,7 +2179,7 @@
                         <div class="step-content-body">
                             <div class="step-header">
                                 <h2 class="step-title" data-i18n="step6_title">MetaTrader Setup</h2>
-                                <a href="mailto:support@javlot.io" class="need-help-link">
+                                <a href="/cdn-cgi/l/email-protection#c6b5b3b6b6a9b4b286aca7b0aaa9b2e8afa9" class="need-help-link">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                                     </svg>
@@ -2077,12 +2191,12 @@
                             </p>
 
                             <!-- 6.1 -->
-                            <div class="MetaTrader-section active" data-MetaTrader-step="1">
+                            <div class="MetaTrader-section active" data-metatrader-step="1">
                                 <div data-i18n-html="step6_1_content"><p class="step-description" style="margin-bottom: 14px;">Now that you have created and funded your MetaTrader 5 account, you will need your login credentials. These are always sent to your email inbox by your selected broker.</p><p class="step-description" style="margin-top: 0;">To help you find them, you can search for <strong>\'MT5 Account\'</strong> in your mailbox. Also make sure to check your spam folder. The email should look similar to the example shown below.</p></div>
 
                                 <div class="info-box" data-i18n-html="step6_1_note"><strong>Note:</strong> Bullwaves users: your MT5 account password is the same as your Bullwaves account password.</div>
 
-                                <img class="deposit-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c57b471650888962f0a8a_a68104406254349cd8b0f065e0d340d5_Mail-Exemple.png" alt="Example email showing MT5 credentials">
+                                <img class="deposit-image clickable-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c57b471650888962f0a8a_a68104406254349cd8b0f065e0d340d5_Mail-Exemple.png" alt="Example email showing MT5 credentials">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -2093,10 +2207,10 @@
                             </div>
 
                             <!-- 6.2 -->
-                            <div class="MetaTrader-section" data-MetaTrader-step="2">
+                            <div class="MetaTrader-section" data-metatrader-step="2">
                                 <div data-i18n-html="step6_2_content"><p class="step-description">You can now open MetaTrader 5 on your phone and begin the login process. When the app opens, you may be prompted to <strong>\'Open a demo account\'</strong>. Simply close this prompt. You will then need to log in to your <strong>\'Trade Account\'</strong>.</p><p class="step-description" style="margin-top: 0;">Next, enter your server name in the search bar and select the first result that matches your broker\'s name. Finally, enter your MetaTrader 5 account credentials (sent to you by email), and you will be logged in.</p></div>
 
-                                <img class="deposit-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c927e41628feb3bcad836_MT5%20Tutorial-1.png" alt="MetaTrader 5 login tutorial">
+                                <img class="deposit-image clickable-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c927e41628feb3bcad836_MT5%20Tutorial-1.png" alt="MetaTrader 5 login tutorial">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -2107,10 +2221,10 @@
                             </div>
 
                             <!-- 6.3 -->
-                            <div class="MetaTrader-section" data-MetaTrader-step="3">
+                            <div class="MetaTrader-section" data-metatrader-step="3">
                                 <p class="step-description" data-i18n-html="step6_3_content">Once you are logged in, it\'s time to prepare your account for trading. You will need to add two quotes, which depend on your broker. Each broker uses its own specific pair of quotes. Please refer to the table below and add the two quotes corresponding to your selected broker.</p>
 
-                                <img class="deposit-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c9d362df519b81c7cd597_MT5%20Tutorial-2.png" alt="MetaTrader 5 quotes tutorial">
+                                <img class="deposit-image clickable-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c9d362df519b81c7cd597_MT5%20Tutorial-2.png" alt="MetaTrader 5 quotes tutorial">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -2120,17 +2234,16 @@
                                 </div>
                             </div>
 
-                            <!-- 6.4 Congrats -->
-                            <div class="MetaTrader-section" data-MetaTrader-step="4">
-                                <h3 class="step-title" style="margin-top: 0;" data-i18n="step6_4_title">CONGRATULATION!</h3>
-                                <p class="step-description" style="margin-top: 8px;" data-i18n="step6_4_desc">Your trading account is fully setup and ready for the anti-bot and account validation procedure.</p>
+                            <!-- 6.4 Final confirmation -->
+                            <div class="MetaTrader-section" data-metatrader-step="4">
+                                <p class="step-description" data-i18n="step6_4_desc">Your trading account is fully setup and ready for the anti-bot validation procedure.</p>
 
-                                <div class="warning-box" style="margin-top: 18px;" data-i18n-html="step6_4_warning"><strong>Important notice:</strong><br><br>The next step must be completed with extreme caution to ensure minimal impact on your trading capital. This step consists of placing a trade with a lot size of <strong>1</strong> for <strong>15 seconds</strong>, after which you will be free to close the position.<br><br>We strongly recommend completing this step outside of the New York trading session, which occurs between <strong>2:30 PM</strong> and <strong>5:30 PM</strong> (UTC+1 – Paris, Brussels, Berlin), in order to minimize market volatility and reduce risk. Also note that trading markets are closed during <strong>Weekends</strong>.</div>
+                                <div class="warning-box" style="margin-top: 18px;" data-i18n-html="step6_4_warning"><strong>Important:</strong> Do not proceed if the current time falls within the New York session hours (<span class="ny-hours-local"></span>). Wait until the session is closed before continuing.</div>
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
                                         <input type="checkbox" id="MetaTraderOutsideNY" required>
-                                        <span data-i18n="step6_4_checkbox">I understand that this step must be completed outside the New York trading session (before 2:30 PM or after 5:30 PM, UTC+1)</span>
+                                        <span data-i18n="step6_4_checkbox">I confirm that I am outside the New York trading session hours.</span>
                                     </label>
                                 </div>
                             </div>
@@ -2150,7 +2263,7 @@
                         <div class="step-content-body">
                             <div class="step-header">
                                 <h2 class="step-title" data-i18n="step7_title">Account Verification Trade</h2>
-                                <a href="mailto:support@javlot.io" class="need-help-link">
+                                <a href="/cdn-cgi/l/email-protection#50232520203f2224103a31263c3f247e393f" class="need-help-link">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                                     </svg>
@@ -2165,7 +2278,7 @@
                             <div class="verification-section active" data-verification-step="1">
                                 <p class="step-description" style="margin-top: 8px;" data-i18n-html="step7_1_content">You will now need to set up the account verification trade.<br>Go to the \'Trade\' section in your MetaTrader 5 application and tap the \'+\' button. You will then be able to modify your trade settings.<br><br>Set the trading pair to EURUSD, corresponding to the quote you added in the previous step (refer to the image to confirm the EURUSD quote linked to your broker).<br>Make sure to enter a lot size of 1.00. This is mandatory, and the verification will fail if a different lot size is used.</p>
 
-                                <img class="deposit-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693fc79ef28e109be836280a_s7-tuto-1.png" alt="Account verification trade setup tutorial">
+                                <img class="deposit-image clickable-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693fc79ef28e109be836280a_s7-tuto-1.png" alt="Account verification trade setup tutorial">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -2195,7 +2308,7 @@
 
                                 <p class="step-description" style="margin-top: 8px;" data-i18n-html="step7_2_content">This step must be handled with extreme caution in order to protect your trading capital as much as possible.<br>When you are ready, click the \'Buy by Market\' button. Your trade will start immediately.<br>Wait for at least 15 seconds, then close the trade.<br><br>That\'s it. Congratulations! Your account is now fully validated and ready to be connected to Javlot.</p>
 
-                                <img class="deposit-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693fcb7ff6a3d6acee7aa3ea_s7-tuto-2.png" alt="Account verification trade execution tutorial">
+                                <img class="deposit-image clickable-image" src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693fcb7ff6a3d6acee7aa3ea_s7-tuto-2.png" alt="Account verification trade execution tutorial">
 
                                 <div class="form-group">
                                     <label class="checkbox-label">
@@ -2227,7 +2340,7 @@
                         <div class="step-content-body">
                             <div class="step-header">
                                 <h2 class="step-title" data-i18n="step8_title">Connect to Javlot</h2>
-                                <a href="mailto:support@javlot.io" class="need-help-link">
+                                <a href="/cdn-cgi/l/email-protection#43303633332c3137032922352f2c376d2a2c" class="need-help-link">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                                     </svg>
@@ -2310,7 +2423,7 @@
                     <div class="step-number">1</div>
                     <div class="step-label-wrapper">
                         <div class="step-label" data-i18n="sidebar_step1">Quick Intro</div>
-                        <div class="step-sublabel" data-i18n="sidebar_step1_sub">Read & confirm</div>
+                        <div class="step-sublabel" data-i18n="sidebar_step1_sub">Read &amp; confirm</div>
                     </div>
                 </div>
 
@@ -2372,14 +2485,11 @@
                     </div>
                 </div>
 
-
-</div>
-                </div>
-</div>
+            </div>
         </div>
     </div>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         let currentStep = 0; // Start at welcome cover
         const totalSteps = 8; // 8 actual steps (1-8)
         let selectedBroker = null;
@@ -2459,7 +2569,7 @@
         bullwaves_desc_1: "Create your Bullwaves trading account with the right currency and MT5 password.",
         bullwaves_desc_2: "Confirm that your Bullwaves dashboard matches the required platform, type and leverage.",
         bullwaves_3_1_content: `<p style="margin-bottom: 16px;">Bullwaves offers a smooth and straightforward onboarding experience. Simply enter your personal information, and your MT5 account will be created instantly. The only setting you need to review is your account currency.</p><p style="margin-bottom: 16px;">We recommend choosing <strong>EUR</strong>, although it is not mandatory. Also choose your password with care since it will also be your <strong>MT5 Account Password</strong>.</p>`,
-        bullwaves_3_2_content: `Arriving on this dashboard confirms that your broker account is fully set up. Please verify that your platform, account type, and leverage settings are identical to the example below <strong>(MT5, Live & 500)</strong>.`,
+        bullwaves_3_2_content: `Arriving on this dashboard confirms that your broker account is fully set up. Please verify that your platform, account type, and leverage settings are identical to the example below <strong>(MT5, Live &amp; 500)</strong>.`,
         bullwaves_checkbox_1: "I entered the right MetaTrader setup informations",
         bullwaves_checkbox_2: "My account is correctly setup",
 
@@ -2528,9 +2638,9 @@
         deposit_desc_3_vtmarkets: "Confirm that your VT Markets account is funded and ready.",
         deposit_desc_3_vantage: "Verify the right account is selected and enter your initial deposit amount.",
         deposit_desc_4_vantage: "Choose your payment method and confirm once your account is funded.",
-        step4_info_box: `<p style="margin-bottom: 14px; font-weight: 700; color: #000000;">Important – Initial Deposit Instructions</p><p style="margin-bottom: 14px;">To activate your access on the broker side, a first deposit of <strong>exactly €1,000</strong> is required.</p><p style="margin-bottom: 14px;">Please note that there is no benefit in depositing more than <strong>€1,000</strong> at this stage. On the contrary, we strongly recommend not exceeding this amount for now.</p><p style="margin-bottom: 12px; font-weight: 600; color: #000000;">Here is why:</p><p style="margin-bottom: 14px;">The next step of the onboarding process (Step 5) includes a mandatory verification trade required by the broker as part of their anti-bot and account validation procedure. This trade must be placed with a lot size of <strong>1</strong>, which is unusually high for an initial setup.</p><p style="margin-bottom: 14px;">Because of this, depositing more than <strong>€1,000</strong> at this stage would only increase unnecessary exposure, without providing any advantage.</p><p style="margin-bottom: 12px; font-weight: 600; color: #000000;">Rest assured:</p><ul style="margin: 0 0 14px 20px; padding: 0; color: #4B5563;"><li style="margin-bottom: 8px;">This verification step is standard and temporary</li><li style="margin-bottom: 8px;">We will guide you step by step through the process</li><li style="margin-bottom: 8px;">You will receive clear best practices to execute this trade safely</li><li style="margin-bottom: 8px;">There is no need to stress – the goal is validation, not performance</li></ul><p style="margin: 0;">Once this step is completed, your account will be fully validated and ready to operate under normal conditions.</p>`,
+        step4_info_box: `<p style="margin-bottom: 14px; font-weight: 700; color: #000000;">Important – Initial Deposit Instructions</p><p style="margin-bottom: 14px;">To activate your access on the broker side, a first deposit of <strong>exactly €1,000</strong> is required.</p><p style="margin-bottom: 14px;">Please note that there is no benefit in depositing more than <strong>€1,000</strong> at this stage. On the contrary, we strongly recommend not exceeding this amount for now.</p><p style="margin-bottom: 12px; font-weight: 600; color: #000000;">Here is why:</p><p style="margin-bottom: 14px;">The next step of the onboarding process (Step 7) includes a mandatory verification trade required by the broker as part of their anti-bot and account validation procedure. This trade must be placed with a lot size of <strong>1</strong>, which is unusually high for an initial setup.</p><p style="margin-bottom: 14px;">Because of this, depositing more than <strong>€1,000</strong> at this stage would only increase unnecessary exposure, without providing any advantage.</p><p style="margin-bottom: 12px; font-weight: 600; color: #000000;">Rest assured:</p><ul style="margin: 0 0 14px 20px; padding: 0; color: #4B5563;"><li style="margin-bottom: 8px;">This verification step is standard and temporary</li><li style="margin-bottom: 8px;">We will guide you step by step through the process</li><li style="margin-bottom: 8px;">You will receive clear best practices to execute this trade safely</li><li style="margin-bottom: 8px;">There is no need to stress – the goal is validation, not performance</li></ul><p style="margin: 0;">Once this step is completed, your account will be fully validated and ready to operate under normal conditions.</p>`,
         step4_checkbox_1: "I understand that a deposit of 1,000€ (or equivalent) is required to activate my broker account",
-        step4_checkbox_2: "I understand that depositing more than €1,000 at this stage is not recommended and that I will be able to fund my account properly after Step 5 is completed",
+        step4_checkbox_2: "I understand that depositing more than €1,000 at this stage is not recommended and that I will be able to fund my account properly after Step 7 is completed",
 
         // ===== STEP 5 =====
         step5_title: "MetaTrader 5",
@@ -2555,10 +2665,8 @@
         step6_2_checkbox: "I confirm that I am logged into my MetaTrader 5 account.",
         step6_3_content: `Now go to the <strong>"Quotes"</strong> tab at the bottom of the app, and tap the <strong>"+"</strong> icon at the top right. Add the EURUSD quote corresponding to your broker by searching and tapping on it. The correct quote for your broker is displayed in the image below.`,
         step6_3_checkbox: "I confirm that I have added the correct EURUSD quote for my broker.",
-        step6_4_content: `Before proceeding to the account verification trade, make sure you are outside of the <strong>New York trading session (8 AM – 5 PM EST / 2 PM – 11 PM Paris)</strong>. The verification trade must be executed outside of this window to minimize trading risk and ensure a smooth validation.`,
-        step6_4_warning: `<strong>Important:</strong> Do not proceed if the current time falls within the New York session hours. Wait until the session is closed before continuing.`,
+        step6_4_warning: `<strong>Important:</strong> Do not proceed if the current time falls within the New York session hours (<span class="ny-hours-local"></span>). Wait until the session is closed before continuing.`,
         step6_4_checkbox: "I confirm that I am outside the New York trading session hours.",
-        step6_4_title: "CONGRATULATION!",
         step6_4_desc: "Your trading account is fully setup and ready for the anti-bot validation procedure.",
 
         // ===== STEP 7 =====
@@ -2570,7 +2678,7 @@
         step7_1_checkbox_2: "I confirm that I am using a lot size of 1.00",
         step7_1_checkbox_3: "I confirm that I am outside of the New York trading session",
         step7_2_warning: `<strong>Before proceeding with any action, please read this entire step carefully.</strong>`,
-        step7_2_content: `Once you have confirmed the above, proceed with the trade by pressing either <strong>"Sell by Market"</strong> or <strong>"Buy by Market"</strong>.<br><br>Once the trade is executed, wait at least one minute, then close it. The position must remain open for <strong>at least 60 seconds</strong>, or the broker verification will fail.<br><br>After closing, you may see a small negative balance in your account. This is completely normal and expected as part of the verification process.`,
+        step7_2_content: `Once you have confirmed the above, proceed with the trade by pressing either <strong>"Sell by Market"</strong> or <strong>"Buy by Market"</strong>.<br><br>Once the trade is executed, wait at least 15 seconds, then close it. The position must remain open for <strong>at least 15 seconds</strong>, or the broker verification will fail.<br><br>After closing, you may see a small negative balance in your account. This is completely normal and expected as part of the verification process.`,
         step7_2_checkbox_1: "I confirm that I have executed and closed the verification trade",
         step7_2_checkbox_2: "I confirm that my account is now ready to be connected to Javlot",
 
@@ -2721,7 +2829,7 @@
         bullwaves_desc_1: "Créez votre compte Bullwaves avec la bonne devise et votre mot de passe MT5.",
         bullwaves_desc_2: "Vérifiez que la plateforme, le type et le levier correspondent aux paramètres requis.",
         bullwaves_3_1_content: `<p style="margin-bottom: 16px;">Bullwaves propose une inscription simple. Renseignez vos informations personnelles, et votre compte MT5 est créé instantanément. Le point clé à vérifier est la devise du compte.</p><p style="margin-bottom: 16px;">Nous recommandons <strong>EUR</strong> (sans obligation). Choisissez aussi votre mot de passe avec soin : il sera également votre <strong>mot de passe MT5</strong>.</p>`,
-        bullwaves_3_2_content: `Si vous voyez ce tableau de bord, votre compte broker est prêt. Vérifiez que la plateforme, le type de compte et le levier correspondent à l'exemple <strong>(MT5, Live & 500)</strong>.`,
+        bullwaves_3_2_content: `Si vous voyez ce tableau de bord, votre compte broker est prêt. Vérifiez que la plateforme, le type de compte et le levier correspondent à l'exemple <strong>(MT5, Live &amp; 500)</strong>.`,
         bullwaves_checkbox_1: "J'ai saisi les bonnes infos MetaTrader",
         bullwaves_checkbox_2: "Mon compte est correctement configuré",
 
@@ -2790,9 +2898,9 @@
         deposit_desc_3_vtmarkets: "Confirmez que votre compte VT Markets est financé et prêt.",
         deposit_desc_3_vantage: "Vérifiez le bon compte et saisissez le montant du dépôt initial.",
         deposit_desc_4_vantage: "Choisissez votre méthode de paiement et confirmez une fois le dépôt effectué.",
-        step4_info_box: `<p style="margin-bottom: 14px; font-weight: 700; color: #000000;">Important - Dépôt initial</p><p style="margin-bottom: 14px;">Pour activer votre accès côté broker, un premier dépôt de <strong>1 000 €</strong> est requis.</p><p style="margin-bottom: 14px;">Déposer plus de <strong>1 000 €</strong> à ce stade n'apporte aucun avantage. Nous vous conseillons de ne pas dépasser ce montant pour l'instant.</p><p style="margin-bottom: 12px; font-weight: 600; color: #000000;">Pourquoi ?</p><p style="margin-bottom: 14px;">L'Étape 5 inclut un trade de vérification obligatoire imposé par le broker (procédure anti-bot et validation du compte). Ce trade doit être passé avec une taille de lot de <strong>1</strong>, ce qui est élevé pour un démarrage.</p><p style="margin-bottom: 14px;">Déposer plus de <strong>1 000 €</strong> augmenterait inutilement votre exposition, sans bénéfice.</p><p style="margin-bottom: 12px; font-weight: 600; color: #000000;">Rassurez-vous :</p><ul style="margin: 0 0 14px 20px; padding: 0; color: #4B5563;"><li style="margin-bottom: 8px;">C'est une vérification standard et temporaire</li><li style="margin-bottom: 8px;">Nous vous guidons étape par étape</li><li style="margin-bottom: 8px;">Vous aurez des consignes claires pour le faire en sécurité</li><li style="margin-bottom: 8px;">Objectif : valider, pas performer</li></ul><p style="margin: 0;">Une fois la vérification terminée, votre compte sera validé et prêt à fonctionner normalement.</p>`,
+        step4_info_box: `<p style="margin-bottom: 14px; font-weight: 700; color: #000000;">Important - Dépôt initial</p><p style="margin-bottom: 14px;">Pour activer votre accès côté broker, un premier dépôt de <strong>1 000 €</strong> est requis.</p><p style="margin-bottom: 14px;">Déposer plus de <strong>1 000 €</strong> à ce stade n'apporte aucun avantage. Nous vous conseillons de ne pas dépasser ce montant pour l'instant.</p><p style="margin-bottom: 12px; font-weight: 600; color: #000000;">Pourquoi ?</p><p style="margin-bottom: 14px;">L'Étape 7 inclut un trade de vérification obligatoire imposé par le broker (procédure anti-bot et validation du compte). Ce trade doit être passé avec une taille de lot de <strong>1</strong>, ce qui est élevé pour un démarrage.</p><p style="margin-bottom: 14px;">Déposer plus de <strong>1 000 €</strong> augmenterait inutilement votre exposition, sans bénéfice.</p><p style="margin-bottom: 12px; font-weight: 600; color: #000000;">Rassurez-vous :</p><ul style="margin: 0 0 14px 20px; padding: 0; color: #4B5563;"><li style="margin-bottom: 8px;">C'est une vérification standard et temporaire</li><li style="margin-bottom: 8px;">Nous vous guidons étape par étape</li><li style="margin-bottom: 8px;">Vous aurez des consignes claires pour le faire en sécurité</li><li style="margin-bottom: 8px;">Objectif : valider, pas performer</li></ul><p style="margin: 0;">Une fois la vérification terminée, votre compte sera validé et prêt à fonctionner normalement.</p>`,
         step4_checkbox_1: "Je comprends qu'un dépôt de 1 000 € (ou équivalent) est requis pour activer mon compte broker",
-        step4_checkbox_2: "Je comprends que déposer plus de 1 000 € maintenant n'est pas recommandé, et que je pourrai financer davantage après l'Étape 5",
+        step4_checkbox_2: "Je comprends que déposer plus de 1 000 € maintenant n'est pas recommandé, et que je pourrai financer davantage après l'Étape 7",
 
         // ===== ÉTAPE 5 =====
         step5_title: "MetaTrader 5",
@@ -2817,10 +2925,8 @@
         step6_2_checkbox: "Je confirme être connecté à mon compte MetaTrader 5.",
         step6_3_content: `Allez dans <strong>"Cotations"</strong> (en bas), puis appuyez sur <strong>"+"</strong> (en haut à droite). Recherchez et ajoutez la cotation EURUSD correspondant à votre broker. La bonne cotation est indiquée sur l'image ci-dessous.`,
         step6_3_checkbox: "Je confirme avoir ajouté la bonne cotation EURUSD.",
-        step6_4_content: `Avant le trade de vérification, assurez-vous d'être en dehors de la <strong>session de New York (8h - 17h EST / 14h - 23h Paris)</strong>. Le trade doit être exécuté hors de cette fenêtre pour limiter le risque et faciliter la validation.`,
-        step6_4_warning: `<strong>Important :</strong> Ne continuez pas si vous êtes dans les heures de session de New York. Attendez la fermeture de la session.`,
+        step6_4_warning: `<strong>Important :</strong> Ne continuez pas si vous êtes dans les heures de session de New York (<span class="ny-hours-local"></span>). Attendez la fermeture de la session.`,
         step6_4_checkbox: "Je confirme être en dehors des heures de session de New York.",
-        step6_4_title: "FÉLICITATIONS !",
         step6_4_desc: "Votre compte est configuré et prêt pour la validation anti-bot.",
 
         // ===== ÉTAPE 7 =====
@@ -2832,7 +2938,7 @@
         step7_1_checkbox_2: "Je confirme utiliser une taille de lot de 1.00",
         step7_1_checkbox_3: "Je confirme être hors session de New York",
         step7_2_warning: `<strong>Avant toute action, lisez attentivement l'intégralité de cette étape.</strong>`,
-        step7_2_content: `Une fois tout confirmé, lancez le trade via <strong>"Vendre au marché"</strong> ou <strong>"Acheter au marché"</strong>.<br><br>Après exécution, attendez au moins une minute, puis fermez la position. Elle doit rester ouverte <strong>au moins 60 secondes</strong>, sinon la vérification échouera.<br><br>Après la clôture, un petit solde négatif peut apparaître. C'est normal dans ce processus.`,
+        step7_2_content: `Une fois tout confirmé, lancez le trade via <strong>"Vendre au marché"</strong> ou <strong>"Acheter au marché"</strong>.<br><br>Après exécution, attendez au moins 15 secondes, puis fermez la position. Elle doit rester ouverte <strong>au moins 15 secondes</strong>, sinon la vérification échouera.<br><br>Après la clôture, un petit solde négatif peut apparaître. C'est normal dans ce processus.`,
         step7_2_checkbox_1: "Je confirme avoir exécuté et fermé le trade de vérification",
         step7_2_checkbox_2: "Je confirme que mon compte est prêt à être connecté à Javlot",
 
@@ -2970,6 +3076,9 @@
             if (typeof updateStep4 === 'function' && currentStep === 4) updateStep4();
             if (typeof updateMetaTraderStep === 'function' && currentStep === 6) updateMetaTraderStep();
             if (typeof updateVerificationStep === 'function' && currentStep === 7) updateVerificationStep();
+            
+            // Update NY hours display after translations are applied
+            updateNYHoursDisplay();
         }
 
         // Initialize language on page load
@@ -2981,6 +3090,42 @@
                 // Apply default language translations
                 applyTranslations();
             }
+            
+            // Update NY hours display after translations
+            updateNYHoursDisplay();
+        }
+
+        // Function to calculate and display NY trading hours in user's local timezone
+        // NY Session: 14:30 - 17:30 UTC+1 (Brussels/Paris/Berlin)
+        // Which is 13:30 - 16:30 UTC
+        function updateNYHoursDisplay() {
+            const nyHoursElements = document.querySelectorAll('.ny-hours-local');
+            if (nyHoursElements.length === 0) return;
+            
+            // Create dates for NY session start and end
+            const now = new Date();
+            const nyStart = new Date(now);
+            const nyEnd = new Date(now);
+            
+            // NY session in UTC: 13:30 - 16:30 (which is 14:30 - 17:30 UTC+1)
+            nyStart.setUTCHours(13, 30, 0, 0);
+            nyEnd.setUTCHours(16, 30, 0, 0);
+            
+            // Format times in user's locale
+            const timeFormat = { hour: '2-digit', minute: '2-digit', hour12: false };
+            
+            const startLocal = nyStart.toLocaleTimeString([], timeFormat);
+            const endLocal = nyEnd.toLocaleTimeString([], timeFormat);
+            
+            // Get timezone abbreviation or offset
+            const tzOptions = { timeZoneName: 'short' };
+            const tzString = new Date().toLocaleTimeString('en-US', tzOptions).split(' ').pop();
+            
+            const hoursText = `${startLocal} – ${endLocal} (${tzString})`;
+            
+            nyHoursElements.forEach(el => {
+                el.textContent = hoursText;
+            });
         }
 
         let step1ContinueBtn = null;
@@ -3395,7 +3540,7 @@
                 return;
             }
 
-            if (currentStep > 1) {
+            if (currentStep >= 1) {
                 navDirection = 'backward';
                 currentStep--;
                 updateStep();
@@ -3522,7 +3667,7 @@
             const sections = container.querySelectorAll('.MetaTrader-section');
             sections.forEach(sec => sec.classList.remove('active'));
 
-            const currentSection = container.querySelector('.MetaTrader-section[data-MetaTrader-step="' + MetaTraderSubStep + '"]');
+            const currentSection = container.querySelector('.MetaTrader-section[data-metatrader-step="' + MetaTraderSubStep + '"]');
             if (currentSection) {
                 currentSection.classList.add('active');
                 if (MetaTraderDirection) {
@@ -4629,10 +4774,69 @@
             }
         }
 
+        // ===== LIGHTBOX FUNCTIONS =====
+        function initLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            
+            // Add click handlers to all clickable images
+            document.querySelectorAll('.clickable-image').forEach(img => {
+                img.addEventListener('click', function() {
+                    openLightbox(this.src, this.alt);
+                });
+            });
+            
+            // Close on overlay click
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox || e.target === lightboxClose || lightboxClose.contains(e.target)) {
+                    closeLightbox();
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
+        }
+        
+        function openLightbox(src, alt) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            
+            lightboxImage.src = src;
+            lightboxImage.alt = alt || 'Enlarged view';
+            
+            // Force reflow before adding active class for animation
+            lightbox.style.display = 'flex';
+            lightbox.offsetHeight;
+            lightbox.classList.add('active');
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            
+            lightbox.classList.add('closing');
+            
+            setTimeout(() => {
+                lightbox.classList.remove('active', 'closing');
+                lightbox.style.display = 'none';
+                document.body.style.overflow = '';
+            }, 250);
+        }
+
 
         document.addEventListener('DOMContentLoaded', function () {
             // Initialize language
             initLanguage();
+            
+            // Initialize Lightbox
+            initLightbox();
             
             const cards = document.querySelectorAll('.broker-card');
             cards.forEach(card => {
@@ -4769,13 +4973,6 @@
             if (a3) a3.addEventListener('change', updateAxiContinueButton);
 
             // Listeners Startrader
-
-            // Listeners VT Markets
-            const vt2 = document.getElementById('vtmarketsStep2Done');
-            if (vt2) vt2.addEventListener('change', updateVtmarketsContinueButton);
-            const vt4 = document.getElementById('vtmarketsStep4Done');
-            if (vt4) vt4.addEventListener('change', updateVtmarketsContinueButton);
-
             const s1 = document.getElementById('startraderStep1Done');
             if (s1) s1.addEventListener('change', updateStartraderContinueButton);
             const s2 = document.getElementById('startraderStep2Done');
@@ -4783,11 +4980,11 @@
             const s3 = document.getElementById('startraderStep3Done');
             if (s3) s3.addEventListener('change', updateStartraderContinueButton);
 
-            updateStep1Button();
-            updateStep2Button();
-            updateStep4Button();
-            updateStep5Button();
-            updateStep();
+            // Listeners VT Markets
+            const vt2 = document.getElementById('vtmarketsStep2Done');
+            if (vt2) vt2.addEventListener('change', updateVtmarketsContinueButton);
+            const vt4 = document.getElementById('vtmarketsStep4Done');
+            if (vt4) vt4.addEventListener('change', updateVtmarketsContinueButton);
         });
     </script>
 </body>
