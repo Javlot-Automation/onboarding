@@ -1,0 +1,72 @@
+<div class="step-content" data-step="8">
+    <div class="step-content-inner">
+        <div class="step-content-body">
+            <div class="step-header">
+                <h2 class="step-title" data-i18n="step8_title">Connect to Javlot</h2>
+                <!-- No "Need Help" link here in original code, or stick to pattern? -->
+            </div>
+            <p class="step-description" data-i18n="step8_description">
+                Securely link your trading account to our system.
+            </p>
+
+            <form class="mt5-form" onsubmit="event.preventDefault(); mt5Submit();">
+                <div class="form-group">
+                    <label data-i18n="label_email">Email Address</label>
+                    <input type="email" id="mt5Email" data-placeholder-i18n="placeholder_email"
+                        placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="label_account_number">MetaTrader 5 Login (Account
+                        Number)</label>
+                    <input type="text" id="mt5Account" data-placeholder-i18n="placeholder_account"
+                        placeholder="e.g. 50123456" required>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="label_password">MetaTrader 5 Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="mt5Password" data-placeholder-i18n="placeholder_password"
+                            placeholder="Enter your trader password" required>
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('mt5Password')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="field-hint" data-i18n="password_hint">This is the password used to
+                        log into MT5, not the broker portal.</div>
+                </div>
+                <div class="form-group">
+                    <label data-i18n="label_server">Broker Server Name</label>
+                    <input type="text" id="mt5Server" data-placeholder-i18n="placeholder_server"
+                        placeholder="e.g. VantageInternational-Live" required>
+                    <div class="field-hint" data-i18n="server_hint">Exact server name as shown in
+                        MT5 Settings.</div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="confirmCorrect" required onchange="mt5UpdateSubmitState()">
+                        <span data-i18n="confirm_correct">I confirm the details above are correct
+                            and the account has funds.</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="confirmSecure" required onchange="mt5UpdateSubmitState()">
+                        <span data-i18n="confirm_secure">I authorize Javlot to securely connect to
+                            this account for trading.</span>
+                    </label>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn-prev" onclick="prevStep()" data-i18n="btn_back">Back</button>
+                    <button type="submit" class="btn-submit" id="mt5SubmitBtn" disabled data-i18n="btn_secure_connect">
+                        Secure Connect
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

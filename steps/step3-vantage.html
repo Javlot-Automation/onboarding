@@ -1,0 +1,105 @@
+<div class="step-content" data-step="3" data-broker="vantage">
+    <div class="step-content-inner">
+        <div class="step-content-body">
+            <div class="step-header">
+                <h2 class="step-title" data-i18n="step3_title">Broker Account Setup</h2>
+                <a href="/cdn-cgi/l/email-protection#dfacaaafafb0adab9fb5bea9b3b0abf1b6b0" class="need-help-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <span data-i18n="need_help">Need Help?</span>
+                </a>
+            </div>
+            <p class="step-description" id="vantageStepDescription">
+                Verify your identity to unlock your deposit and withdrawal limits.
+            </p>
+
+            <!-- 3.1 - KYC + limits -->
+            <div class="vantage-section active" data-vantage-step="1">
+                <div data-i18n-html="vantage_3_1_content">
+                    <p style="margin-bottom: 16px;">Once your Vantage Markets account is created,
+                        you will need to verify your email address, your phone number, and your ID
+                        card. After completing these steps, you will unlock the deposit and
+                        withdrawal limit of <strong>$50,000/day</strong>.</p>
+                    <p style="margin-bottom: 16px;">If you plan to invest more than
+                        <strong>$50,000</strong>, you will also need to verify your residential
+                        address in order to increase your limit up to
+                        <strong>$10,000,000/day</strong>.
+                    </p>
+                </div>
+
+                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692d7f8ab1a078de89e495c0_Vantage%2050k-p-2600.png"
+                    alt="Vantage 50k limit" class="vantage-image clickable-image">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="vantageStep1Done" required>
+                        <span data-i18n="vantage_checkbox_1">I have completed this step</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 3.2.1 - Open account -->
+            <div class="vantage-section" data-vantage-step="2">
+                <p style="margin-bottom: 16px;" data-i18n-html="vantage_3_2_content">
+                    Once you have completed the KYC (Know Your Customer) process, you will be able
+                    to create your MetaTrader 5 account.
+                    Simply click on the <strong>“Open Account”</strong> button to get started.
+                </p>
+
+                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692d6c2f5bb41fcbeceb42eb_36da3a4007a53a4384a73914f7feeb33_Vantage%20Create-p-2600.png"
+                    alt="Vantage - Open account" class="vantage-image clickable-image">
+            </div>
+
+            <!-- 3.2.2 - Account parameters -->
+            <div class="vantage-section" data-vantage-step="3">
+                <div data-i18n-html="vantage_3_3_content">
+                    <p style="margin-bottom: 12px;">Choose A Trading Platform: <strong>Recommended –
+                            MetaTrader 5</strong><br>Choose An Account Type: <strong>RAW
+                            ECN</strong><br>Choose An Account Currency: <strong>EUR is
+                            mandatory.</strong></p>
+                    <p style="margin-bottom: 12px;">By ticking the box: make sure to read the user
+                        compliance before creating your account.</p>
+                    <p style="margin-bottom: 16px;">Submit: once you are ready and have double
+                        checked your selections, click on <strong>Submit</strong> to create your MT5
+                        account.</p>
+                </div>
+
+                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692d711754435d25555c2604_7b16c2e82ba06faf2f9285808b14d79d_Vantage%20Create%20MT5-p-2600.png"
+                    alt="Vantage - Create MT5" class="vantage-image clickable-image">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="vantageStep3Done" required>
+                        <span data-i18n="vantage_checkbox_3">I used the information above to open my
+                            account</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 3.3 - Confirmation -->
+            <div class="vantage-section" data-vantage-step="4">
+                <p style="margin-bottom: 16px;" data-i18n-html="vantage_3_4_content">
+                    Congratulations, your MT5 account is created. You can now head to <strong>Step
+                        4: Make your first deposit.</strong></p>
+
+                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/692d752b52fa1590e119cb5d_Vantage%20Confirm.png"
+                    alt="Vantage - Confirm account" class="vantage-image clickable-image">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="vantageStep4Done" required>
+                        <span data-i18n="vantage_checkbox_4">My trading account is created</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button type="button" class="btn-prev" onclick="prevStep()" data-i18n="btn_back">Back</button>
+            <button type="button" class="btn-next" onclick="nextStep()" data-i18n="btn_continue">Continue</button>
+        </div>
+    </div>
+</div>
