@@ -1,3 +1,5 @@
+import { state } from './state.js';
+
 export const translations = {
     en: {
         // ===== WELCOME PAGE =====
@@ -432,7 +434,7 @@ export function setLanguage(lang) {
     });
 }
 
-function t(key) {
+export function t(key) {
     return translations[state.currentLang][key] || key;
 }
 
@@ -469,4 +471,3 @@ export function applyTranslations() {
 // For strict backup compatibility where t() was global:
 window.t = t;
 
-import { state } from './state.js';
