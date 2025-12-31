@@ -3,70 +3,95 @@
         <div class="step-content-body">
             <div class="step-header">
                 <h2 class="step-title" data-i18n="step8_title">Connect to Javlot</h2>
-                <!-- No "Need Help" link here in original code, or stick to pattern? -->
+                <a href="/cdn-cgi/l/email-protection#43303633332c3137032922352f2c376d2a2c" class="need-help-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <span data-i18n="need_help">Need Help?</span>
+                </a>
             </div>
             <p class="step-description" data-i18n="step8_description">
-                Securely link your trading account to our system.
+                Enter your MetaTrader 5 credentials to securely link your trading account to the
+                service.
             </p>
 
-            <form class="mt5-form" onsubmit="event.preventDefault(); mt5Submit();">
-                <div class="form-group">
-                    <label data-i18n="label_email">Email Address</label>
-                    <input type="email" id="mt5Email" data-placeholder-i18n="placeholder_email"
-                        placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label data-i18n="label_account_number">MetaTrader 5 Login (Account
-                        Number)</label>
-                    <input type="text" id="mt5Account" data-placeholder-i18n="placeholder_account"
-                        placeholder="e.g. 50123456" required>
-                </div>
-                <div class="form-group">
-                    <label data-i18n="label_password">MetaTrader 5 Password</label>
-                    <div class="password-input-wrapper">
-                        <input type="password" id="mt5Password" data-placeholder-i18n="placeholder_password"
-                            placeholder="Enter your trader password" required>
-                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('mt5Password')">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
-                        </button>
+            <div class="mt5setup">
+                <div id="mt5Alert" class="mt5-alert" role="alert" aria-live="polite"></div>
+
+                <div class="mt5-form">
+                    <div class="mt5-group">
+                        <label class="mt5-label" for="mt5Email" data-i18n="step8_email_label">Email
+                            Address (used for Stripe billing)</label>
+                        <input type="email" id="mt5Email" class="mt5-input" placeholder="Email address"
+                            data-i18n-placeholder="step8_email_placeholder" required>
                     </div>
-                    <div class="field-hint" data-i18n="password_hint">This is the password used to
-                        log into MT5, not the broker portal.</div>
-                </div>
-                <div class="form-group">
-                    <label data-i18n="label_server">Broker Server Name</label>
-                    <input type="text" id="mt5Server" data-placeholder-i18n="placeholder_server"
-                        placeholder="e.g. VantageInternational-Live" required>
-                    <div class="field-hint" data-i18n="server_hint">Exact server name as shown in
-                        MT5 Settings.</div>
-                </div>
 
-                <div class="form-group checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="confirmCorrect" required onchange="mt5UpdateSubmitState()">
-                        <span data-i18n="confirm_correct">I confirm the details above are correct
-                            and the account has funds.</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="confirmSecure" required onchange="mt5UpdateSubmitState()">
-                        <span data-i18n="confirm_secure">I authorize Javlot to securely connect to
-                            this account for trading.</span>
-                    </label>
-                </div>
+                    <div class="mt5-row">
+                        <div class="mt5-group">
+                            <label class="mt5-label" for="mt5AccountNumber" data-i18n="step8_account_label">MT5 Account
+                                Number</label>
+                            <input type="text" id="mt5AccountNumber" class="mt5-input"
+                                placeholder="Enter MT5 account number" data-i18n-placeholder="step8_account_placeholder"
+                                required>
+                        </div>
 
-                <div class="button-group">
-                    <button type="button" class="btn-prev" onclick="prevStep()" data-i18n="btn_back">Back</button>
-                    <button type="submit" class="btn-submit" id="mt5SubmitBtn" disabled data-i18n="btn_secure_connect">
-                        Secure Connect
-                    </button>
+                        <div class="mt5-group">
+                            <label class="mt5-label" for="mt5AccountPassword" data-i18n="step8_password_label">MT5
+                                Account Password</label>
+                            <input type="password" id="mt5AccountPassword" class="mt5-input"
+                                placeholder="Enter MT5 password" data-i18n-placeholder="step8_password_placeholder"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="mt5-group">
+                        <label class="mt5-label" for="mt5Server" data-i18n="step8_server_label">MT5
+                            Server</label>
+                        <input type="text" id="mt5Server" class="mt5-input" placeholder="Enter MT5 server"
+                            data-i18n-placeholder="step8_server_placeholder" required>
+                    </div>
+
+                    <div class="mt5-checkbox-group">
+                        <div class="mt5-checkbox-container">
+                            <input type="checkbox" id="mt5ConfirmCorrect" class="mt5-checkbox" required>
+                            <label for="mt5ConfirmCorrect" class="mt5-checkbox-label" data-i18n="step8_checkbox_1">I
+                                confirm that all informations I
+                                entered are correct.</label>
+                        </div>
+
+                        <div class="mt5-checkbox-container">
+                            <input type="checkbox" id="mt5ConfirmSecure" class="mt5-checkbox" required>
+                            <label for="mt5ConfirmSecure" class="mt5-checkbox-label" data-i18n="step8_checkbox_2">I
+                                understand that my credentials are
+                                processed securely and only used to link my MT5 account to the
+                                service.</label>
+                        </div>
+                    </div>
+
+                    <p class="mt5-info-text" data-i18n="step8_info_1">
+                        Please double-check all information before submitting. Incorrect details
+                        will prevent us from linking your MT5 account to the service. Your MT5
+                        credentials are highly sensitive. Never share them outside of this secured
+                        setup process. The Javlot team will never request your login details
+                        directly.
+                    </p>
+
+                    <p class="mt5-info-text" data-i18n="step8_info_2">
+                        This form is encrypted, processed automatically, and used exclusively to
+                        connect your trading account to the service. Your credentials are not
+                        stored, not accessible to our team, and not retained once the automated
+                        setup is completed.
+                    </p>
                 </div>
-            </form>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn-prev" onclick="prevStep()" data-i18n="btn_back">Back</button>
+                <button type="button" class="btn-next" id="mt5SubmitBtn" data-i18n="btn_setup_account">Setup my
+                    account</button>
+            </div>
         </div>
     </div>
 </div>

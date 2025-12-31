@@ -259,6 +259,16 @@ export const translations = {
         step4_vantage_checkbox_2: "I confirm that my initial deposit is at least €1,000 (or equivalent)",
         step4_vantage_4_content: "From here, choose your preferred payment method to continue funding your account.",
         step4_vantage_checkbox_3: "Please check this box after your account has been funded",
+
+        // ===== STEP 5 =====
+        step5_title: "MetaTrader 5",
+        step5_description: `Download MetaTrader 5 on your smartphone to manage your account and follow the next steps. You can also search for <strong>"MetaTrader 5"</strong> directly on the App Store (iOS) or Play Store (Android).`,
+        step5_ios: "Download for iOS",
+        step5_android: "Download for Android",
+        step5_app_store: "App Store",
+        step5_play_store: "Play Store",
+        step5_checkbox: "I confirm that I have downloaded and installed MetaTrader 5 on my device",
+        step5_note: "If the download links do not open correctly, simply search for <strong>MetaTrader 5</strong> in your store and install the official app.",
     },
 
     fr: {
@@ -434,6 +444,62 @@ export const translations = {
         step4_vantage_checkbox_2: "Je confirme que mon dépôt initial est d'au moins 1 000 €",
         step4_vantage_4_content: "Choisissez votre méthode de paiement pour continuer.",
         step4_vantage_checkbox_3: "Veuillez cocher cette case une fois votre compte approvisionné",
+
+        // ===== STEP 5 =====
+        step5_title: "MetaTrader 5",
+        step5_description: `Téléchargez MetaTrader 5 sur votre smartphone pour gérer votre compte et suivre les prochaines étapes. Vous pouvez aussi chercher <strong>"MetaTrader 5"</strong> sur l'App Store (iOS) ou le Play Store (Android).`,
+        step5_ios: "Télécharger pour iOS",
+        step5_android: "Télécharger pour Android",
+        step5_app_store: "App Store",
+        step5_play_store: "Play Store",
+        step5_checkbox: "Je confirme avoir téléchargé et installé MetaTrader 5 sur mon appareil",
+        step5_note: "Si les liens ne s'ouvrent pas, recherchez <strong>MetaTrader 5</strong> dans votre store et installez l'application officielle.",
+
+        // ===== STEP 6 =====
+        step6_title: "Configuration MetaTrader",
+        mt_desc_1: "Récupérez vos identifiants MetaTrader 5 dans votre email.",
+        mt_desc_2: "Connectez-vous à votre compte de trading dans l'application MetaTrader 5.",
+        mt_desc_3: "Ajoutez la cotation requise pour votre broker.",
+        mt_desc_4: "Dernière vérification avant la procédure anti-bot.",
+        step6_1_content: `<p class="step-description" style="margin-bottom: 14px;">Maintenant que votre compte MetaTrader 5 est créé et financé, vous avez besoin de vos identifiants. Ils sont envoyés par email par le broker sélectionné.</p><p class="step-description" style="margin-top: 0;">Pour les retrouver, cherchez <strong>'MT5 Account'</strong> dans votre boîte mail et vérifiez aussi le spam. L'email ressemble à l'exemple ci-dessous.</p>`,
+        step6_1_note: "<strong>Note :</strong> Bullwaves : votre mot de passe MT5 est identique à votre mot de passe Bullwaves.",
+        step6_1_checkbox: "Je confirme avoir trouvé mes identifiants MetaTrader 5.",
+        step6_2_content: `Ouvrez MetaTrader 5, puis <strong>"Réglages"</strong> (en bas à droite) et <strong>"Nouveau compte"</strong>. Recherchez votre broker, puis sélectionnez le <strong>serveur live</strong> indiqué dans l'email (pas un serveur démo). Entrez ensuite votre <strong>Login</strong> et <strong>Mot de passe</strong>.`,
+        step6_2_checkbox: "Je confirme être connecté à mon compte MetaTrader 5.",
+        step6_3_content: `Allez dans <strong>"Cotations"</strong> (en bas), puis appuyez sur <strong>"+"</strong> (en haut à droite). Recherchez et ajoutez la cotation EURUSD correspondant à votre broker. La bonne cotation est indiquée sur l'image ci-dessous.`,
+        step6_3_checkbox: "Je confirme avoir ajouté la bonne cotation EURUSD.",
+        step6_4_warning: `<strong>Important :</strong> Ne continuez pas si vous êtes dans les heures de session de New York (<span class="ny-hours-local"></span>). Attendez la fermeture de la session.`,
+        step6_4_checkbox: "Je confirme être en dehors des heures de session de New York.",
+        step6_4_desc: "Votre compte est configuré et prêt pour la validation anti-bot.",
+
+        // ===== STEP 7 =====
+        step7_title: "Trade de vérification",
+        verif_desc_1: "Configurez le trade de vérification dans MetaTrader 5.",
+        verif_desc_2: "Exécutez le trade en sécurité et validez votre compte.",
+        step7_1_content: `Vous allez maintenant configurer le trade de vérification.<br>Allez dans 'Trade' dans MetaTrader 5 et appuyez sur '+'. Vous pourrez ajuster les paramètres.<br><br>Sélectionnez EURUSD, correspondant à la cotation ajoutée à l'étape précédente (référez-vous à l'image).<br>Entrez une taille de lot de 1.00. C'est obligatoire : la vérification échouera avec une valeur différente.`,
+        step7_1_checkbox_1: "Je confirme utiliser la bonne paire pour mon broker",
+        step7_1_checkbox_2: "Je confirme utiliser une taille de lot de 1.00",
+        step7_1_checkbox_3: "Je confirme être hors session de New York",
+        step7_2_warning: `<strong>Avant toute action, lisez attentivement l'intégralité de cette étape.</strong>`,
+        step7_2_content: `Une fois tout confirmé, lancez le trade via <strong>"Vendre au marché"</strong> ou <strong>"Acheter au marché"</strong>.<br><br>Après exécution, attendez au moins 15 secondes, puis fermez la position. Elle doit rester ouverte <strong>au moins 15 secondes</strong>, sinon la vérification échouera.<br><br>Après la clôture, un petit solde négatif peut apparaître. C'est normal dans ce processus.`,
+        step7_2_checkbox_1: "Je confirme avoir exécuté et fermé le trade de vérification",
+        step7_2_checkbox_2: "Je confirme que mon compte est prêt à être connecté à Javlot",
+
+        // ===== STEP 8 =====
+        step8_title: "Connexion à Javlot",
+        step8_description: "Entrez vos identifiants MetaTrader 5 pour lier votre compte au service en toute sécurité.",
+        step8_email_label: "Adresse email (utilisée pour la facturation Stripe)",
+        step8_email_placeholder: "Adresse email",
+        step8_account_label: "Numéro de compte MT5",
+        step8_account_placeholder: "Entrez le numéro de compte MT5",
+        step8_password_label: "Mot de passe du compte MT5",
+        step8_password_placeholder: "Entrez le mot de passe MT5",
+        step8_server_label: "Serveur MT5",
+        step8_server_placeholder: "Entrez le serveur MT5",
+        step8_checkbox_1: "Je confirme que les informations saisies sont correctes.",
+        step8_checkbox_2: "Je comprends que ces identifiants servent uniquement à lier mon compte MT5 au service.",
+        step8_info_1: "Vérifiez tout avant d'envoyer : une info incorrecte empêchera la liaison MT5. Vos identifiants MT5 sont sensibles, ne les partagez jamais hors de ce formulaire. L'équipe Javlot ne vous les demandera jamais directement.",
+        step8_info_2: "Ce formulaire est chiffré et traité automatiquement pour connecter votre compte. Vos identifiants ne sont pas accessibles à notre équipe et ne sont pas conservés après la configuration.",
     }
 };
 

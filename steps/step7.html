@@ -2,8 +2,8 @@
     <div class="step-content-inner">
         <div class="step-content-body">
             <div class="step-header">
-                <h2 class="step-title" data-i18n="step7_title">Verification Trade</h2>
-                <a href="/cdn-cgi/l/email-protection#b7c4c2c7c7d8c5c3f7ddd6cfdbd8c399dad8" class="need-help-link">
+                <h2 class="step-title" data-i18n="step7_title">Account Verification Trade</h2>
+                <a href="/cdn-cgi/l/email-protection#50232520203f2224103a31263c3f247e393f" class="need-help-link">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                         stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -12,88 +12,92 @@
                     <span data-i18n="need_help">Need Help?</span>
                 </a>
             </div>
-            <p class="step-description" data-i18n="step7_description">
-                Open a 0.01 lot trade on EURUSD to verify your account connection.
+            <p class="step-description" id="verificationStepDescription">
+                Set up your verification trade in MetaTrader 5.
             </p>
 
-            <div class="verification-steps">
-                <div class="verification-row">
-                    <div class="step-number">1</div>
-                    <div class="step-text" data-i18n="step7_step1">Go to the <strong>Quotes</strong>
-                        tab in your MT5 app</div>
+            <!-- 7.1 Setup -->
+            <div class="verification-section active" data-verification-step="1">
+                <p class="step-description" style="margin-top: 8px;" data-i18n-html="step7_1_content">You will now
+                    need to set up the account
+                    verification trade.<br>Go to the 'Trade' section in your MetaTrader 5
+                    application and tap the '+' button. You will then be able to modify your trade
+                    settings.<br><br>Set the trading pair to EURUSD, corresponding to the quote you
+                    added in the previous step (refer to the image to confirm the EURUSD quote
+                    linked to your broker).<br>Make sure to enter a lot size of 1.00. This is
+                    mandatory, and the verification will fail if a different lot size is used.</p>
+
+                <img class="deposit-image clickable-image"
+                    src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693fc79ef28e109be836280a_s7-tuto-1.png"
+                    alt="Account verification trade setup tutorial">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step7PairCorrect" required>
+                        <span data-i18n="step7_1_checkbox_1">I confirm that I am using the correct
+                            trading pair for my selected broker</span>
+                    </label>
                 </div>
-                <div class="verification-row">
-                    <div class="step-number">2</div>
-                    <div class="step-text" data-i18n="step7_step2">Find <strong>EURUSD</strong> (or
-                        add it if missing)</div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step7LotSize" required>
+                        <span data-i18n="step7_1_checkbox_2">I confirm that I am using a lot size of
+                            1.00</span>
+                    </label>
                 </div>
-                <div class="verification-row">
-                    <div class="step-number">3</div>
-                    <div class="step-text" data-i18n="step7_step3">Tap on it and select
-                        <strong>Trade</strong>
-                    </div>
-                </div>
-                <!-- Highlighted part -->
-                <div class="verification-row highlight">
-                    <div class="step-number">4</div>
-                    <div class="step-text" data-i18n="step7_step4">Verify Lot Size is
-                        <strong>0.01</strong>
-                    </div>
-                </div>
-                <div class="verification-row">
-                    <div class="step-number">5</div>
-                    <div class="step-text" data-i18n="step7_step5">Tap <strong>Buy by
-                            Market</strong></div>
-                </div>
-                <div class="verification-row">
-                    <div class="step-number">6</div>
-                    <div class="step-text" data-i18n="step7_step6">Go to <strong>Trade</strong>
-                        tab, tap the position > <strong>Close Position</strong></div>
-                </div>
-                <div class="verification-row">
-                    <div class="step-number">7</div>
-                    <div class="step-text" data-i18n="step7_step7">Tap <strong>Close by
-                            Market</strong></div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step7OutsideNY" required>
+                        <span data-i18n="step7_1_checkbox_3">I confirm that I am completing this
+                            step outside of the New York trading session (2:30 PM – 5:30 PM,
+                            UTC+1).</span>
+                    </label>
                 </div>
             </div>
 
-            <!-- Market Hours Notice -->
-            <div class="market-hours-notice">
-                <div class="hours-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+            <!-- 7.2 Execute -->
+            <div class="verification-section" data-verification-step="2">
+                <div class="warning-box" style="margin-top: 18px;" data-i18n-html="step7_2_warning">
+                    <strong>Before proceeding with any action, please read this entire step
+                        carefully.</strong>
                 </div>
-                <div class="hours-content">
-                    <div class="hours-title" data-i18n="step7_market_hours_title">Market Hours
-                        Notice</div>
-                    <div class="hours-text" data-i18n-html="step7_market_hours_text">
-                        The Forex market is closed on weekends.<br>
-                        It opens: Sunday 5PM EST (New York) / Monday 00:00 (platform time).<br>
-                        If the market is closed, you can skip this step and continue setup.
-                    </div>
-                    <div class="hours-status">
-                        <span data-i18n="current_ny_time">Current NY Time:</span>
-                        <span id="nyTimeDisplay">--:--</span>
-                    </div>
+
+                <p class="step-description" style="margin-top: 8px;" data-i18n-html="step7_2_content">This step must be
+                    handled with extreme caution
+                    in order to protect your trading capital as much as possible.<br>When you are
+                    ready, click the 'Buy by Market' button. Your trade will start
+                    immediately.<br>Wait for at least 15 seconds, then close the
+                    trade.<br><br>That's it. Congratulations! Your account is now fully validated
+                    and ready to be connected to Javlot.</p>
+
+                <img class="deposit-image clickable-image"
+                    src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693fcb7ff6a3d6acee7aa3ea_s7-tuto-2.png"
+                    alt="Account verification trade execution tutorial">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step7TradeExecuted" required>
+                        <span data-i18n="step7_2_checkbox_1">I confirm that I executed the trade
+                            according to the instructions above</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step7ReadyConnect" required>
+                        <span data-i18n="step7_2_checkbox_2">I confirm that I am ready to connect my
+                            account to Javlot.</span>
+                    </label>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="verificationTradeDone" required>
-                    <span data-i18n="step7_checkbox">I have opened and closed a 0.01 lot trade (or
-                        market is closed)</span>
-                </label>
+            <div class="button-group">
+                <button type="button" class="btn-prev" onclick="prevStep()" data-i18n="btn_back">Back</button>
+                <button type="button" class="btn-next" id="step7ContinueBtn" onclick="nextStep()"
+                    data-i18n="btn_continue">Continue</button>
             </div>
-        </div>
-
-        <div class="button-group">
-            <button type="button" class="btn-prev" onclick="prevStep()" data-i18n="btn_back">Back</button>
-            <button type="button" class="btn-next" id="step7ContinueBtn" onclick="nextStep()" disabled
-                data-i18n="btn_continue">Continue</button>
         </div>
     </div>
 </div>

@@ -2,8 +2,8 @@
     <div class="step-content-inner">
         <div class="step-content-body">
             <div class="step-header">
-                <h2 class="step-title" data-i18n="step6_title">Connect to MT5 App</h2>
-                <a href="/cdn-cgi/l/email-protection#b7c4c2c7c7d8c5c3f7ddd6cfdbd8c399dad8" class="need-help-link">
+                <h2 class="step-title" data-i18n="step6_title">MetaTrader Setup</h2>
+                <a href="/cdn-cgi/l/email-protection#c6b5b3b6b6a9b4b286aca7b0aaa9b2e8afa9" class="need-help-link">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                         stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -12,54 +12,113 @@
                     <span data-i18n="need_help">Need Help?</span>
                 </a>
             </div>
-            <p class="step-description" data-i18n="step6_description">
-                Link your broker account to the MetaTrader 5 app on your phone.
+            <p class="step-description" id="MetaTraderStepDescription">
+                Locate your MT5 credentials, log in to MetaTrader 5, and prepare your trading pairs.
             </p>
 
-            <div class="setup-guide">
-                <div class="setup-step">
-                    <div class="setup-number">1</div>
-                    <div class="setup-text" data-i18n="step6_step1">Open the MetaTrader 5 app and
-                        go to <strong>Settings > New Account</strong>.</div>
+            <!-- 6.1 -->
+            <div class="MetaTrader-section active" data-metatrader-step="1">
+                <div data-i18n-html="step6_1_content">
+                    <p class="step-description" style="margin-bottom: 14px;">Now that you have
+                        created and funded your MetaTrader 5 account, you will need your login
+                        credentials. These are always sent to your email inbox by your selected
+                        broker.</p>
+                    <p class="step-description" style="margin-top: 0;">To help you find them, you
+                        can search for <strong>'MT5 Account'</strong> in your mailbox. Also make
+                        sure to check your spam folder. The email should look similar to the example
+                        shown below.</p>
                 </div>
-                <div class="setup-step">
-                    <div class="setup-number">2</div>
-                    <div class="setup-text">
-                        <span data-i18n="step6_step2_pre">Search for your broker's name:</span>
-                        <strong id="brokerNameDisplay">Vantage</strong>
-                    </div>
+
+                <div class="info-box" data-i18n-html="step6_1_note"><strong>Note:</strong> Bullwaves
+                    users: your MT5 account password is the same as your Bullwaves account password.
                 </div>
-                <div class="setup-step">
-                    <div class="setup-number">3</div>
-                    <div class="setup-text" data-i18n="step6_step3">Select the server name provided
-                        in your broker's email.</div>
-                </div>
-                <div class="setup-step">
-                    <div class="setup-number">4</div>
-                    <div class="setup-text" data-i18n="step6_step4">Enter your Login (Account
-                        Number) and Password.</div>
+
+                <img class="deposit-image clickable-image"
+                    src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c57b471650888962f0a8a_a68104406254349cd8b0f065e0d340d5_Mail-Exemple.png"
+                    alt="Example email showing MT5 credentials">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="MetaTraderCredentialsDone" required>
+                        <span data-i18n="step6_1_checkbox">I confirm that I have successfully
+                            located my MetaTrader 5 login credentials.</span>
+                    </label>
                 </div>
             </div>
 
-            <div class="info-box" data-i18n="step6_info_box">
-                You should have received these details via email from your broker after creating
-                your account.
-                Please check your inbox (and spam folder).
+            <!-- 6.2 -->
+            <div class="MetaTrader-section" data-metatrader-step="2">
+                <div data-i18n-html="step6_2_content">
+                    <p class="step-description">You can now open MetaTrader 5 on your phone and
+                        begin the login process. When the app opens, you may be prompted to
+                        <strong>'Open a demo account'</strong>. Simply close this prompt. You will
+                        then need to log in to your <strong>'Trade Account'</strong>.
+                    </p>
+                    <p class="step-description" style="margin-top: 0;">Next, enter your server name
+                        in the search bar and select the first result that matches your broker's
+                        name. Finally, enter your MetaTrader 5 account credentials (sent to you by
+                        email), and you will be logged in.</p>
+                </div>
+
+                <img class="deposit-image clickable-image"
+                    src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c927e41628feb3bcad836_MT5%20Tutorial-1.png"
+                    alt="MetaTrader 5 login tutorial">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="MetaTraderLoggedIn" required>
+                        <span data-i18n="step6_2_checkbox">I confirm that I am logged in &amp; my
+                            €1,000 balance is visible.</span>
+                    </label>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="mt5Connected" required>
-                    <span data-i18n="step6_checkbox">My trading account is now connected to my
-                        MetaTrader 5 app</span>
-                </label>
-            </div>
-        </div>
+            <!-- 6.3 -->
+            <div class="MetaTrader-section" data-metatrader-step="3">
+                <p class="step-description" data-i18n-html="step6_3_content">Once you are logged in,
+                    it's time to prepare your account for trading. You will need to add two quotes,
+                    which depend on your broker. Each broker uses its own specific pair of quotes.
+                    Please refer to the table below and add the two quotes corresponding to your
+                    selected broker.</p>
 
-        <div class="button-group">
-            <button type="button" class="btn-prev" onclick="prevStep()" data-i18n="btn_back">Back</button>
-            <button type="button" class="btn-next" id="step6ContinueBtn" onclick="nextStep()" disabled
-                data-i18n="btn_continue">Continue</button>
+                <img class="deposit-image clickable-image"
+                    src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c9d362df519b81c7cd597_MT5%20Tutorial-2.png"
+                    alt="MetaTrader 5 quotes tutorial">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="MetaTraderQuotesAdded" required>
+                        <span data-i18n="step6_3_checkbox">I confirm that I have added the two
+                            required quotes for my broker.</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 6.4 Final confirmation -->
+            <div class="MetaTrader-section" data-metatrader-step="4">
+                <p class="step-description" data-i18n="step6_4_desc">Your trading account is fully
+                    setup and ready for the anti-bot validation procedure.</p>
+
+                <div class="warning-box" style="margin-top: 18px;" data-i18n-html="step6_4_warning">
+                    <strong>Important:</strong> Do not proceed if the current time falls within the
+                    New York session hours (<span class="ny-hours-local"></span>). Wait until the
+                    session is closed before continuing.
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="MetaTraderOutsideNY" required>
+                        <span data-i18n="step6_4_checkbox">I confirm that I am outside the New York
+                            trading session hours.</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="btn-prev" onclick="prevStep()" data-i18n="btn_back">Back</button>
+                <button type="button" class="btn-next" id="step6ContinueBtn" onclick="nextStep()"
+                    data-i18n="btn_continue">Continue</button>
+            </div>
         </div>
     </div>
 </div>

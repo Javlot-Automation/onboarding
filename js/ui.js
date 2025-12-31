@@ -24,7 +24,7 @@ async function loadStepContent(step, broker = null) {
     if (step === 3 && broker) {
         url += `-${broker}`;
     }
-    url += `.html`;
+    url += `.html?v=${new Date().getTime()}`;
 
     try {
         const response = await fetch(url);
