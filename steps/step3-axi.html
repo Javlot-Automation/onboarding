@@ -1,9 +1,9 @@
-<div class="step-content" data-step="3" data-broker="axi">
+<div class="step-content">
     <div class="step-content-inner">
         <div class="step-content-body">
             <div class="step-header">
                 <h2 class="step-title" data-i18n="step3_title">Broker Account Setup</h2>
-                <a href="/cdn-cgi/l/email-protection#0675737676697472466c67706a6972286b69" class="need-help-link">
+                <a href="/cdn-cgi/l/email-protection#a3d0d6d3d3ccd1d7e3c9c2d5cfccd78dcacc" class="need-help-link">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                         stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -12,28 +12,82 @@
                     <span data-i18n="need_help">Need Help?</span>
                 </a>
             </div>
-            <p class="step-description" id="axiStepDescription" style="display:none;">
-                Complete your Axi account setup.
+            <p class="step-description" id="axiStepDescription">
+                Resume your application, configure your MT5 account and confirm your Axi setup.
             </p>
 
-            <div class="form-group">
-                <div data-i18n-html="axi_3_1_content">
-                    <p style="margin-bottom: 16px;">Once the account is created, you will need to
-                        follow the Axi onboarding process that will lead you to create your
-                        MetaTrader 5 Account.</p>
-                    <p style="margin-bottom: 16px;">If they ask for an account type, please select
-                        <strong>Standard</strong>.
+            <!-- 3.1 - Resume application -->
+            <div class="axi-section active" data-axi-step="1">
+                <p style="margin-bottom: 16px;" data-i18n-html="axi_3_1_content">
+                    After creating your Axi account, you’ll arrive on this page. Simply click
+                    <strong>“Resume Application”</strong> to complete your trading account setup.
+                </p>
+
+                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/6933004e78760a42df93724e_imagezzzertzetr-p-2600.png"
+                    alt="Axi resume application" class="axi-image clickable-image">
+            </div>
+
+            <!-- 3.2 - Set up your new account -->
+            <div class="axi-section" data-axi-step="2">
+                <div data-i18n-html="axi_3_2_content">
+                    <p style="margin-bottom: 12px;">After entering your personal information, you
+                        will reach the <strong>"Set up your new account"</strong> page. Make sure to
+                        configure your account using the details shown below:</p>
+                    <p style="margin-bottom: 12px;">Trading Platform : <strong>MetaTrader
+                            5</strong><br>Account Type : <strong>PRO</strong><br>Join Axi Selection
+                        : <strong>Optional</strong></p>
+                    <p style="margin-bottom: 16px;">Create Account : Once you are ready and have
+                        double checked your selections, click on <strong>"Create Account"</strong>.
                     </p>
                 </div>
 
-                <label class="checkbox-label">
-                    <input type="checkbox" id="axiStep1Done" required>
-                    <span data-i18n="axi_checkbox_1">I have created my MetaTrader 5 account on
-                        Axidata</span>
-                </label>
+                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/6933080d2ee9e26b998d1fa3_7b9038a4171f6e1f1b30230c7b194a40_qerrqsdgcqxwcgtszr-p-2600.png"
+                    alt="Axi set up your new account" class="axi-image clickable-image">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="axiStep2Done" required>
+                        <span data-i18n="puprime_checkbox_2">I confirm that I entered the
+                            informations above to create my MetaTrader account</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 3.3 - Setup your account (currency & leverage) -->
+            <div class="axi-section" data-axi-step="3">
+                <div data-i18n-html="axi_3_3_content">
+                    <p style="margin-bottom: 12px;">After completing the KYC (Know Your Customer)
+                        process, you will arrive on the <strong>"Setup your account"</strong> page.
+                        Make sure to setup your account with the information below:</p>
+                    <p style="margin-bottom: 12px;">Account currency : <strong>EUR
+                            Recommended</strong><br>Leverage : <strong>1:500</strong></p>
+                    <p style="margin-bottom: 16px;">Continue : Once you are ready and have double
+                        checked your selections, click on <strong>"Continue"</strong>.</p>
+                </div>
+
+                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/69330c405b5ef326d073692f_azeraercgzsed-p-2600.png"
+                    alt="Axi setup your account" class="axi-image clickable-image">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="axiStep3Done" required>
+                        <span data-i18n="axi_checkbox_3">I confirm that I entered the informations
+                            above to setup my account</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 3.4 - Dashboard ready -->
+            <div class="axi-section" data-axi-step="4">
+                <p style="margin-bottom: 16px;" data-i18n-html="axi_3_4_content">
+                    Congratulations! You’ve now reached your dashboard and your trading account is
+                    ready.
+                </p>
+
+                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/69330f045c56968f6cb6ae8d_sdfgs-p-2600.png"
+                    alt="Axi dashboard ready" class="axi-image clickable-image">
             </div>
         </div>
-
         <div class="button-group">
             <button type="button" class="btn-prev" onclick="prevStep()" data-i18n="btn_back">Back</button>
             <button type="button" class="btn-next" onclick="nextStep()" data-i18n="btn_continue">Continue</button>

@@ -1,9 +1,9 @@
-<div class="step-content" data-step="3" data-broker="startrader">
+<div class="step-content">
     <div class="step-content-inner">
         <div class="step-content-body">
             <div class="step-header">
                 <h2 class="step-title" data-i18n="step3_title">Broker Account Setup</h2>
-                <a href="/cdn-cgi/l/email-protection#b0c3c5c0c0dfc2c4f0dad1c8dcdfc49edddf" class="need-help-link">
+                <a href="/cdn-cgi/l/email-protection#fc8f898c8c938e88bc969d8a909388d29593" class="need-help-link">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                         stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -12,28 +12,88 @@
                     <span data-i18n="need_help">Need Help?</span>
                 </a>
             </div>
-            <p class="step-description" id="startraderStepDescription" style="display:none;">
-                Complete your Startrader account setup.
+            <p class="step-description" id="startraderStepDescription">
+                Configure your Startrader account, taking VPN requirements and MT5 settings into
+                account.
             </p>
 
-            <div class="form-group">
-                <div data-i18n-html="startrader_3_1_content">
-                    <p style="margin-bottom: 16px;">Once the account is created, you will need to
-                        follow the Startrader onboarding process that will lead you to create your
-                        MetaTrader 5 Account.</p>
-                    <p style="margin-bottom: 16px;">If they ask for an account type, please select
-                        <strong>Standard</strong>.
-                    </p>
+            <!-- 3.1 - Warning + personal details -->
+            <div class="startrader-section active" data-startrader-step="1">
+                <div class="warning-box" style="margin-bottom: 20px;" data-i18n-html="startrader_warning">
+                    <p style="margin-bottom: 12px;">Startrader is restricted in some regions
+                        (France, European Union, United States, Singapore, India, and Russia). If
+                        you reside in one of these locations, you may technically be able to access
+                        their services using a VPN.</p>
+                    <p style="margin-bottom: 0;">While this is not illegal for you as a customer, we
+                        recommend choosing another broker to ensure full compliance and avoid any
+                        potential limitations.</p>
                 </div>
 
-                <label class="checkbox-label">
-                    <input type="checkbox" id="startraderStep1Done" required>
-                    <span data-i18n="startrader_checkbox_1">I have created my MetaTrader 5 account
-                        on Startrader</span>
-                </label>
+                <p style="margin-bottom: 16px;" data-i18n-html="startrader_3_1_content">
+                    Once your Startrader account is created, you will be asked to enter your
+                    personal details.
+                    Once completed, click on the <strong>“Next”</strong> button.
+                </p>
+
+                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/69331b311626c0035d68d654_azeradqdfeq-p-2600.png"
+                    alt="Startrader personal details" class="startrader-image clickable-image">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="startraderStep1Done" required>
+                        <span data-i18n="startrader_checkbox_1">I understand that this broker may
+                            require a VPN</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 3.2 - Account configuration -->
+            <div class="startrader-section" data-startrader-step="2">
+                <div data-i18n-html="startrader_3_2_content">
+                    <p style="margin-bottom: 12px;">Choose Trading Platform : <strong>Recommended –
+                            MetaTrader 5</strong><br>Choose Account Type : <strong>RAW
+                            ECN</strong><br>Choose Account Currency : <strong>EUR is
+                            recommended.</strong></p>
+                    <p style="margin-bottom: 12px;">By ticking the box : make sure to read Terms and
+                        Conditions.</p>
+                    <p style="margin-bottom: 16px;"><strong>Next :</strong> Once you are ready and
+                        have double checked your selections, click on the <strong>"Next"</strong>
+                        button.</p>
+                </div>
+
+                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/69331c6ecfb7ab183cbd3886_fgsfdgzcwza-p-2600.png"
+                    alt="Startrader account configuration" class="startrader-image clickable-image">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="startraderStep2Done" required>
+                        <span data-i18n="startrader_checkbox_2">I confirm that I entered the
+                            information above to setup my account</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 3.3 - KYC & verification -->
+            <div class="startrader-section" data-startrader-step="3">
+                <p style="margin-bottom: 16px;" data-i18n-html="startrader_3_3_content">
+                    After completing the <strong>“Account Configuration”</strong> section, you will
+                    be asked to complete the KYC (Know Your Customer) process.
+                    Once your identity is verified, you will see the confirmation message shown
+                    below.
+                </p>
+
+                <img src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/69332b0f06c45e9eb5ec752a_wxcgvunisorbguqs-p-2600.png"
+                    alt="Startrader account verified" class="startrader-image clickable-image">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="startraderStep3Done" required>
+                        <span data-i18n="startrader_checkbox_3">My account is created and my identy
+                            verified</span>
+                    </label>
+                </div>
             </div>
         </div>
-
         <div class="button-group">
             <button type="button" class="btn-prev" onclick="prevStep()" data-i18n="btn_back">Back</button>
             <button type="button" class="btn-next" onclick="nextStep()" data-i18n="btn_continue">Continue</button>
