@@ -29,14 +29,15 @@ export function updateVantageStep() {
 
     const desc = document.getElementById('vantageStepDescription');
     if (desc) {
-        if (state.vantageSubStep === 1) {
-            desc.textContent = t('vantage_desc_1');
-        } else if (state.vantageSubStep === 2) {
-            desc.textContent = t('vantage_desc_2');
-        } else if (state.vantageSubStep === 3) {
-            desc.textContent = t('vantage_desc_3');
-        } else if (state.vantageSubStep === 4) {
-            desc.textContent = t('vantage_desc_4');
+        let key = '';
+        if (state.vantageSubStep === 1) key = 'vantage_desc_1';
+        else if (state.vantageSubStep === 2) key = 'vantage_desc_2';
+        else if (state.vantageSubStep === 3) key = 'vantage_desc_3';
+        else if (state.vantageSubStep === 4) key = 'vantage_desc_4';
+
+        if (key) {
+            desc.textContent = t(key);
+            desc.setAttribute('data-i18n', key);
         }
     }
 
@@ -79,7 +80,7 @@ export function handleVantageNext() {
     if (state.vantageSubStep === 1) {
         const c1 = document.getElementById('vantageStep1Done');
         if (!c1 || !c1.checked) {
-            alert('Please confirm that you have completed this step.');
+            alert(t('alert_finish_step'));
             return;
         }
         state.vantageDirection = 'forward';
@@ -98,7 +99,7 @@ export function handleVantageNext() {
     if (state.vantageSubStep === 3) {
         const c3 = document.getElementById('vantageStep3Done');
         if (!c3 || !c3.checked) {
-            alert('Please confirm that you used the information above to open your account.');
+            alert(t('alert_opened_account'));
             return;
         }
         state.vantageDirection = 'forward';
@@ -110,7 +111,7 @@ export function handleVantageNext() {
     if (state.vantageSubStep === 4) {
         const c4 = document.getElementById('vantageStep4Done');
         if (!c4 || !c4.checked) {
-            alert('Please confirm that your trading account is created.');
+            alert(t('alert_account_created'));
             return;
         }
         state.navDirection = 'forward';
@@ -132,10 +133,13 @@ export function updateBullwavesStep() {
 
     const desc = document.getElementById('bullwavesStepDescription');
     if (desc) {
-        if (state.bullwavesSubStep === 1) {
-            desc.textContent = t('bullwaves_desc_1');
-        } else if (state.bullwavesSubStep === 2) {
-            desc.textContent = t('bullwaves_desc_2');
+        let key = '';
+        if (state.bullwavesSubStep === 1) key = 'bullwaves_desc_1';
+        else if (state.bullwavesSubStep === 2) key = 'bullwaves_desc_2';
+
+        if (key) {
+            desc.textContent = t(key);
+            desc.setAttribute('data-i18n', key);
         }
     }
 
@@ -173,7 +177,7 @@ export function handleBullwavesNext() {
     if (state.bullwavesSubStep === 1) {
         const c1 = document.getElementById('bullwavesStep1Done');
         if (!c1 || !c1.checked) {
-            alert('Please confirm that you entered the right MetaTrader setup informations.');
+            alert(t('alert_mt_setup_info'));
             return;
         }
         state.bullwavesDirection = 'forward';
@@ -185,7 +189,7 @@ export function handleBullwavesNext() {
     if (state.bullwavesSubStep === 2) {
         const c2 = document.getElementById('bullwavesStep2Done');
         if (!c2 || !c2.checked) {
-            alert('Please confirm that your account is correctly setup.');
+            alert(t('alert_account_setup'));
             return;
         }
         state.navDirection = 'forward';
@@ -207,12 +211,14 @@ export function updatePuprimeStep() {
 
     const desc = document.getElementById('puprimeStepDescription');
     if (desc) {
-        if (state.puprimeSubStep === 1) {
-            desc.textContent = t('puprime_desc_1');
-        } else if (state.puprimeSubStep === 2) {
-            desc.textContent = t('puprime_desc_2');
-        } else if (state.puprimeSubStep === 3) {
-            desc.textContent = t('puprime_desc_3');
+        let key = '';
+        if (state.puprimeSubStep === 1) key = 'puprime_desc_1';
+        else if (state.puprimeSubStep === 2) key = 'puprime_desc_2';
+        else if (state.puprimeSubStep === 3) key = 'puprime_desc_3';
+
+        if (key) {
+            desc.textContent = t(key);
+            desc.setAttribute('data-i18n', key);
         }
     }
 
@@ -259,7 +265,7 @@ export function handlePuprimeNext() {
     if (state.puprimeSubStep === 2) {
         const c2 = document.getElementById('puprimeStep2Done');
         if (!c2 || !c2.checked) {
-            alert('Please confirm that you entered the informations above to create your MetaTrader account.');
+            alert(t('alert_create_mt_info'));
             return;
         }
         state.puprimeDirection = 'forward';
@@ -271,7 +277,7 @@ export function handlePuprimeNext() {
     if (state.puprimeSubStep === 3) {
         const c3 = document.getElementById('puprimeStep3Done');
         if (!c3 || !c3.checked) {
-            alert('Please confirm that your account is created and your profile is verified.');
+            alert(t('alert_profile_verified'));
             return;
         }
         state.navDirection = 'forward';
@@ -293,14 +299,15 @@ export function updateAxiStep() {
 
     const desc = document.getElementById('axiStepDescription');
     if (desc) {
-        if (state.axiSubStep === 1) {
-            desc.textContent = t('axi_desc_1');
-        } else if (state.axiSubStep === 2) {
-            desc.textContent = t('axi_desc_2');
-        } else if (state.axiSubStep === 3) {
-            desc.textContent = t('axi_desc_3');
-        } else if (state.axiSubStep === 4) {
-            desc.textContent = t('axi_desc_4');
+        let key = '';
+        if (state.axiSubStep === 1) key = 'axi_desc_1';
+        else if (state.axiSubStep === 2) key = 'axi_desc_2';
+        else if (state.axiSubStep === 3) key = 'axi_desc_3';
+        else if (state.axiSubStep === 4) key = 'axi_desc_4';
+
+        if (key) {
+            desc.textContent = t(key);
+            desc.setAttribute('data-i18n', key);
         }
     }
 
@@ -349,7 +356,7 @@ export function handleAxiNext() {
     if (state.axiSubStep === 2) {
         const a2 = document.getElementById('axiStep2Done');
         if (!a2 || !a2.checked) {
-            alert('Please confirm that you entered the informations above to create your MetaTrader account.');
+            alert(t('alert_create_mt_info'));
             return;
         }
         state.axiDirection = 'forward';
@@ -361,7 +368,7 @@ export function handleAxiNext() {
     if (state.axiSubStep === 3) {
         const a3 = document.getElementById('axiStep3Done');
         if (!a3 || !a3.checked) {
-            alert('Please confirm that you entered the informations above to setup your account.');
+            alert(t('alert_setup_info'));
             return;
         }
         state.axiDirection = 'forward';
@@ -390,12 +397,14 @@ export function updateStartraderStep() {
 
     const desc = document.getElementById('startraderStepDescription');
     if (desc) {
-        if (state.startraderSubStep === 1) {
-            desc.textContent = t('startrader_desc_1');
-        } else if (state.startraderSubStep === 2) {
-            desc.textContent = t('startrader_desc_2');
-        } else if (state.startraderSubStep === 3) {
-            desc.textContent = t('startrader_desc_3');
+        let key = '';
+        if (state.startraderSubStep === 1) key = 'startrader_desc_1';
+        else if (state.startraderSubStep === 2) key = 'startrader_desc_2';
+        else if (state.startraderSubStep === 3) key = 'startrader_desc_3';
+
+        if (key) {
+            desc.textContent = t(key);
+            desc.setAttribute('data-i18n', key);
         }
     }
 
@@ -436,7 +445,7 @@ export function handleStartraderNext() {
     if (state.startraderSubStep === 1) {
         const s1 = document.getElementById('startraderStep1Done');
         if (!s1 || !s1.checked) {
-            alert('Please confirm that you understand this broker may require a VPN.');
+            alert(t('alert_vpn'));
             return;
         }
         state.startraderDirection = 'forward';
@@ -448,7 +457,7 @@ export function handleStartraderNext() {
     if (state.startraderSubStep === 2) {
         const s2 = document.getElementById('startraderStep2Done');
         if (!s2 || !s2.checked) {
-            alert('Please confirm that you entered the information above to setup your account.');
+            alert(t('alert_setup_info'));
             return;
         }
         state.startraderDirection = 'forward';
@@ -460,7 +469,7 @@ export function handleStartraderNext() {
     if (state.startraderSubStep === 3) {
         const s3 = document.getElementById('startraderStep3Done');
         if (!s3 || !s3.checked) {
-            alert('Please confirm that your account is created and your identity verified.');
+            alert(t('alert_identity_verified'));
             return;
         }
         state.navDirection = 'forward';
@@ -482,14 +491,15 @@ export function updateVtmarketsStep() {
 
     const desc = document.getElementById('vtmarketsStepDescription');
     if (desc) {
-        if (state.vtmarketsSubStep === 1) {
-            desc.textContent = t('vtmarkets_desc_1');
-        } else if (state.vtmarketsSubStep === 2) {
-            desc.textContent = t('vtmarkets_desc_2');
-        } else if (state.vtmarketsSubStep === 3) {
-            desc.textContent = t('vtmarkets_desc_3');
-        } else if (state.vtmarketsSubStep === 4) {
-            desc.textContent = t('vtmarkets_desc_4');
+        let key = '';
+        if (state.vtmarketsSubStep === 1) key = 'vtmarkets_desc_1';
+        else if (state.vtmarketsSubStep === 2) key = 'vtmarkets_desc_2';
+        else if (state.vtmarketsSubStep === 3) key = 'vtmarkets_desc_3';
+        else if (state.vtmarketsSubStep === 4) key = 'vtmarkets_desc_4';
+
+        if (key) {
+            desc.textContent = t(key);
+            desc.setAttribute('data-i18n', key);
         }
     }
 
@@ -538,7 +548,7 @@ export function handleVtmarketsNext() {
     if (state.vtmarketsSubStep === 2) {
         const c2 = document.getElementById('vtmarketsStep2Done');
         if (!c2 || !c2.checked) {
-            alert('Please confirm that you entered the information above to setup your MetaTrader account.');
+            alert(t('alert_create_mt_info'));
             return;
         }
         state.vtmarketsDirection = 'forward';
@@ -557,7 +567,7 @@ export function handleVtmarketsNext() {
     if (state.vtmarketsSubStep === 4) {
         const c4 = document.getElementById('vtmarketsStep4Done');
         if (!c4 || !c4.checked) {
-            alert('Please confirm that your profile has been verified.');
+            alert(t('alert_profile_verified_vt'));
             return;
         }
         state.navDirection = 'forward';

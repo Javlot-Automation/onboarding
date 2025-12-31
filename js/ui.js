@@ -183,7 +183,7 @@ export function validateStep(step) {
     // Step 2: broker must be selected
     if (step === 2) {
         if (!state.selectedBroker) {
-            alert('Please select a broker before continuing.');
+            alert(t('alert_broker_select'));
             return false;
         }
     }
@@ -401,12 +401,12 @@ function handleDepositNext() {
         const c1 = document.getElementById('step4Deposit1000');
         const c2 = document.getElementById('step4NoMoreThan1000');
         if (!(c1 && c1.checked) || !(c2 && c2.checked)) {
-            alert('Please confirm both statements before continuing.');
+            alert(t('alert_confirm_both'));
             return;
         }
 
         if (state.selectedBroker !== 'vantage' && state.selectedBroker !== 'bullwaves' && state.selectedBroker !== 'puprime' && state.selectedBroker !== 'axi' && state.selectedBroker !== 'startrader' && state.selectedBroker !== 'vtmarkets') {
-            alert('Step 4 (deposit) for this broker will be available soon.');
+            alert(t('alert_deposit_soon'));
             return;
         }
 
@@ -420,7 +420,7 @@ function handleDepositNext() {
     if (state.depositSubStep === 2) {
         if (state.selectedBroker === 'bullwaves') {
             const c1 = document.getElementById('step4BullwavesFunded');
-            if (!(c1 && c1.checked)) return alert('Please confirm that your trading account is funded.');
+            if (!(c1 && c1.checked)) return alert(t('alert_account_funded'));
             state.navDirection = 'forward';
             state.currentStep = 5;
             updateStep();
@@ -430,8 +430,8 @@ function handleDepositNext() {
         if (state.selectedBroker === 'puprime') {
             const c1 = document.getElementById('step4PuprimeRightAccount');
             const c2 = document.getElementById('step4PuprimeAmount1000');
-            if (!(c1 && c1.checked)) return alert('Please confirm that you selected the right account.');
-            if (!(c2 && c2.checked)) return alert('Please confirm that your deposit amount is 1000€ (or equivalent).');
+            if (!(c1 && c1.checked)) return alert(t('alert_right_account'));
+            if (!(c2 && c2.checked)) return alert(t('alert_deposit_amount'));
             state.depositDirection = 'forward';
             state.depositSubStep = 3;
             updateDepositStep();
@@ -451,7 +451,7 @@ function handleDepositNext() {
             // Confirmations
             const c1 = document.getElementById('step4VantageAccountConfirm');
             const c2 = document.getElementById('step4VantageDepositMin');
-            if (!(c1 && c1.checked) || !(c2 && c2.checked)) return alert('Please confirm details.');
+            if (!(c1 && c1.checked) || !(c2 && c2.checked)) return alert(t('alert_confirm_details'));
             state.depositDirection = 'forward';
             state.depositSubStep = 4;
             updateDepositStep();
@@ -468,7 +468,7 @@ function handleDepositNext() {
     // 4.4 Vantage
     if (state.depositSubStep === 4) {
         const c1 = document.getElementById('step4VantageFunded');
-        if (!(c1 && c1.checked)) return alert('Please confirm funding.');
+        if (!(c1 && c1.checked)) return alert(t('alert_confirm_funding'));
         state.navDirection = 'forward';
         state.currentStep = 5;
         updateStep();
