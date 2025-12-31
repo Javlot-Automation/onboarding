@@ -388,6 +388,25 @@ export const translations = {
         vtmarkets_checkbox_4: "Mon compte de trading est prêt",
 
         // ===== ÉTAPE 4 DÉPÔTS =====
+        step4_title: "Premier Dépôt",
+        step4_info_box: `
+            <p style="margin-bottom: 14px; font-weight: 700; color: #000000;">Important – Instructions de Dépôt Initial</p>
+            <p style="margin-bottom: 14px;">Pour activer votre accès côté broker, un premier dépôt d'<strong>exactement 1 000 €</strong> est requis.</p>
+            <p style="margin-bottom: 14px;">Veuillez noter qu'il n'y a aucun avantage à déposer plus de <strong>1 000 €</strong> à ce stade. Au contraire, nous recommandons fortement de ne pas dépasser ce montant pour le moment.</p>
+            <p style="margin-bottom: 12px; font-weight: 600; color: #000000;">Voici pourquoi :</p>
+            <p style="margin-bottom: 14px;">La prochaine étape du processus (Étape 7) inclut un trade de vérification obligatoire requis par le broker dans le cadre de leur procédure anti-bot et de validation de compte. Ce trade doit être placé avec une taille de lot de <strong>1</strong>, ce qui est inhabituellement élevé pour une configuration initiale.</p>
+            <p style="margin-bottom: 14px;">À cause de cela, déposer plus de <strong>1 000 €</strong> à ce stade ne ferait qu'augmenter l'exposition inutilement, sans fournir aucun avantage.</p>
+            <p style="margin-bottom: 12px; font-weight: 600; color: #000000;">Rassurez-vous :</p>
+            <ul style="margin: 0 0 14px 20px; padding: 0; color: #4B5563;">
+                <li style="margin-bottom: 8px;">Cette étape de vérification est standard et temporaire</li>
+                <li style="margin-bottom: 8px;">Nous vous guiderons étape par étape à travers le processus</li>
+                <li style="margin-bottom: 8px;">Vous recevrez des pratiques claires pour exécuter ce trade en toute sécurité</li>
+                <li style="margin-bottom: 8px;">Il n'y a pas besoin de stresser – l'objectif est la validation, pas la performance</li>
+            </ul>
+            <p style="margin: 0;">Une fois cette étape terminée, votre compte sera entièrement validé et prêt à opérer dans des conditions normales.</p>
+        `,
+        step4_checkbox_1: "Je comprends qu'un dépôt de 1 000 € (ou équivalent) est requis pour activer mon compte broker",
+        step4_checkbox_2: "Je comprends que déposer plus de 1 000 € à ce stade n'est pas recommandé et que je pourrai approvisionner mon compte correctement après l'Step 7",
         step4_bullwaves_content: `<p style="margin-bottom: 16px;">Sur votre tableau de bord Bullwaves, cliquez sur 'Fund Account' à gauche. Sélectionnez le bon compte et entrez 1 000 € (ou équivalent).</p><p style="margin-bottom: 16px;">Choisissez votre méthode de paiement et cliquez sur 'Deposit Funds' pour terminer.</p>`,
         step4_bullwaves_checkbox: "Je confirme que mon compte de trading est approvisionné",
         step4_puprime_2_content: "Sur votre tableau de bord PU Prime, ouvrez l'onglet Funds et entrez 1 000 € (ou équivalent) dans 'Deposit Amount'.",

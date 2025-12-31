@@ -1,348 +1,350 @@
-<div class="step-content-inner">
-    <div class="step-content-body">
-        <div class="step-header">
-            <h2 class="step-title" data-i18n="step4_title">Initial Deposit</h2>
-            <a href="/cdn-cgi/l/email-protection#483b3d3838273a3c0822293e24273c662127" class="need-help-link">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                    stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-                <span data-i18n="need_help">Need Help?</span>
-            </a>
-        </div>
-        <p class="step-description" id="depositStepDescription">
-            Important information before making your first deposit.
-        </p>
+<div class="step-content" data-step="4">
+    <div class="step-content-inner">
+        <div class="step-content-body">
+            <div class="step-header">
+                <h2 class="step-title" data-i18n="step4_title">Initial Deposit</h2>
+                <a href="/cdn-cgi/l/email-protection#483b3d3838273a3c0822293e24273c662127" class="need-help-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <span data-i18n="need_help">Need Help?</span>
+                </a>
+            </div>
+            <p class="step-description" id="depositStepDescription">
+                Important information before making your first deposit.
+            </p>
 
-        <!-- Step 4.1 (Global) -->
-        <div class="deposit-section active" data-deposit-step="1" data-broker="global">
-            <div class="info-box" data-i18n-html="step4_info_box">
-                <p style="margin-bottom: 14px; font-weight: 700; color: #000000;">Important –
-                    Initial Deposit Instructions</p>
-                <p style="margin-bottom: 14px;">To activate your access on the broker side, a
-                    first deposit of <strong>exactly €1,000</strong> is required.</p>
-                <p style="margin-bottom: 14px;">Please note that there is no benefit in
-                    depositing more than <strong>€1,000</strong> at this stage. On the contrary,
-                    we strongly recommend not exceeding this amount for now.</p>
-                <p style="margin-bottom: 12px; font-weight: 600; color: #000000;">Here is why:
+            <!-- Step 4.1 (Global) -->
+            <div class="deposit-section active" data-deposit-step="1" data-broker="global">
+                <div class="info-box" data-i18n-html="step4_info_box">
+                    <p style="margin-bottom: 14px; font-weight: 700; color: #000000;">Important –
+                        Initial Deposit Instructions</p>
+                    <p style="margin-bottom: 14px;">To activate your access on the broker side, a
+                        first deposit of <strong>exactly €1,000</strong> is required.</p>
+                    <p style="margin-bottom: 14px;">Please note that there is no benefit in
+                        depositing more than <strong>€1,000</strong> at this stage. On the contrary,
+                        we strongly recommend not exceeding this amount for now.</p>
+                    <p style="margin-bottom: 12px; font-weight: 600; color: #000000;">Here is why:
+                    </p>
+                    <p style="margin-bottom: 14px;">The next step of the onboarding process (Step 7)
+                        includes a mandatory verification trade required by the broker as part of
+                        their anti-bot and account validation procedure. This trade must be placed
+                        with a lot size of <strong>1</strong>, which is unusually high for an
+                        initial setup.</p>
+                    <p style="margin-bottom: 14px;">Because of this, depositing more than
+                        <strong>€1,000</strong> at this stage would only increase unnecessary
+                        exposure, without providing any advantage.
+                    </p>
+                    <p style="margin-bottom: 12px; font-weight: 600; color: #000000;">Rest assured:
+                    </p>
+                    <ul style="margin: 0 0 14px 20px; padding: 0; color: #4B5563;">
+                        <li style="margin-bottom: 8px;">This verification step is standard and
+                            temporary</li>
+                        <li style="margin-bottom: 8px;">We will guide you step by step through the
+                            process</li>
+                        <li style="margin-bottom: 8px;">You will receive clear best practices to
+                            execute this trade safely</li>
+                        <li style="margin-bottom: 8px;">There is no need to stress – the goal is
+                            validation, not performance</li>
+                    </ul>
+                    <p style="margin: 0;">Once this step is completed, your account will be fully
+                        validated and ready to operate under normal conditions.</p>
+                </div>
+
+                <div class="form-group" style="margin-top: 18px;">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step4Deposit1000">
+                        <span data-i18n="step4_checkbox_1">I understand that a deposit of 1,000€ (or
+                            equivalent) is required to activate my broker account</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step4NoMoreThan1000">
+                        <span data-i18n="step4_checkbox_2">I understand that depositing more than
+                            €1,000 at this stage is not recommended and that I will be able to fund
+                            my account properly after Step 7 is completed</span>
+                    </label>
+                </div>
+            </div>
+
+
+            <!-- Step 4.2 (Bullwaves) -->
+            <div class="deposit-section" data-deposit-step="2" data-broker="bullwaves">
+                <div data-i18n-html="step4_bullwaves_content">
+                    <p style="margin-bottom: 16px;">Once on your Bullwaves dashboard, click on the
+                        'Fund Account' section in the left-hand panel. You will then be taken to
+                        the window displayed below. Make sure to select the correct account and
+                        enter 1,000€ (or equivalent) in the amount field.</p>
+                    <p style="margin-bottom: 16px;">On the right side, choose your preferred payment
+                        method and click the 'Deposit Funds' button. From there, simply complete
+                        the deposit process.</p>
+                </div>
+
+                <img class="deposit-image clickable-image"
+                    src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c10bb9f41488c05abb7a9_Bullwaves-3.png"
+                    alt="Bullwaves funding window">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step4BullwavesFunded">
+                        <span data-i18n="step4_bullwaves_checkbox">I confirm that my trading account
+                            is funded</span>
+                    </label>
+                </div>
+            </div>
+
+
+            <!-- Step 4.2 (PU Prime) -->
+            <div class="deposit-section" data-deposit-step="2" data-broker="puprime">
+                <p style="margin-bottom: 16px;" data-i18n-html="step4_puprime_2_content">To fund
+                    your account, go to the 'Funds' tab in the left-hand menu. You will then
+                    arrive on the page displayed below. Make sure to select your newly created
+                    account and enter 1,000 in the amount field. Then, simply click the 'Continue'
+                    button.</p>
+
+                <img class="deposit-image clickable-image"
+                    src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c21aab9825681bba7956a_0dd459b199db80bf89a3c60cbbedfe92_PU%20Prime%201.png"
+                    alt="PU Prime Funds deposit">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step4PuprimeRightAccount">
+                        <span data-i18n="step4_puprime_checkbox_1">I have selected the right
+                            account</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step4PuprimeAmount1000">
+                        <span data-i18n="step4_puprime_checkbox_2">My desposit amount is 1000€ (or
+                            equivalent)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Step 4.3 (PU Prime) -->
+            <div class="deposit-section" data-deposit-step="3" data-broker="puprime">
+                <p style="margin-bottom: 16px;" data-i18n="step4_puprime_3_content">From here,
+                    choose your preferred payment method to continue funding your account.</p>
+
+                <img class="deposit-image clickable-image"
+                    src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c2616f7df854ecc504dd8_PU%20Prime%202.png"
+                    alt="PU Prime payment methods">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step4PuprimeFunded">
+                        <span data-i18n="step4_puprime_checkbox_3">My account is correctly
+                            funded</span>
+                    </label>
+                </div>
+            </div>
+
+
+            <!-- Step 4.2 (Axi) -->
+            <div class="deposit-section" data-deposit-step="2" data-broker="axi">
+                <p style="margin-bottom: 16px;" data-i18n-html="step4_axi_2_content">On your Axi
+                    Dashboard, click on the "Fund" section on the left hand side, to arrive on the
+                    page shown below. From here select your funding method and enter your details.
                 </p>
-                <p style="margin-bottom: 14px;">The next step of the onboarding process (Step 7)
-                    includes a mandatory verification trade required by the broker as part of
-                    their anti-bot and account validation procedure. This trade must be placed
-                    with a lot size of <strong>1</strong>, which is unusually high for an
-                    initial setup.</p>
-                <p style="margin-bottom: 14px;">Because of this, depositing more than
-                    <strong>€1,000</strong> at this stage would only increase unnecessary
-                    exposure, without providing any advantage.
+
+                <img class="deposit-image clickable-image"
+                    src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c2b28fd2fa99da520d2ac_Axi%201.png"
+                    alt="Axi funding methods">
+            </div>
+
+            <!-- Step 4.3 (Axi) -->
+            <div class="deposit-section" data-deposit-step="3" data-broker="axi">
+                <p style="margin-bottom: 16px;" data-i18n="step4_axi_3_content">Once you reach the
+                    page shown in the image below, make sure to enter €1,000 (or equivalent) in the
+                    appropriate field.</p>
+
+                <img class="deposit-image clickable-image"
+                    src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c2c06546ea970144344d5_Axi%202.png"
+                    alt="Axi deposit amount">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step4AxiAmount1000">
+                        <span data-i18n="step4_axi_checkbox_1">I confirm that I entered an amount of
+                            €1,000 (or equivalent)</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step4AxiFundedCorrectly">
+                        <span data-i18n="step4_axi_checkbox_2">I confirm that my account is funded
+                            correctly.</span>
+                    </label>
+                </div>
+            </div>
+
+
+            <!-- Step 4.2 (Startrader) -->
+            <div class="deposit-section" data-deposit-step="2" data-broker="startrader">
+                <p style="margin-bottom: 16px;" data-i18n-html="step4_startrader_2_content">
+                    On your Startrader dashboard, click on the ‘Fund’ section on the left-hand side
+                    to reach the page shown below.
+                    From there, make sure to select your newly created account and enter a funding
+                    amount of at least €1,000 (or equivalent).
                 </p>
-                <p style="margin-bottom: 12px; font-weight: 600; color: #000000;">Rest assured:
+
+                <img class="deposit-image clickable-image"
+                    src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c388be295d6aa9f10ec12_847022647436177244db8ce66a24a7d0_Star-!.png"
+                    alt="Startrader deposit amount">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step4StartraderRightAccount">
+                        <span data-i18n="step4_startrader_checkbox_1">I confirm that I selected my
+                            newly created account</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step4StartraderMin1000">
+                        <span data-i18n="step4_startrader_checkbox_2">I confirm that I entered a
+                            funding amount of at least €1,000 (or equivalent)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Step 4.3 (Startrader) -->
+            <div class="deposit-section" data-deposit-step="3" data-broker="startrader">
+                <p style="margin-bottom: 16px;" data-i18n="step4_startrader_3_content">From this
+                    page, select your preferred payment method to proceed with account funding.</p>
+
+                <img class="deposit-image clickable-image"
+                    src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c3a99dc6330ec33f5e228_Star-2.png"
+                    alt="Startrader payment method selection">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step4StartraderFunded">
+                        <span data-i18n="step4_startrader_checkbox_3">I confirm that my trading
+                            account is now funded.</span>
+                    </label>
+                </div>
+            </div>
+
+
+            <!-- Step 4.2 (VT Markets) -->
+            <div class="deposit-section" data-deposit-step="2" data-broker="vtmarkets">
+                <p style="margin-bottom: 16px;" data-i18n-html="step4_vtmarkets_2_content">
+                    On your VT Markets dashboard, click on the ‘Funds’ &gt; ‘Deposit’ section on the
+                    left-hand side to reach the page shown below.
+                    From there, make sure to select your newly created account and enter a funding
+                    amount of at least €1,000 (or equivalent).
                 </p>
-                <ul style="margin: 0 0 14px 20px; padding: 0; color: #4B5563;">
-                    <li style="margin-bottom: 8px;">This verification step is standard and
-                        temporary</li>
-                    <li style="margin-bottom: 8px;">We will guide you step by step through the
-                        process</li>
-                    <li style="margin-bottom: 8px;">You will receive clear best practices to
-                        execute this trade safely</li>
-                    <li style="margin-bottom: 8px;">There is no need to stress – the goal is
-                        validation, not performance</li>
-                </ul>
-                <p style="margin: 0;">Once this step is completed, your account will be fully
-                    validated and ready to operate under normal conditions.</p>
+
+                <img class="deposit-image clickable-image"
+                    src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c402fc3cf3c956b6c9a72_VTM-1.png"
+                    alt="VT Markets deposit amount">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step4VtmarketsRightAccount">
+                        <span data-i18n="step4_startrader_checkbox_1">I confirm that I selected my
+                            newly created account</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step4VtmarketsMin1000">
+                        <span data-i18n="step4_startrader_checkbox_2">I confirm that I entered a
+                            funding amount of at least €1,000 (or equivalent)</span>
+                    </label>
+                </div>
             </div>
 
-            <div class="form-group" style="margin-top: 18px;">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="step4Deposit1000">
-                    <span data-i18n="step4_checkbox_1">I understand that a deposit of 1,000€ (or
-                        equivalent) is required to activate my broker account</span>
-                </label>
+            <!-- Step 4.3 (VT Markets) -->
+            <div class="deposit-section" data-deposit-step="3" data-broker="vtmarkets">
+                <p style="margin-bottom: 16px;" data-i18n="step4_vtmarkets_3_content">From this
+                    page, select your preferred payment method to proceed with account funding.</p>
+
+                <img class="deposit-image clickable-image"
+                    src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c40c5dfb0e717b0c05728_VTM-2.png"
+                    alt="VT Markets payment method selection">
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step4VtmarketsFunded">
+                        <span data-i18n="step4_vtmarkets_checkbox_3">I confirm that my trading
+                            account is now funded.</span>
+                    </label>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="step4NoMoreThan1000">
-                    <span data-i18n="step4_checkbox_2">I understand that depositing more than
-                        €1,000 at this stage is not recommended and that I will be able to fund
-                        my account properly after Step 7 is completed</span>
-                </label>
-            </div>
-        </div>
+            <!-- Step 4.2 (Vantage Markets) -->
+            <div class="deposit-section" data-deposit-step="2" data-broker="vantage">
+                <p style="margin-bottom: 16px;" data-i18n="step4_vantage_2_content">
+                    On the Vantage Markets dashboard, use the ‘Deposit’ button on your newly created
+                    MetaTrader 5 account to fund it.
+                </p>
 
-
-        <!-- Step 4.2 (Bullwaves) -->
-        <div class="deposit-section" data-deposit-step="2" data-broker="bullwaves">
-            <div data-i18n-html="step4_bullwaves_content">
-                <p style="margin-bottom: 16px;">Once on your Bullwaves dashboard, click on the
-                    'Fund Account' section in the left-hand panel. You will then be taken to
-                    the window displayed below. Make sure to select the correct account and
-                    enter 1,000€ (or equivalent) in the amount field.</p>
-                <p style="margin-bottom: 16px;">On the right side, choose your preferred payment
-                    method and click the 'Deposit Funds' button. From there, simply complete
-                    the deposit process.</p>
+                <img class="deposit-image clickable-image"
+                    src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693bf67a65e52957cb20fece_VT-1.png"
+                    alt="Vantage Markets Deposit button">
             </div>
 
-            <img class="deposit-image clickable-image"
-                src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c10bb9f41488c05abb7a9_Bullwaves-3.png"
-                alt="Bullwaves funding window">
+            <!-- Step 4.3 (Vantage Markets) -->
+            <div class="deposit-section" data-deposit-step="3" data-broker="vantage">
+                <p style="margin-bottom: 16px;" data-i18n="step4_vantage_3_content">On reaching this
+                    windows, make sure to verify you selected your newly created account (normaly
+                    automatic). And introduce your desired fund amount (at least 1000€ or equivalent
+                    in for your currency).</p>
 
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="step4BullwavesFunded">
-                    <span data-i18n="step4_bullwaves_checkbox">I confirm that my trading account
-                        is funded</span>
-                </label>
-            </div>
-        </div>
+                <img class="deposit-image clickable-image"
+                    src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693bf77e7839cc0d1b99a8fd_b75b2bbf21b277bfc589ab5b8dd715fd_VT-2.png"
+                    alt="Vantage Markets deposit amount">
 
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step4VantageAccountConfirm">
+                        <span data-i18n="step4_vantage_checkbox_1">I confirm that the funded account
+                            is my newly created account</span>
+                    </label>
+                </div>
 
-        <!-- Step 4.2 (PU Prime) -->
-        <div class="deposit-section" data-deposit-step="2" data-broker="puprime">
-            <p style="margin-bottom: 16px;" data-i18n-html="step4_puprime_2_content">To fund
-                your account, go to the 'Funds' tab in the left-hand menu. You will then
-                arrive on the page displayed below. Make sure to select your newly created
-                account and enter 1,000 in the amount field. Then, simply click the 'Continue'
-                button.</p>
-
-            <img class="deposit-image clickable-image"
-                src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c21aab9825681bba7956a_0dd459b199db80bf89a3c60cbbedfe92_PU%20Prime%201.png"
-                alt="PU Prime Funds deposit">
-
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="step4PuprimeRightAccount">
-                    <span data-i18n="step4_puprime_checkbox_1">I have selected the right
-                        account</span>
-                </label>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step4VantageDepositMin">
+                        <span data-i18n="step4_vantage_checkbox_2">I confirm that my initial deposit
+                            is at least €1,000 (or equivalent)</span>
+                    </label>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="step4PuprimeAmount1000">
-                    <span data-i18n="step4_puprime_checkbox_2">My desposit amount is 1000€ (or
-                        equivalent)</span>
-                </label>
-            </div>
-        </div>
+            <!-- Step 4.4 (Vantage Markets) -->
+            <div class="deposit-section" data-deposit-step="4" data-broker="vantage">
+                <p style="margin-bottom: 16px;" data-i18n="step4_vantage_4_content">From here,
+                    choose your preferred payment method to continue funding your account.</p>
 
-        <!-- Step 4.3 (PU Prime) -->
-        <div class="deposit-section" data-deposit-step="3" data-broker="puprime">
-            <p style="margin-bottom: 16px;" data-i18n="step4_puprime_3_content">From here,
-                choose your preferred payment method to continue funding your account.</p>
+                <img class="deposit-image clickable-image"
+                    src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693bf949b320cbc9c7abc53a_VT-3.png"
+                    alt="Vantage Markets payment method">
 
-            <img class="deposit-image clickable-image"
-                src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c2616f7df854ecc504dd8_PU%20Prime%202.png"
-                alt="PU Prime payment methods">
-
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="step4PuprimeFunded">
-                    <span data-i18n="step4_puprime_checkbox_3">My account is correctly
-                        funded</span>
-                </label>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="step4VantageFunded">
+                        <span data-i18n="step4_vantage_checkbox_3">Please check this box after your
+                            account has been funded</span>
+                    </label>
+                </div>
             </div>
         </div>
 
-
-        <!-- Step 4.2 (Axi) -->
-        <div class="deposit-section" data-deposit-step="2" data-broker="axi">
-            <p style="margin-bottom: 16px;" data-i18n-html="step4_axi_2_content">On your Axi
-                Dashboard, click on the "Fund" section on the left hand side, to arrive on the
-                page shown below. From here select your funding method and enter your details.
-            </p>
-
-            <img class="deposit-image clickable-image"
-                src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c2b28fd2fa99da520d2ac_Axi%201.png"
-                alt="Axi funding methods">
+        <div class="button-group">
+            <button type="button" class="btn-prev" onclick="prevStep()" data-i18n="btn_back">Back</button>
+            <button type="button" class="btn-next" id="step4ContinueBtn" onclick="nextStep()" disabled>Continue</button>
         </div>
-
-        <!-- Step 4.3 (Axi) -->
-        <div class="deposit-section" data-deposit-step="3" data-broker="axi">
-            <p style="margin-bottom: 16px;" data-i18n="step4_axi_3_content">Once you reach the
-                page shown in the image below, make sure to enter €1,000 (or equivalent) in the
-                appropriate field.</p>
-
-            <img class="deposit-image clickable-image"
-                src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c2c06546ea970144344d5_Axi%202.png"
-                alt="Axi deposit amount">
-
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="step4AxiAmount1000">
-                    <span data-i18n="step4_axi_checkbox_1">I confirm that I entered an amount of
-                        €1,000 (or equivalent)</span>
-                </label>
-            </div>
-
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="step4AxiFundedCorrectly">
-                    <span data-i18n="step4_axi_checkbox_2">I confirm that my account is funded
-                        correctly.</span>
-                </label>
-            </div>
-        </div>
-
-
-        <!-- Step 4.2 (Startrader) -->
-        <div class="deposit-section" data-deposit-step="2" data-broker="startrader">
-            <p style="margin-bottom: 16px;" data-i18n-html="step4_startrader_2_content">
-                On your Startrader dashboard, click on the ‘Fund’ section on the left-hand side
-                to reach the page shown below.
-                From there, make sure to select your newly created account and enter a funding
-                amount of at least €1,000 (or equivalent).
-            </p>
-
-            <img class="deposit-image clickable-image"
-                src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c388be295d6aa9f10ec12_847022647436177244db8ce66a24a7d0_Star-!.png"
-                alt="Startrader deposit amount">
-
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="step4StartraderRightAccount">
-                    <span data-i18n="step4_startrader_checkbox_1">I confirm that I selected my
-                        newly created account</span>
-                </label>
-            </div>
-
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="step4StartraderMin1000">
-                    <span data-i18n="step4_startrader_checkbox_2">I confirm that I entered a
-                        funding amount of at least €1,000 (or equivalent)</span>
-                </label>
-            </div>
-        </div>
-
-        <!-- Step 4.3 (Startrader) -->
-        <div class="deposit-section" data-deposit-step="3" data-broker="startrader">
-            <p style="margin-bottom: 16px;" data-i18n="step4_startrader_3_content">From this
-                page, select your preferred payment method to proceed with account funding.</p>
-
-            <img class="deposit-image clickable-image"
-                src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c3a99dc6330ec33f5e228_Star-2.png"
-                alt="Startrader payment method selection">
-
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="step4StartraderFunded">
-                    <span data-i18n="step4_startrader_checkbox_3">I confirm that my trading
-                        account is now funded.</span>
-                </label>
-            </div>
-        </div>
-
-
-        <!-- Step 4.2 (VT Markets) -->
-        <div class="deposit-section" data-deposit-step="2" data-broker="vtmarkets">
-            <p style="margin-bottom: 16px;" data-i18n-html="step4_vtmarkets_2_content">
-                On your VT Markets dashboard, click on the ‘Funds’ &gt; ‘Deposit’ section on the
-                left-hand side to reach the page shown below.
-                From there, make sure to select your newly created account and enter a funding
-                amount of at least €1,000 (or equivalent).
-            </p>
-
-            <img class="deposit-image clickable-image"
-                src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c402fc3cf3c956b6c9a72_VTM-1.png"
-                alt="VT Markets deposit amount">
-
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="step4VtmarketsRightAccount">
-                    <span data-i18n="step4_startrader_checkbox_1">I confirm that I selected my
-                        newly created account</span>
-                </label>
-            </div>
-
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="step4VtmarketsMin1000">
-                    <span data-i18n="step4_startrader_checkbox_2">I confirm that I entered a
-                        funding amount of at least €1,000 (or equivalent)</span>
-                </label>
-            </div>
-        </div>
-
-        <!-- Step 4.3 (VT Markets) -->
-        <div class="deposit-section" data-deposit-step="3" data-broker="vtmarkets">
-            <p style="margin-bottom: 16px;" data-i18n="step4_vtmarkets_3_content">From this
-                page, select your preferred payment method to proceed with account funding.</p>
-
-            <img class="deposit-image clickable-image"
-                src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693c40c5dfb0e717b0c05728_VTM-2.png"
-                alt="VT Markets payment method selection">
-
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="step4VtmarketsFunded">
-                    <span data-i18n="step4_vtmarkets_checkbox_3">I confirm that my trading
-                        account is now funded.</span>
-                </label>
-            </div>
-        </div>
-
-        <!-- Step 4.2 (Vantage Markets) -->
-        <div class="deposit-section" data-deposit-step="2" data-broker="vantage">
-            <p style="margin-bottom: 16px;" data-i18n="step4_vantage_2_content">
-                On the Vantage Markets dashboard, use the ‘Deposit’ button on your newly created
-                MetaTrader 5 account to fund it.
-            </p>
-
-            <img class="deposit-image clickable-image"
-                src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693bf67a65e52957cb20fece_VT-1.png"
-                alt="Vantage Markets Deposit button">
-        </div>
-
-        <!-- Step 4.3 (Vantage Markets) -->
-        <div class="deposit-section" data-deposit-step="3" data-broker="vantage">
-            <p style="margin-bottom: 16px;" data-i18n="step4_vantage_3_content">On reaching this
-                windows, make sure to verify you selected your newly created account (normaly
-                automatic). And introduce your desired fund amount (at least 1000€ or equivalent
-                in for your currency).</p>
-
-            <img class="deposit-image clickable-image"
-                src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693bf77e7839cc0d1b99a8fd_b75b2bbf21b277bfc589ab5b8dd715fd_VT-2.png"
-                alt="Vantage Markets deposit amount">
-
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="step4VantageAccountConfirm">
-                    <span data-i18n="step4_vantage_checkbox_1">I confirm that the funded account
-                        is my newly created account</span>
-                </label>
-            </div>
-
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="step4VantageDepositMin">
-                    <span data-i18n="step4_vantage_checkbox_2">I confirm that my initial deposit
-                        is at least €1,000 (or equivalent)</span>
-                </label>
-            </div>
-        </div>
-
-        <!-- Step 4.4 (Vantage Markets) -->
-        <div class="deposit-section" data-deposit-step="4" data-broker="vantage">
-            <p style="margin-bottom: 16px;" data-i18n="step4_vantage_4_content">From here,
-                choose your preferred payment method to continue funding your account.</p>
-
-            <img class="deposit-image clickable-image"
-                src="https://cdn.prod.website-files.com/6922ec1acf460de83ba1b177/693bf949b320cbc9c7abc53a_VT-3.png"
-                alt="Vantage Markets payment method">
-
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" id="step4VantageFunded">
-                    <span data-i18n="step4_vantage_checkbox_3">Please check this box after your
-                        account has been funded</span>
-                </label>
-            </div>
-        </div>
-    </div>
-
-    <div class="button-group">
-        <button type="button" class="btn-prev" onclick="prevStep()" data-i18n="btn_back">Back</button>
-        <button type="button" class="btn-next" id="step4ContinueBtn" onclick="nextStep()" disabled>Continue</button>
     </div>
 </div>
