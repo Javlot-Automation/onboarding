@@ -31,24 +31,22 @@ export function updateNYHoursDisplay() {
         const displayEls = document.querySelectorAll('.ny-hours-local');
         if (displayEls.length === 0) return;
 
-        // Current time in New York
-        const now = new Date();
-        const options = {
-            timeZone: 'America/New_York',
-            hour: '2-digit',
-            minute: '2-digit',
-            weekday: 'long',
-            hour12: true
-        };
+        // Target window: 14:30 - 17:30 UTC+1 (Brussels)
+        // This corresponds to 13:30 - 16:30 UTC.
 
-        let timeString;
-        try {
-            const formatter = new Intl.DateTimeFormat('en-US', options);
-            timeString = formatter.format(now);
-        } catch (e) {
-            console.error("Timezone error:", e);
-            timeString = now.toLocaleTimeString(); // Fallback
-        }
+        const start = new Date();
+        start.setUTCHours(13, 30, 0, 0);
+
+        const end = new Date();
+        end.setUTCHours(16, 30, 0, 0);
+
+        const options = { hour: '2-digit', minute: '2-digit' };
+
+        // Format to user's local time
+        const startStr = start.toLocaleTimeString([], options);
+        const endStr = end.toLocaleTimeString([], options);
+
+        const timeString = `${startStr} - ${endStr}`;
 
         displayEls.forEach(el => {
             if (el.textContent !== timeString) {
