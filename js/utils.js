@@ -74,6 +74,15 @@ export function initLanguage() {
 export function applyTranslations() {
     const t = translations[currentLanguage];
 
+    // 0. Sync Language Buttons (in case they were just loaded dynamically)
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        if (btn.dataset.lang === currentLanguage) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+
     // 1. Text content (data-i18n)
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
