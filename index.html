@@ -20,52 +20,78 @@
 <body>
 
     <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo">
-                <img src="https://cdn.prod.website-files.com/6696614d9b687cbfee4e7e60/669665e887556a3100913c51_Logo-Javlot-White-p-500.png"
-                    alt="Javlot Logo">
-            </div>
-            <ul class="sidebar-steps">
-                <li class="active" data-step-nav="0">
-                    <span class="step-dot"></span>
-                    <span class="step-text" data-i18n="step_welcome">Welcome</span>
-                </li>
-                <li data-step-nav="1">
-                    <span class="step-dot"></span>
-                    <span class="step-text" data-i18n="step_intro">Intro</span>
-                </li>
-                <li data-step-nav="2">
-                    <span class="step-dot"></span>
-                    <span class="step-text" data-i18n="step_broker">Broker</span>
-                </li>
-                <li data-step-nav="3">
-                    <span class="step-dot"></span>
-                    <span class="step-text" data-i18n="step_setup">Setup</span>
-                </li>
-                <li data-step-nav="4">
-                    <span class="step-dot"></span>
-                    <span class="step-text" data-i18n="step_deposit">Deposit</span>
-                </li>
-                <li data-step-nav="5">
-                    <span class="step-dot"></span>
-                    <span class="step-text" data-i18n="step_app">App</span>
-                </li>
-                <li data-step-nav="6">
-                    <span class="step-dot"></span>
-                    <span class="step-text" data-i18n="step_connect_app">Connect</span>
-                </li>
-                <li data-step-nav="7">
-                    <span class="step-dot"></span>
-                    <span class="step-text" data-i18n="step_verification">Verify</span>
-                </li>
-                <li data-step-nav="8">
-                    <span class="step-dot"></span>
-                    <span class="step-text" data-i18n="step_javlot">Javlot</span>
-                </li>
-            </ul>
+        <!-- Sidebar Steps -->
+        <div class="sidebar-steps" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress-line">
+                    <div class="progress-line-fill" id="progressFill"></div>
+                </div>
 
-            <div class="step-progress"></div>
+                <div class="step-indicator active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-label-wrapper">
+                        <div class="step-label" data-i18n="sidebar_step1">Quick Intro</div>
+                        <div class="step-sublabel" data-i18n="sidebar_step1_sub">Read & confirm</div>
+                    </div>
+                </div>
+
+                <div class="step-indicator" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-label-wrapper">
+                        <div class="step-label" data-i18n="sidebar_step2">Broker Selection</div>
+                        <div class="step-sublabel" data-i18n="sidebar_step2_sub">Choose your broker</div>
+                    </div>
+                </div>
+
+                <div class="step-indicator" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-label-wrapper">
+                        <div class="step-label" data-i18n="sidebar_step3">Broker Account Setup</div>
+                        <div class="step-sublabel" data-i18n="sidebar_step3_sub">Follow the steps</div>
+                    </div>
+                </div>
+
+                <div class="step-indicator" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-label-wrapper">
+                        <div class="step-label" data-i18n="sidebar_step4">Initial Deposit</div>
+                        <div class="step-sublabel" data-i18n="sidebar_step4_sub">Important info</div>
+                    </div>
+                </div>
+
+                <div class="step-indicator" data-step="5">
+                    <div class="step-number">5</div>
+                    <div class="step-label-wrapper">
+                        <div class="step-label" data-i18n="sidebar_step5">MetaTrader 5</div>
+                        <div class="step-sublabel" data-i18n="sidebar_step5_sub">Install the app</div>
+                    </div>
+                </div>
+
+                <div class="step-indicator" data-step="6">
+                    <div class="step-number">6</div>
+                    <div class="step-label-wrapper">
+                        <div class="step-label" data-i18n="sidebar_step6">MetaTrader Setup</div>
+                        <div class="step-sublabel" data-i18n="sidebar_step6_sub">Connect MT5</div>
+                    </div>
+                </div>
+
+                <div class="step-indicator" data-step="7">
+                    <div class="step-number">7</div>
+                    <div class="step-label-wrapper">
+                        <div class="step-label" data-i18n="sidebar_step7">Verification Trade</div>
+                        <div class="step-sublabel" data-i18n="sidebar_step7_sub">Validate account</div>
+                    </div>
+                </div>
+
+                <div class="step-indicator" data-step="8">
+                    <div class="step-number">8</div>
+                    <div class="step-label-wrapper">
+                        <div class="step-label" data-i18n="sidebar_step8">Connect to Javlot</div>
+                        <div class="step-sublabel" data-i18n="sidebar_step8_sub">Secure setup</div>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
         <!-- Main Content -->

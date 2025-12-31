@@ -91,9 +91,9 @@ export async function updateStep() {
     }
 
     // Mise à jour de la sidebar (steps 1-8 only, not the welcome cover)
-    document.querySelectorAll('.sidebar-steps li').forEach((indicator, index) => {
+    document.querySelectorAll('.step-indicator').forEach((indicator, index) => {
         indicator.classList.remove('active', 'completed');
-        const stepIndex = index; // Welcome is 0
+        const stepIndex = index + 1; // Steps start at 1 in sidebar logic
         if (state.currentStep > stepIndex) {
             indicator.classList.add('completed');
         }
