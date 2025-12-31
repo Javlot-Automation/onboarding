@@ -26,8 +26,8 @@ export function animateInElement(el, direction) {
 // --- Date/Time Helpers ---
 
 export function updateNYHoursDisplay() {
-    const displayEl = document.getElementById('nyTimeDisplay');
-    if (!displayEl) return;
+    const displayEls = document.querySelectorAll('.ny-hours-local');
+    if (displayEls.length === 0) return;
 
     // Current time in New York
     const now = new Date();
@@ -39,7 +39,11 @@ export function updateNYHoursDisplay() {
         hour12: true
     };
     const formatter = new Intl.DateTimeFormat('en-US', options);
-    displayEl.textContent = formatter.format(now);
+    const timeString = formatter.format(now);
+
+    displayEls.forEach(el => {
+        el.textContent = timeString;
+    });
 }
 
 // --- i18n Logic ---

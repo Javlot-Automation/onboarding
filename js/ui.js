@@ -368,20 +368,26 @@ function updateDepositStep() {
 
     const desc = document.getElementById('depositStepDescription');
     if (desc) {
+        let key = '';
         if (state.depositSubStep === 1) {
-            desc.textContent = t('deposit_desc_1');
+            key = 'deposit_desc_1';
         } else if (state.depositSubStep === 2) {
-            if (state.selectedBroker === 'bullwaves') desc.textContent = t('deposit_desc_2_bullwaves');
-            else if (state.selectedBroker === 'puprime') desc.textContent = t('deposit_desc_2_puprime');
-            else if (state.selectedBroker === 'axi') desc.textContent = t('deposit_desc_2_axi');
-            else if (state.selectedBroker === 'startrader') desc.textContent = t('deposit_desc_2_startrader');
-            else desc.textContent = t('deposit_desc_2_vantage');
+            if (state.selectedBroker === 'bullwaves') key = 'deposit_desc_2_bullwaves';
+            else if (state.selectedBroker === 'puprime') key = 'deposit_desc_2_puprime';
+            else if (state.selectedBroker === 'axi') key = 'deposit_desc_2_axi';
+            else if (state.selectedBroker === 'startrader') key = 'deposit_desc_2_startrader';
+            else key = 'deposit_desc_2_vantage';
         } else if (state.depositSubStep === 3) {
-            if (state.selectedBroker === 'puprime') desc.textContent = t('deposit_desc_3_puprime');
-            else if (state.selectedBroker === 'startrader') desc.textContent = t('deposit_desc_3_startrader');
-            else desc.textContent = t('deposit_desc_3_vantage');
+            if (state.selectedBroker === 'puprime') key = 'deposit_desc_3_puprime';
+            else if (state.selectedBroker === 'startrader') key = 'deposit_desc_3_startrader';
+            else key = 'deposit_desc_3_vantage';
         } else if (state.depositSubStep === 4) {
-            desc.textContent = t('deposit_desc_4_vantage');
+            key = 'deposit_desc_4_vantage';
+        }
+
+        if (key) {
+            desc.textContent = t(key);
+            desc.setAttribute('data-i18n', key);
         }
     }
 
@@ -542,10 +548,16 @@ function updateMetaTraderStep() {
 
     const desc = document.getElementById('MetaTraderStepDescription');
     if (desc) {
-        if (state.MetaTraderSubStep === 1) desc.textContent = t('mt_desc_1');
-        else if (state.MetaTraderSubStep === 2) desc.textContent = t('mt_desc_2');
-        else if (state.MetaTraderSubStep === 3) desc.textContent = t('mt_desc_3');
-        else if (state.MetaTraderSubStep === 4) desc.textContent = t('mt_desc_4');
+        let key = '';
+        if (state.MetaTraderSubStep === 1) key = 'mt_desc_1';
+        else if (state.MetaTraderSubStep === 2) key = 'mt_desc_2';
+        else if (state.MetaTraderSubStep === 3) key = 'mt_desc_3';
+        else if (state.MetaTraderSubStep === 4) key = 'mt_desc_4';
+
+        if (key) {
+            desc.textContent = t(key);
+            desc.setAttribute('data-i18n', key);
+        }
     }
 
     updateMetaTraderContinueButton();
@@ -587,6 +599,18 @@ function updateVerificationStep() {
     if (currentSection) {
         currentSection.classList.add('active');
         if (state.verificationDirection) animateInElement(currentSection, state.verificationDirection);
+    }
+
+    const desc = document.getElementById('verificationStepDescription');
+    if (desc) {
+        let key = '';
+        if (state.verificationSubStep === 1) key = 'verif_desc_1';
+        else if (state.verificationSubStep === 2) key = 'verif_desc_2';
+
+        if (key) {
+            desc.textContent = t(key);
+            desc.setAttribute('data-i18n', key);
+        }
     }
 
     // ... description update ...
