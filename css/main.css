@@ -372,6 +372,23 @@
             fill: currentColor;
         }
 
+        /* Step 5 app cards (uses same broker-card design) */
+        .app-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            border: 1px solid #e5e5e5;
+            color: #000000;
+        }
+
+        .app-logo svg {
+            width: 26px;
+            height: 26px;
+            display: block;
+            fill: currentColor;
+        }
+
 
         .broker-info {
             flex: 1;
