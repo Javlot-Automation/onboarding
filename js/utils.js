@@ -58,6 +58,96 @@ export function updateNYHoursDisplay() {
     }
 }
 
+export function updateNYSessionStatus() {
+    try {
+        const statusContainer = document.getElementById('ny-session-dynamic-status');
+        if (!statusContainer) return;
+
+        // Current time
+        const now = new Date();
+        const nowUTC = now.getTime(); // millis
+
+        // Define Session Window in UTC for TODAY
+        // Session is 13:30 UTC to 16:30 UTC
+        const start = new Date();
+        start.setUTCHours(13, 30, 0, 0); // 13:30 UTC
+
+        const end = new Date();
+        end.setUTCHours(16, 30, 0, 0);   // 16:30 UTC
+
+        let isSessionActive = false;
+        let timeRemainingMsg = "";
+
+        // Logic to determine if active
+        // If now is between start and end
+        if (now >= start && now <= end) {
+            isSessionActive = true;
+
+            // Calculate remaining time until end
+            const diffMs = end - now;
+            const diffHrs = Math.floor(diffMs / 3600000);
+            const diffMins = Math.floor((diffMs % 3600000) / 60000);
+
+            // Format logic for "Ends in..."
+            const hoursLabel = state.currentLang === 'fr' ? 'h' : 'h';
+            const minsLabel = state.currentLang === 'fr' ? 'min' : 'm';
+            let remainingStr = "";
+            if (diffHrs > 0) remainingStr += `${diffHrs}${hoursLabel} `;
+            remainingStr += `${diffMins}${minsLabel}`;
+
+            // End time string local
+            const endLocal = end.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            // Get raw template
+            let msg = translations[state.currentLang]['ny_session_active_msg'];
+            msg = msg.replace('{endTime}', endLocal).replace('{remaining}', remainingStr);
+
+            timeRemainingMsg = msg;
+        } else {
+            isSessionActive = false;
+
+            // Calculate time until NEXT session start
+            // If now > end, next session is tomorrow start
+            // If now < start, next session is today start
+            let nextStart = new Date(start);
+            if (now > end) {
+                nextStart.setDate(nextStart.getDate() + 1);
+            }
+
+            const diffMs = nextStart - now;
+            const diffHrs = Math.floor(diffMs / 3600000);
+            const diffMins = Math.floor((diffMs % 3600000) / 60000);
+
+            const hoursLabel = state.currentLang === 'fr' ? 'h' : 'h';
+            const minsLabel = state.currentLang === 'fr' ? 'min' : 'm';
+            let remainingStr = "";
+            if (diffHrs > 0) remainingStr += `${diffHrs}${hoursLabel} `;
+            remainingStr += `${diffMins}${minsLabel}`;
+
+            // Get raw template
+            let msg = translations[state.currentLang]['ny_session_inactive_msg'];
+            msg = msg.replace('{remaining}', remainingStr);
+
+            timeRemainingMsg = msg;
+        }
+
+        // Render
+        statusContainer.className = isSessionActive ? 'warning-box error' : 'warning-box success';
+        statusContainer.style.backgroundColor = isSessionActive ? '#FEF2F2' : '#F0FDF4'; // Red-50 vs Green-50
+        statusContainer.style.border = isSessionActive ? '1px solid #DC2626' : '1px solid #16A34A';
+        statusContainer.style.color = isSessionActive ? '#991B1B' : '#166534';
+        statusContainer.style.padding = '12px';
+        statusContainer.style.borderRadius = '8px';
+        statusContainer.style.fontSize = '14px';
+        statusContainer.style.marginTop = '14px';
+
+        statusContainer.innerHTML = `<strong>${isSessionActive ? (state.currentLang === 'fr' ? 'Session Active' : 'Session Active') : (state.currentLang === 'fr' ? 'Session Fermée' : 'Session Closed')} : </strong> ${timeRemainingMsg}`;
+
+    } catch (e) {
+        console.error("Error updating NY Status:", e);
+    }
+}
+
 // --- i18n Logic ---
 
 export function setLanguage(lang) {
@@ -132,6 +222,7 @@ export function applyTranslations() {
 
     // 4. Update dynamic elements like NY hours
     updateNYHoursDisplay();
+    updateNYSessionStatus();
     // Safety check: retry after a brief delay to ensure DOM is ready and no interference
     setTimeout(updateNYHoursDisplay, 50);
 }

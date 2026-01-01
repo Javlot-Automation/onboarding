@@ -171,6 +171,8 @@ export const translations = {
         step6_4_warning: `<strong>Important:</strong> Do not proceed if the current time falls within the New York session hours (<span class="ny-hours-local"></span>). Wait until the session is closed before continuing.`,
         step6_4_checkbox: "I confirm that I am outside the New York trading session hours.",
         step6_4_desc: "Your trading account is fully setup and ready for the anti-bot validation procedure.",
+        ny_session_active_msg: "We detect that the New York session is still ongoing until {endTime} (Ends in {remaining})",
+        ny_session_inactive_msg: "You can proceed, the session is not active. It will resume in {remaining}",
 
         // ===== STEP 7 =====
         step7_title: "Account Verification Trade",
@@ -504,6 +506,8 @@ export const translations = {
         step6_4_warning: `<strong>Important :</strong> Ne continuez pas si vous êtes dans les heures de session de New York (<span class="ny-hours-local"></span>). Attendez la fermeture de la session.`,
         step6_4_checkbox: "Je confirme être en dehors des heures de session de New York.",
         step6_4_desc: "Votre compte est configuré et prêt pour la validation anti-bot.",
+        ny_session_active_msg: "Nous détectons que la session de New York est encore en cours jusqu'à {endTime} (Se termine dans {remaining})",
+        ny_session_inactive_msg: "Vous pouvez y aller, la session n'est pas en cours. Elle reprendra dans {remaining}",
 
         // ===== STEP 7 =====
         step7_title: "Trade de vérification",
