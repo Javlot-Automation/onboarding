@@ -190,7 +190,7 @@ export const translations = {
         // ===== STEP 8 =====
         step8_title: "Connect to Javlot",
         step8_description: "Enter your MetaTrader 5 credentials to securely link your trading account to the service.",
-        step8_email_label: "Email Address (used for Stripe billing)",
+        step8_email_label: "Email Address (same as for your Javlot billing)",
         step8_email_placeholder: "Email address",
         step8_account_label: "MT5 Account Number",
         step8_account_placeholder: "Enter MT5 account number",
@@ -525,7 +525,7 @@ export const translations = {
         // ===== STEP 8 =====
         step8_title: "Connexion à Javlot",
         step8_description: "Entrez vos identifiants MetaTrader 5 pour lier votre compte au service en toute sécurité.",
-        step8_email_label: "Adresse email (utilisée pour la facturation Stripe)",
+        step8_email_label: "Adresse email (la même que pour votre facturation Javlot)",
         step8_email_placeholder: "Adresse email",
         step8_account_label: "Numéro de compte MT5",
         step8_account_placeholder: "Entrez le numéro de compte MT5",
