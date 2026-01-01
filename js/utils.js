@@ -141,7 +141,7 @@ export function updateNYSessionStatus() {
         statusContainer.style.fontSize = '14px';
         statusContainer.style.marginTop = '14px';
 
-        statusContainer.innerHTML = `<strong>${isSessionActive ? (state.currentLang === 'fr' ? 'Session Active' : 'Session Active') : (state.currentLang === 'fr' ? 'Session Fermée' : 'Session Closed')} : </strong> ${timeRemainingMsg}`;
+        statusContainer.innerHTML = `<strong style="color: inherit;">${isSessionActive ? (state.currentLang === 'fr' ? 'Session Active' : 'Session Active') : (state.currentLang === 'fr' ? 'Session Fermée' : 'Session Closed')} : </strong> ${timeRemainingMsg}`;
 
     } catch (e) {
         console.error("Error updating NY Status:", e);
