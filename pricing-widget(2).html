@@ -1,0 +1,899 @@
+<div class="javlot-pricing-widget">
+  <div class="jp-input-block">
+    <label for="jp-capital-input" class="jp-label">Capital (EUR)</label>
+    <input
+      id="jp-capital-input"
+      class="jp-input"
+      type="text"
+      inputmode="decimal"
+      placeholder="Enter your capital, for example 10 000"
+    >
+    <div id="jp-message" class="jp-message"></div>
+  </div>
+  
+  <div id="jp-result" class="jp-result-card">
+    <div class="jp-result-row">
+      <span class="jp-result-label">Capital range</span>
+      <span id="jp-capital-range" class="jp-result-value"></span>
+    </div>
+    <div class="jp-result-row">
+      <span class="jp-result-label">Monthly fee</span>
+      <span id="jp-monthly-fee" class="jp-result-value"></span>
+    </div>
+    <div class="jp-result-row">
+      <div class="jp-result-label-group">
+        <span class="jp-result-label">Estimated monthly result*</span>
+        <span class="jp-result-sublabel"><span id="jp-exposure-text">30%</span> capital exposure</span>
+      </div>
+      <span id="jp-estimated" class="jp-result-value jp-result-green"></span>
+    </div>
+  </div>
+  
+  <div id="jp-risk-toggle" class="jp-risk-toggle">
+    <button id="jp-risk-toggle-btn" class="jp-risk-toggle-btn">
+      <span>Adjust risk level</span>
+      <svg id="jp-toggle-icon" class="jp-toggle-icon" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+      </svg>
+    </button>
+  </div>
+  
+  <div id="jp-risk-section" class="jp-risk-section">
+    <div class="jp-risk-header">
+      <span class="jp-risk-title">Risk Level</span>
+      <div class="jp-risk-value-group">
+        <span id="jp-risk-value" class="jp-risk-value">30%</span>
+        <span id="jp-risk-badge" class="jp-risk-badge">Recommended</span>
+      </div>
+    </div>
+    
+    <div id="jp-slider-wrapper" class="jp-slider-wrapper jp-slider-disabled">
+      <div class="jp-slider-container">
+        <input
+          id="jp-risk-slider"
+          class="jp-risk-slider"
+          type="range"
+          min="15"
+          max="100"
+          value="30"
+          step="1"
+          disabled
+        >
+        <div class="jp-slider-track">
+          <div id="jp-slider-fill" class="jp-slider-fill"></div>
+        </div>
+        <div id="jp-slider-thumb" class="jp-slider-thumb"></div>
+      </div>
+      
+      <div class="jp-risk-labels">
+        <span>15%</span>
+        <span>100%</span>
+      </div>
+    </div>
+    
+    <label id="jp-acknowledge" class="jp-acknowledge">
+      <div class="jp-toggle-switch">
+        <input type="checkbox" id="jp-acknowledge-checkbox" class="jp-toggle-input">
+        <span class="jp-toggle-slider"></span>
+      </div>
+      <span class="jp-acknowledge-text">I understand that 30% is the recommended level and increasing it will expose my capital to higher risk</span>
+    </label>
+    
+    <div id="jp-risk-warning" class="jp-risk-warning">
+      <svg class="jp-warning-icon" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+      </svg>
+      <span id="jp-warning-text">High exposure — increased risk of drawdowns</span>
+    </div>
+  </div>
+  
+  <p id="jp-disclaimer" class="jp-disclaimer">
+    * Based on 7.11% average monthly performance at 30% risk level.
+    Past performance does not guarantee future results.
+  </p>
+</div>
+
+<style>
+.javlot-pricing-widget {
+  --color-green: #10b981;
+  --color-yellow: #f59e0b;
+  --color-red: #ef4444;
+  --color-text: #111827;
+  --color-text-secondary: #6b7280;
+  --color-border: #e5e7eb;
+  
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0;
+  background: transparent;
+  color: var(--color-text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.javlot-pricing-widget * {
+  box-sizing: border-box;
+}
+
+/* Input */
+.jp-input-block {
+  margin-bottom: 20px;
+}
+
+.jp-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--color-text-secondary);
+  text-align: left !important;
+}
+
+.jp-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--color-text);
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+  text-align: left !important;
+}
+
+.jp-input::placeholder {
+  color: #9ca3af;
+  text-align: left !important;
+}
+
+.jp-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.jp-message {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--color-yellow);
+  min-height: 18px;
+  text-align: left !important;
+}
+
+/* Result Card */
+.jp-result-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.jp-result-card.jp-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.jp-result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.jp-result-row:last-child {
+  border-bottom: none;
+}
+
+.jp-result-label {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  text-align: left !important;
+}
+
+.jp-result-label-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.jp-result-sublabel {
+  font-size: 12px;
+  color: #9ca3af;
+  text-align: left !important;
+}
+
+.jp-result-value {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+  text-align: right !important;
+}
+
+.jp-result-green {
+  color: var(--color-green) !important;
+}
+
+.jp-result-yellow {
+  color: var(--color-yellow) !important;
+}
+
+.jp-result-red {
+  color: var(--color-red) !important;
+}
+
+/* Risk Toggle Button */
+.jp-risk-toggle {
+  margin-bottom: 16px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s;
+  pointer-events: none;
+}
+
+.jp-risk-toggle.jp-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.jp-risk-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 14px 18px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  transition: all 0.2s ease;
+  text-align: left !important;
+}
+
+.jp-risk-toggle-btn:hover {
+  border-color: #d1d5db;
+  color: var(--color-text);
+}
+
+.jp-risk-toggle-btn.jp-active {
+  color: var(--color-text);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-color: transparent;
+}
+
+.jp-toggle-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.jp-risk-toggle-btn.jp-active .jp-toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* Risk Section */
+.jp-risk-section {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  padding: 20px;
+  margin-top: -16px;
+  margin-bottom: 16px;
+  opacity: 0;
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+  transition: all 0.3s ease, border-color 0.3s ease;
+  pointer-events: none;
+}
+
+.jp-risk-section.jp-visible {
+  opacity: 1;
+  max-height: 400px;
+  padding: 20px;
+  pointer-events: auto;
+}
+
+.jp-risk-section.jp-border-warning {
+  border-color: var(--color-yellow);
+}
+
+.jp-risk-section.jp-border-danger {
+  border-color: var(--color-red);
+}
+
+.jp-risk-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.jp-risk-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-align: left !important;
+}
+
+.jp-risk-value-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.jp-risk-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1;
+  min-width: 56px;
+  text-align: right !important;
+  transition: color 0.3s ease;
+}
+
+.jp-risk-badge {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-green);
+  transition: all 0.3s ease;
+}
+
+.jp-risk-badge.jp-badge-warning {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--color-yellow);
+}
+
+.jp-risk-badge.jp-badge-danger {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--color-red);
+}
+
+/* Slider */
+.jp-slider-wrapper {
+  margin-bottom: 20px;
+  transition: opacity 0.3s ease;
+}
+
+.jp-slider-wrapper.jp-slider-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.jp-slider-container {
+  position: relative;
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.jp-risk-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  cursor: pointer;
+  position: absolute;
+  z-index: 3;
+  margin: 0;
+}
+
+.jp-risk-slider:disabled {
+  cursor: not-allowed;
+}
+
+.jp-risk-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.jp-risk-slider:disabled::-webkit-slider-thumb {
+  cursor: not-allowed;
+}
+
+.jp-risk-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.jp-risk-slider:disabled::-moz-range-thumb {
+  cursor: not-allowed;
+}
+
+.jp-slider-track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 6px;
+  transform: translateY(-50%);
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.jp-slider-fill {
+  height: 100%;
+  width: 17.6%;
+  background: var(--color-green);
+  border-radius: 3px;
+  transition: background 0.3s ease;
+}
+
+.jp-slider-thumb {
+  position: absolute;
+  top: 50%;
+  left: 17.6%;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 2px solid var(--color-green);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  z-index: 2;
+  transition: border-color 0.3s ease, transform 0.15s ease;
+}
+
+.jp-slider-wrapper:not(.jp-slider-disabled) .jp-slider-container:hover .jp-slider-thumb {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.jp-risk-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* iOS-style Toggle Switch */
+.jp-acknowledge {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.jp-toggle-switch {
+  position: relative;
+  flex-shrink: 0;
+  width: 44px;
+  height: 24px;
+}
+
+.jp-toggle-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.jp-toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #e5e7eb;
+  transition: all 0.3s ease;
+  border-radius: 24px;
+}
+
+.jp-toggle-slider::before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.jp-toggle-input:checked + .jp-toggle-slider {
+  background-color: var(--color-green);
+}
+
+.jp-toggle-input:checked + .jp-toggle-slider::before {
+  transform: translateX(20px);
+}
+
+.jp-acknowledge-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  padding-top: 2px;
+  text-align: left !important;
+}
+
+/* Warning Message */
+.jp-risk-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  background: rgba(245, 158, 11, 0.08);
+  border-radius: 8px;
+  opacity: 0;
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.jp-risk-warning.jp-visible {
+  opacity: 1;
+  max-height: 100px;
+  padding: 12px 14px;
+}
+
+.jp-risk-warning.jp-warning-danger {
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.jp-warning-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-yellow);
+  flex-shrink: 0;
+  transition: color 0.3s ease;
+}
+
+.jp-risk-warning.jp-warning-danger .jp-warning-icon {
+  color: var(--color-red);
+}
+
+#jp-warning-text {
+  font-size: 13px;
+  color: #92400e;
+  line-height: 1.4;
+  transition: color 0.3s ease;
+  text-align: left !important;
+}
+
+.jp-risk-warning.jp-warning-danger #jp-warning-text {
+  color: #991b1b;
+}
+
+/* State Colors for slider */
+.jp-state-yellow .jp-risk-value { color: var(--color-yellow); }
+.jp-state-yellow .jp-slider-fill { background: var(--color-yellow); }
+.jp-state-yellow .jp-slider-thumb { border-color: var(--color-yellow); }
+
+.jp-state-red .jp-risk-value { color: var(--color-red); }
+.jp-state-red .jp-slider-fill { background: var(--color-red); }
+.jp-state-red .jp-slider-thumb { border-color: var(--color-red); }
+
+/* Disclaimer */
+.jp-disclaimer {
+  margin-top: 20px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #9ca3af;
+  opacity: 0;
+  transition: opacity 0.3s ease 0.15s;
+  text-align: left !important;
+}
+
+.jp-disclaimer.jp-visible {
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  .jp-result-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 14px 16px;
+  }
+  
+  .jp-risk-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .jp-risk-value-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .jp-risk-value {
+    font-size: 28px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var input = document.getElementById("jp-capital-input");
+  var resultBox = document.getElementById("jp-result");
+  var msg = document.getElementById("jp-message");
+  var capitalRangeEl = document.getElementById("jp-capital-range");
+  var monthlyFeeEl = document.getElementById("jp-monthly-fee");
+  var estimatedEl = document.getElementById("jp-estimated");
+  var exposureTextEl = document.getElementById("jp-exposure-text");
+  var disclaimerEl = document.getElementById("jp-disclaimer");
+  var riskToggle = document.getElementById("jp-risk-toggle");
+  var riskToggleBtn = document.getElementById("jp-risk-toggle-btn");
+  var riskSection = document.getElementById("jp-risk-section");
+  var riskSlider = document.getElementById("jp-risk-slider");
+  var riskValueEl = document.getElementById("jp-risk-value");
+  var riskBadge = document.getElementById("jp-risk-badge");
+  var sliderFill = document.getElementById("jp-slider-fill");
+  var sliderThumb = document.getElementById("jp-slider-thumb");
+  var sliderWrapper = document.getElementById("jp-slider-wrapper");
+  var acknowledgeCheckbox = document.getElementById("jp-acknowledge-checkbox");
+  var riskWarning = document.getElementById("jp-risk-warning");
+  var warningText = document.getElementById("jp-warning-text");
+
+  var currentCapitalMin = 0;
+  var basePerformance = 0.0711;
+  var riskPanelOpen = false;
+
+  function formatEuro(value) {
+    if (isNaN(value)) return "";
+    return value.toLocaleString("fr-FR", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }) + " €";
+  }
+
+  function formatEuroDecimal(value) {
+    if (isNaN(value)) return "";
+    return value.toLocaleString("fr-FR", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }) + " €";
+  }
+
+  function getRiskMultiplier(riskPercent) {
+    if (riskPercent <= 30) {
+      return 0.5 + ((riskPercent - 15) / 15) * 0.5;
+    } else {
+      return 1 + ((riskPercent - 30) / 70) * 2.33;
+    }
+  }
+
+  function toggleRiskPanel() {
+    riskPanelOpen = !riskPanelOpen;
+    
+    if (riskPanelOpen) {
+      riskToggleBtn.classList.add("jp-active");
+      riskSection.classList.add("jp-visible");
+      updateToggleBorderColor();
+    } else {
+      riskToggleBtn.classList.remove("jp-active");
+      riskSection.classList.remove("jp-visible");
+      riskToggleBtn.style.borderColor = "";
+    }
+  }
+
+  function updateToggleBorderColor() {
+    if (!riskPanelOpen) return;
+    
+    var riskPercent = parseInt(riskSlider.value);
+    if (riskPercent <= 30) {
+      riskToggleBtn.style.borderColor = "";
+    } else if (riskPercent <= 60) {
+      riskToggleBtn.style.borderColor = "var(--color-yellow)";
+    } else {
+      riskToggleBtn.style.borderColor = "var(--color-red)";
+    }
+  }
+
+  function handleAcknowledge() {
+    if (acknowledgeCheckbox.checked) {
+      sliderWrapper.classList.remove("jp-slider-disabled");
+      riskSlider.disabled = false;
+    } else {
+      sliderWrapper.classList.add("jp-slider-disabled");
+      riskSlider.disabled = true;
+      riskSlider.value = 30;
+      updateRiskUI(30);
+    }
+  }
+
+  function updateRiskUI(riskPercent) {
+    riskValueEl.textContent = riskPercent + "%";
+    exposureTextEl.textContent = riskPercent + "%";
+    
+    var fillPercent = ((riskPercent - 15) / 85) * 100;
+    sliderFill.style.width = fillPercent + "%";
+    sliderThumb.style.left = fillPercent + "%";
+    
+    // Reset classes
+    riskSection.classList.remove("jp-state-green", "jp-state-yellow", "jp-state-red", "jp-border-warning", "jp-border-danger");
+    riskBadge.classList.remove("jp-badge-warning", "jp-badge-danger");
+    riskWarning.classList.remove("jp-visible", "jp-warning-danger");
+    estimatedEl.classList.remove("jp-result-green", "jp-result-yellow", "jp-result-red");
+    
+    var stateClass, badgeText, showWarning = false, dangerWarning = false, resultColorClass;
+    
+    if (riskPercent <= 30) {
+      stateClass = "jp-state-green";
+      badgeText = "Recommended";
+      resultColorClass = "jp-result-green";
+    } else if (riskPercent <= 60) {
+      stateClass = "jp-state-yellow";
+      badgeText = "High";
+      resultColorClass = "jp-result-yellow";
+      riskBadge.classList.add("jp-badge-warning");
+      riskSection.classList.add("jp-border-warning");
+      showWarning = true;
+      if (riskPercent > 50) {
+        warningText.textContent = "Above 50%, the bot may skip some positions. Higher leverage means trades can diverge significantly. Proceed at your own risk.";
+      } else {
+        warningText.textContent = "High exposure — increased risk of drawdowns";
+      }
+    } else {
+      stateClass = "jp-state-red";
+      badgeText = "Extreme";
+      resultColorClass = "jp-result-red";
+      riskBadge.classList.add("jp-badge-danger");
+      riskSection.classList.add("jp-border-danger");
+      showWarning = true;
+      dangerWarning = true;
+      warningText.textContent = "Extreme risk — the bot may skip positions and high leverage can cause significant trade divergence. Proceed at your own risk.";
+    }
+    
+    riskSection.classList.add(stateClass);
+    riskBadge.textContent = badgeText;
+    estimatedEl.classList.add(resultColorClass);
+    
+    if (showWarning) {
+      riskWarning.classList.add("jp-visible");
+      if (dangerWarning) {
+        riskWarning.classList.add("jp-warning-danger");
+      }
+    }
+    
+    updateToggleBorderColor();
+    updateEstimatedResult();
+  }
+
+  function updateEstimatedResult() {
+    if (currentCapitalMin <= 0) return;
+    
+    var riskPercent = parseInt(riskSlider.value);
+    var multiplier = getRiskMultiplier(riskPercent);
+    var estimatedMonthly = currentCapitalMin * basePerformance * multiplier;
+    
+    estimatedEl.textContent = "+" + formatEuroDecimal(estimatedMonthly) + " /month";
+  }
+
+  function updatePricing() {
+    var raw = input.value || "";
+    raw = raw.replace(/\s/g, "").replace(/,/g, ".");
+
+    if (raw === "") {
+      resultBox.classList.remove("jp-visible");
+      riskToggle.classList.remove("jp-visible");
+      riskSection.classList.remove("jp-visible");
+      disclaimerEl.classList.remove("jp-visible");
+      riskToggleBtn.classList.remove("jp-active");
+      riskToggleBtn.style.borderColor = "";
+      riskPanelOpen = false;
+      msg.textContent = "";
+      currentCapitalMin = 0;
+      return;
+    }
+
+    var capital = parseFloat(raw);
+
+    if (isNaN(capital) || capital <= 0) {
+      resultBox.classList.remove("jp-visible");
+      riskToggle.classList.remove("jp-visible");
+      riskSection.classList.remove("jp-visible");
+      disclaimerEl.classList.remove("jp-visible");
+      riskToggleBtn.classList.remove("jp-active");
+      riskToggleBtn.style.borderColor = "";
+      riskPanelOpen = false;
+      msg.textContent = "Please enter a valid amount.";
+      currentCapitalMin = 0;
+      return;
+    }
+
+    if (capital < 1000) {
+      resultBox.classList.remove("jp-visible");
+      riskToggle.classList.remove("jp-visible");
+      riskSection.classList.remove("jp-visible");
+      disclaimerEl.classList.remove("jp-visible");
+      riskToggleBtn.classList.remove("jp-active");
+      riskToggleBtn.style.borderColor = "";
+      riskPanelOpen = false;
+      msg.textContent = "Minimum capital: 1 000 €";
+      currentCapitalMin = 0;
+      return;
+    }
+
+    if (capital > 250000) {
+      resultBox.classList.remove("jp-visible");
+      riskToggle.classList.remove("jp-visible");
+      riskSection.classList.remove("jp-visible");
+      disclaimerEl.classList.remove("jp-visible");
+      riskToggleBtn.classList.remove("jp-active");
+      riskToggleBtn.style.borderColor = "";
+      riskPanelOpen = false;
+      msg.textContent = "Contact us for amounts above 250 000 €";
+      currentCapitalMin = 0;
+      return;
+    }
+
+    var tier = Math.floor(capital / 1000);
+    if (tier < 1) tier = 1;
+    if (tier > 250) tier = 250;
+
+    var capitalMin = tier * 1000;
+    var capitalMax = capitalMin + 999;
+    var monthlyFee = 19.90 + (tier - 1) * 20;
+
+    currentCapitalMin = capitalMin;
+
+    capitalRangeEl.textContent = formatEuro(capitalMin) + " – " + formatEuro(capitalMax);
+    monthlyFeeEl.textContent = formatEuroDecimal(monthlyFee) + " /month";
+
+    resultBox.classList.add("jp-visible");
+    riskToggle.classList.add("jp-visible");
+    disclaimerEl.classList.add("jp-visible");
+    msg.textContent = "";
+
+    updateRiskUI(parseInt(riskSlider.value));
+  }
+
+  if (input) {
+    input.addEventListener("input", updatePricing);
+    input.value = "10000";
+    updatePricing();
+  }
+
+  if (riskToggleBtn) {
+    riskToggleBtn.addEventListener("click", toggleRiskPanel);
+  }
+
+  if (acknowledgeCheckbox) {
+    acknowledgeCheckbox.addEventListener("change", handleAcknowledge);
+  }
+
+  if (riskSlider) {
+    riskSlider.addEventListener("input", function() {
+      updateRiskUI(parseInt(this.value));
+    });
+    updateRiskUI(30);
+  }
+});
+</script>
