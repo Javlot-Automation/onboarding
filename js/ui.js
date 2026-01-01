@@ -116,7 +116,7 @@ export async function updateStep() {
     // Sync boutons via updateXYButton helpers
     updateSidebarVisibility(); // Helper for sidebar
 
-    // Bind MT5 fields if on step 8 (or if they exist)
+    // Bind MT5 fields if on step 9 (or if they exist)
     mt5.mt5UpdateSubmitState();
 
     updateStep1Button();
@@ -125,6 +125,13 @@ export async function updateStep() {
     updateStep5Button();
     updateStep6Button();
     updateStep7Button();
+    updateStep8Button();
+
+    // Step 8 (Risk Config) Init
+    if (state.currentStep === 8) {
+        initRiskConfig();
+    }
+
 
     // Step 4 internal flow (Global + Broker-specific)
     if (state.currentStep === 4) {
@@ -222,6 +229,11 @@ export function nextStep() {
     // Step 7 internal
     if (state.currentStep === 7) {
         handleVerificationNext();
+        return;
+    }
+
+    if (state.currentStep === 8) {
+        handleStep8Next();
         return;
     }
 
@@ -638,6 +650,22 @@ function handleVerificationNext() {
     updateStep();
 }
 
+// --- Step 8 Logic ---
+import { initRiskConfig, isRiskConfigValid } from './risk_config.js';
+
+function updateStep8Button() {
+    if (!state.step8ContinueBtn) state.step8ContinueBtn = document.getElementById('step8ContinueBtn');
+    if (!state.step8ContinueBtn) return;
+    state.step8ContinueBtn.disabled = !isRiskConfigValid();
+}
+
+function handleStep8Next() {
+    if (!isRiskConfigValid()) return;
+    state.navDirection = 'forward';
+    state.currentStep = 9;
+    updateStep();
+}
+
 
 // --- Lightbox ---
 
@@ -705,7 +733,9 @@ window.updateStep5Button = updateStep5Button;
 window.updateStep6Button = updateStep6Button;
 window.updateStep7Button = updateStep7Button;
 window.updateMetaTraderContinueButton = updateMetaTraderContinueButton;
+window.updateMetaTraderContinueButton = updateMetaTraderContinueButton;
 window.updateVerificationContinueButton = updateVerificationContinueButton;
+window.updateStep8Button = updateStep8Button;
 
 // Function from Step 8 HTML (missing in backup but required for UI)
 window.togglePasswordVisibility = function (id) {

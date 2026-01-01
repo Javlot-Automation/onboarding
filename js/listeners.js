@@ -3,6 +3,7 @@ import { state } from './state.js';
 import * as mt5 from './mt5.js';
 import * as brokers from './brokers.js';
 import * as ui from './ui.js';
+import { initRiskConfig } from './risk_config.js';
 
 // We need to import ui.js to call updateButton functions?
 // But updateButton functions are not exported?
@@ -134,8 +135,11 @@ export function initStepListeners(step) {
         });
     }
 
-    // Step 8 (MT5 Submit)
-    if (step === 8) {
+    mt5.mt5UpdateSubmitState();
+
+
+    // Step 9 (Connect to Javlot - previously Step 8)
+    if (step === 9) {
         const mt5Email = document.getElementById('mt5Email');
         const mt5AccountNumber = document.getElementById('mt5AccountNumber');
         const mt5AccountPassword = document.getElementById('mt5AccountPassword');
@@ -164,6 +168,7 @@ export function initStepListeners(step) {
 
         mt5.mt5UpdateSubmitState();
     }
+
 
     // Broker specific listeners (Step 3)
     if (step === 3) {
