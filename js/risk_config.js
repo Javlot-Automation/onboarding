@@ -319,9 +319,15 @@ export function isRiskConfigValid() {
   var resultBox = document.getElementById("jp-result");
   var isResultVisible = resultBox && resultBox.classList.contains("jp-visible");
 
-  // Check acknowledgment checkbox (Restore logic)
+  // Check acknowledgment checkbox logic:
+  // If panel is NOT visible (user didn't open it), we accept default (no check required).
+  // If panel IS visible, check is required.
+  var riskSection = document.getElementById("jp-risk-section");
+  var isPanelVisible = riskSection && riskSection.classList.contains("jp-visible");
+
   var checkbox = document.getElementById("jp-acknowledge-checkbox");
   var isChecked = checkbox && checkbox.checked;
 
-  return validCapital && isResultVisible && isChecked;
+  // Validation: Capital valid AND Result visible AND (Panel Closed OR Checked)
+  return validCapital && isResultVisible && (!isPanelVisible || isChecked);
 }
