@@ -115,11 +115,14 @@ function startButtonAnimation(btn) {
     const messages = ['loading_step1', 'loading_step2', 'loading_step3'];
     let msgIndex = 0;
 
-    // Lock width to prevent jumping
-    btn.style.width = getComputedStyle(btn).width;
-    btn.style.height = getComputedStyle(btn).height; // Lock height too
+    // Lock dimensions to prevent layout shift
+    const btnRect = btn.getBoundingClientRect();
+    btn.style.width = btnRect.width + 'px';
+    btn.style.height = btnRect.height + 'px';
+    btn.style.position = 'relative';
+    btn.style.overflow = 'hidden';
 
-    // Initial HTML structure
+    // Set initial content
     btn.innerHTML = `
         <div class="btn-loading-container">
             <span class="btn-loading-text active">${t(messages[0])}</span>
@@ -132,33 +135,39 @@ function startButtonAnimation(btn) {
         const container = btn.querySelector('.btn-loading-container');
         if (!container) return;
 
-        // Current active becomes exit
+        // Get current active element
         const current = container.querySelector('.btn-loading-text.active');
-        if (current) {
-            current.classList.remove('active');
-            current.classList.add('exit');
-        }
 
-        // Create new enter element
+        // Create new element in "enter" position (below, invisible)
         const newSpan = document.createElement('span');
         newSpan.className = 'btn-loading-text enter';
         newSpan.textContent = nextMsg;
         container.appendChild(newSpan);
 
-        // Force reflow
-        void newSpan.offsetWidth;
+        // Use requestAnimationFrame for smooth animation timing
+        requestAnimationFrame(() => {
+            // First frame: ensure enter styles are applied
+            requestAnimationFrame(() => {
+                // Second frame: trigger transitions
+                if (current) {
+                    current.classList.remove('active');
+                    current.classList.add('exit');
+                }
+                newSpan.classList.remove('enter');
+                newSpan.classList.add('active');
 
-        // Animate in
-        newSpan.classList.remove('enter');
-        newSpan.classList.add('active');
+                // Cleanup old element after transition completes
+                setTimeout(() => {
+                    if (current && current.parentNode) {
+                        current.remove();
+                    }
+                }, 450); // Slightly longer than CSS transition (400ms)
+            });
+        });
 
-        // Cleanup old exit elements after transition
-        setTimeout(() => {
-            if (current && current.parentNode) current.parentNode.removeChild(current);
-        }, 500); // match transition duration
-
-    }, 3000); // 3 seconds per message
+    }, 2500); // 2.5 seconds per message for smoother pacing
 }
+
 
 function stopButtonAnimation(btn, originalHTML) {
     if (loadingInterval) {
