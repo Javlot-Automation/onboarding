@@ -352,7 +352,7 @@ export function prevStep() {
 // --- Step 4 Helper Functions ---
 
 function updateDepositStep() {
-    scrollToTop();
+    // scrollToTop moved to end
     const container = document.querySelector('.step-content[data-step="4"]');
     if (!container) return;
 
@@ -404,7 +404,9 @@ function updateDepositStep() {
     }
 
     updateStep4Button();
+    updateStep4Button();
     state.depositDirection = null;
+    scrollToTop();
 }
 
 function handleDepositNext() {
@@ -565,7 +567,7 @@ export function updateStep5Button() {
 // --- Step 6 (MetaTrader) Logic ---
 
 function updateMetaTraderStep() {
-    scrollToTop();
+    // scrollToTop moved to end
     const container = document.querySelector('.step-content[data-step="6"]');
     if (!container) return;
 
@@ -595,7 +597,9 @@ function updateMetaTraderStep() {
     }
 
     updateMetaTraderContinueButton();
+    updateMetaTraderContinueButton();
     state.MetaTraderDirection = null;
+    scrollToTop();
 }
 
 export function updateMetaTraderContinueButton() {
@@ -647,7 +651,7 @@ function handleMetaTraderNext() {
 // --- Step 7 Logic ---
 
 function updateVerificationStep() {
-    scrollToTop();
+    // scrollToTop moved to end
     const container = document.querySelector('.step-content[data-step="7"]');
     if (!container) return;
 
@@ -677,7 +681,10 @@ function updateVerificationStep() {
 
     // Refresh button state for the new sub-step
     updateVerificationContinueButton();
+    // Refresh button state for the new sub-step
+    updateVerificationContinueButton();
     state.verificationDirection = null;
+    scrollToTop();
 }
 
 export function updateVerificationContinueButton() {

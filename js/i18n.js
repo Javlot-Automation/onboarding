@@ -341,6 +341,23 @@ export const translations = {
         alert_confirm_details: "Please confirm details.",
         alert_confirm_funding: "Please confirm funding.",
         alert_profile_verified_vt: "Please confirm that your profile has been verified.",
+
+        // ===== STEP 9 ERRORS =====
+        error_payment_failed: "Activation failed: Payment not verified. Please check your billing status.",
+        error_user_not_found: "Account not found. Please ensure you used the email address associated with your payment.",
+        error_missing_fields: "Please fill in all required fields.",
+        error_invalid_credentials: "Authentication failed. Please check your MT5 login, password, and server.",
+        error_generic: "An error occurred during account linkage. Please try again.",
+        error_invalid_percentage: "Invalid risk percentage settings.",
+        contact_support_intro: "If the error persists, please contact support:",
+        contact_support_btn: "Contact Support",
+        contact_support_subject: "I have an issue during my onboarding",
+        contact_support_body: "I am encountering an error while linking my MetaTrader 5 account to your service.",
+
+        // ===== LOADING STATES =====
+        loading_step1: "Working on it...",
+        loading_step2: "Setting everything up...",
+        loading_step3: "Almost there...",
     },
 
     fr: {
@@ -658,6 +675,23 @@ export const translations = {
         alert_confirm_details: "Veuillez confirmer les détails.",
         alert_confirm_funding: "Veuillez confirmer le financement.",
         alert_profile_verified_vt: "Veuillez confirmer que votre profil a été vérifié.",
+
+        // ===== STEP 9 ERRORS =====
+        error_payment_failed: "Activation échouée : Paiement non vérifié. Veuillez vérifier votre statut de facturation.",
+        error_user_not_found: "Compte introuvable. Assurez-vous d'utiliser l'adresse email associée à votre paiement.",
+        error_missing_fields: "Veuillez remplir tous les champs obligatoires.",
+        error_invalid_credentials: "Échec de l'authentification. Vérifiez votre login, mot de passe et serveur MT5.",
+        error_generic: "Une erreur est survenue lors de la liaison du compte. Veuillez réessayer.",
+        error_invalid_percentage: "Paramètres de risque invalides.",
+        contact_support_intro: "Si l'erreur persiste, contactez le support :",
+        contact_support_btn: "Contacter le Support",
+        contact_support_subject: "I have an issue during my onboarding",
+        contact_support_body: "Je rencontre cette erreur durant la liaison de mon compte MetaTrader 5 a vos service.",
+
+        // ===== LOADING STATES =====
+        loading_step1: "Nous y travaillons...",
+        loading_step2: "On met tout en place...",
+        loading_step3: "Nous y sommes presque...",
     }
 };
 

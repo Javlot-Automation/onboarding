@@ -11,12 +11,38 @@ dQIDAQAB
 
 import { state } from './state.js';
 
-export function mt5ShowAlert(message, type) {
+
+// Import translations helper
+import { t } from './i18n.js';
+
+export function mt5ShowAlert(message, type, showSupport = false) {
     const el = document.getElementById('mt5Alert');
     if (!el) return;
-    el.textContent = message;
+
+    let html = `<span>${message}</span>`;
+
+    if (showSupport) {
+        const supportSubject = t('contact_support_subject');
+        const supportBody = t('contact_support_body');
+        const mailto = `mailto:support@javlot.io?subject=${encodeURIComponent(supportSubject)}&body=${encodeURIComponent(supportBody)}`;
+
+        html += `
+            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.1);">
+                <span style="display:block; margin-bottom: 8px; font-size: 0.9em;">${t('contact_support_intro')}</span>
+                <a href="${mailto}" class="step-btn" style="background-color: #4b5563; text-decoration: none; font-size: 0.9em; padding: 6px 12px; display: inline-block;">
+                    ${t('contact_support_btn')}
+                </a>
+            </div>
+        `;
+    }
+
+    el.innerHTML = html;
     el.className = 'mt5-alert ' + (type === 'success' ? 'success' : 'error') + ' show';
-    setTimeout(() => el.classList.remove('show'), 5000);
+
+    // Only auto-hide if it's a success message. API errors should remain visible.
+    if (type === 'success') {
+        setTimeout(() => el.classList.remove('show'), 5000);
+    }
 }
 
 export function mt5GetFields() {
@@ -58,20 +84,90 @@ export function mt5UpdateSubmitState() {
     f.submitBtn.disabled = !mt5Validate(false);
 }
 
+// --- Animation Helper ---
+let loadingInterval = null;
+
+function startButtonAnimation(btn) {
+    if (!btn) return;
+
+    const messages = ['loading_step1', 'loading_step2', 'loading_step3'];
+    let msgIndex = 0;
+
+    // Lock width to prevent jumping
+    btn.style.width = getComputedStyle(btn).width;
+    btn.style.height = getComputedStyle(btn).height; // Lock height too
+
+    // Initial HTML structure
+    btn.innerHTML = `
+        <div class="btn-loading-container">
+            <span class="btn-loading-text active">${t(messages[0])}</span>
+        </div>
+    `;
+
+    loadingInterval = setInterval(() => {
+        msgIndex = (msgIndex + 1) % messages.length;
+        const nextMsg = t(messages[msgIndex]);
+        const container = btn.querySelector('.btn-loading-container');
+        if (!container) return;
+
+        // Current active becomes exit
+        const current = container.querySelector('.btn-loading-text.active');
+        if (current) {
+            current.classList.remove('active');
+            current.classList.add('exit');
+        }
+
+        // Create new enter element
+        const newSpan = document.createElement('span');
+        newSpan.className = 'btn-loading-text enter';
+        newSpan.textContent = nextMsg;
+        container.appendChild(newSpan);
+
+        // Force reflow
+        void newSpan.offsetWidth;
+
+        // Animate in
+        newSpan.classList.remove('enter');
+        newSpan.classList.add('active');
+
+        // Cleanup old exit elements after transition
+        setTimeout(() => {
+            if (current && current.parentNode) current.parentNode.removeChild(current);
+        }, 500); // match transition duration
+
+    }, 3000); // 3 seconds per message
+}
+
+function stopButtonAnimation(btn, originalHTML) {
+    if (loadingInterval) {
+        clearInterval(loadingInterval);
+        loadingInterval = null;
+    }
+    if (btn) {
+        btn.innerHTML = originalHTML;
+        btn.disabled = false;
+        btn.style.width = ''; // Release constraints
+        btn.style.height = '';
+    }
+}
+
 export async function mt5Submit() {
+    const f = mt5GetFields();
     if (!f.submitBtn) {
         return;
     }
 
     if (!mt5Validate(true)) {
-        mt5ShowAlert('Please complete all required fields and confirmations before submitting.', 'error');
+        mt5ShowAlert(t('error_missing_fields'), 'error');
         mt5UpdateSubmitState();
         return;
     }
 
     const originalHTML = f.submitBtn.innerHTML;
     f.submitBtn.disabled = true;
-    f.submitBtn.innerHTML = 'Securely Sending...<span class="mt5-spinner"></span>';
+
+    // Start Animation
+    startButtonAnimation(f.submitBtn);
 
     try {
         // 1. Prepare Data
@@ -112,26 +208,62 @@ export async function mt5Submit() {
             body: JSON.stringify(payload)
         });
 
+        let data;
+        try {
+            data = await response.json();
+        } catch (e) {
+            data = null;
+        }
+
         if (response.ok) {
+            stopButtonAnimation(f.submitBtn, originalHTML);
             mt5ShowAlert('Account setup successful! Your MT5 account has been securely linked.', 'success');
 
-            // Reset Form (Wait a bit or redirect? Backup just resets form)
+            // Reset Form
             f.email.value = '';
             f.accountNumber.value = '';
             f.accountPassword.value = '';
             f.server.value = '';
             f.confirmCorrect.checked = false;
             f.confirmSecure.checked = false;
+
+            // Maybe redirect or show success state?
         } else {
-            const errText = await response.text();
-            console.error("Server error response:", errText);
-            throw new Error('Server returned ' + response.status);
+            console.error("Server error response:", data);
+
+            // Map Error
+            let errorMsg = t('error_generic');
+            const serverError = data && data.error ? data.error.toLowerCase() : '';
+
+            if (serverError.includes('payment failed')) {
+                errorMsg = t('error_payment_failed');
+            } else if (serverError.includes('user not found')) {
+                errorMsg = t('error_user_not_found');
+            } else if (serverError.includes('missing required fields')) {
+                errorMsg = t('error_missing_fields');
+            } else if (serverError.includes('decryption failed') || serverError.includes('invalid base64')) {
+                errorMsg = t('error_generic'); // Technical error
+            } else if (response.status === 400) {
+                // If generic 400 but not specific, possibly invalid credentials or parameters
+                errorMsg = t('error_invalid_credentials');
+            }
+
+            // Append "Server says: ..." if debug needed? No, user wants clean UI.
+            // But if it's a specific message from lambda that is useful...
+            // The Lambda messages are quite specific ("Payment failed", "User not found").
+            // Our mapping should cover them.
+
+            // Always show support button on error
+            stopButtonAnimation(f.submitBtn, originalHTML);
+            mt5ShowAlert(errorMsg, 'error', true);
         }
     } catch (err) {
-        // Extract useful error info if possible, or just generic
-        mt5ShowAlert('An error occurred during secure submission. Please try again.', 'error');
+        console.error("Submission error:", err);
+        stopButtonAnimation(f.submitBtn, originalHTML);
+        mt5ShowAlert(t('error_generic') + (err.message ? ` (${err.message})` : ''), 'error', true);
     } finally {
-        f.submitBtn.innerHTML = originalHTML;
+        // Double check stop in case of weird return, although handled above
+        if (loadingInterval) stopButtonAnimation(f.submitBtn, originalHTML);
         mt5UpdateSubmitState();
     }
 }
