@@ -15,7 +15,7 @@ import { state } from './state.js';
 // Import translations helper
 import { t } from './i18n.js';
 
-export function mt5ShowAlert(message, type, showSupport = false) {
+export function mt5ShowAlert(message, type, showSupport = false, rawError = null) {
     const el = document.getElementById('mt5Alert');
     if (!el) return;
 
@@ -23,9 +23,18 @@ export function mt5ShowAlert(message, type, showSupport = false) {
 
     if (showSupport) {
         const supportSubject = t('contact_support_subject');
-        // Append the specific error message in quotes to the body
-        const supportBody = `${t('contact_support_body')} "${message}"`;
+        // Include both user-friendly message and raw error for support team
+        // Sanitize raw error to remove internal service names
+        let sanitizedError = rawError ? rawError.replace(/metacopier/gi, 'service').replace(/MetaCopier/gi, 'Service') : null;
+
+        let supportBody = `${t('contact_support_body')}\n\n`;
+        supportBody += `Message: "${message}"\n`;
+        if (sanitizedError) {
+            supportBody += `\nError code: ${sanitizedError}\n`;
+        }
+        supportBody += `\n---\nPlease describe what you were doing when this error occurred:\n`;
         const mailto = `mailto:support@javlot.io?subject=${encodeURIComponent(supportSubject)}&body=${encodeURIComponent(supportBody)}`;
+
 
         // Inline layout: Message left, Button right.
         const btnStyle = `
@@ -116,56 +125,52 @@ function startButtonAnimation(btn) {
     let msgIndex = 0;
 
     // Lock dimensions to prevent layout shift
-    const btnRect = btn.getBoundingClientRect();
-    btn.style.width = btnRect.width + 'px';
-    btn.style.height = btnRect.height + 'px';
-    btn.style.position = 'relative';
+    const computedStyle = window.getComputedStyle(btn);
+    btn.style.width = computedStyle.width;
+    btn.style.height = computedStyle.height;
     btn.style.overflow = 'hidden';
 
-    // Set initial content
+    // Set initial content with first message
     btn.innerHTML = `
         <div class="btn-loading-container">
-            <span class="btn-loading-text active">${t(messages[0])}</span>
+            <span class="btn-loading-text current">${t(messages[0])}</span>
         </div>
     `;
 
+    // Change message every 5 seconds with slide-up effect
     loadingInterval = setInterval(() => {
         msgIndex = (msgIndex + 1) % messages.length;
         const nextMsg = t(messages[msgIndex]);
         const container = btn.querySelector('.btn-loading-container');
         if (!container) return;
 
-        // Get current active element
-        const current = container.querySelector('.btn-loading-text.active');
+        const currentEl = container.querySelector('.btn-loading-text.current');
 
-        // Create new element in "enter" position (below, invisible)
-        const newSpan = document.createElement('span');
-        newSpan.className = 'btn-loading-text enter';
-        newSpan.textContent = nextMsg;
-        container.appendChild(newSpan);
+        // Create new element positioned below (invisible)
+        const nextEl = document.createElement('span');
+        nextEl.className = 'btn-loading-text next';
+        nextEl.textContent = nextMsg;
+        container.appendChild(nextEl);
 
-        // Use requestAnimationFrame for smooth animation timing
-        requestAnimationFrame(() => {
-            // First frame: ensure enter styles are applied
-            requestAnimationFrame(() => {
-                // Second frame: trigger transitions
-                if (current) {
-                    current.classList.remove('active');
-                    current.classList.add('exit');
-                }
-                newSpan.classList.remove('enter');
-                newSpan.classList.add('active');
+        // Trigger reflow to ensure the 'next' styles are applied
+        nextEl.offsetHeight;
 
-                // Cleanup old element after transition completes
-                setTimeout(() => {
-                    if (current && current.parentNode) {
-                        current.remove();
-                    }
-                }, 450); // Slightly longer than CSS transition (400ms)
-            });
-        });
+        // Start the transition: current slides up and fades, next slides up and appears
+        if (currentEl) {
+            currentEl.classList.remove('current');
+            currentEl.classList.add('prev');
+        }
+        nextEl.classList.remove('next');
+        nextEl.classList.add('current');
 
-    }, 2500); // 2.5 seconds per message for smoother pacing
+        // Remove old element after transition completes
+        setTimeout(() => {
+            if (currentEl && currentEl.parentNode) {
+                currentEl.remove();
+            }
+        }, 550);
+
+    }, 5000); // 5 seconds per message
 }
 
 
@@ -262,36 +267,59 @@ export async function mt5Submit() {
         } else {
             console.error("Server error response:", data);
 
-            // Map Error
+            // Map backend errors to user-friendly messages
             let errorMsg = t('error_generic');
             const serverError = data && data.error ? data.error.toLowerCase() : '';
 
-            if (serverError.includes('payment failed')) {
+            // Payment/billing errors
+            if (serverError.includes('payment failed') || serverError.includes('payment not verified')) {
                 errorMsg = t('error_payment_failed');
-            } else if (serverError.includes('user not found')) {
+            }
+            // User/account not found
+            else if (serverError.includes('user not found') || serverError.includes('not found in webflow')) {
                 errorMsg = t('error_user_not_found');
-            } else if (serverError.includes('missing required fields')) {
+            }
+            // Account already exists (MetaCopier duplicate)
+            else if (serverError.includes('already exists')) {
+                errorMsg = t('error_account_exists');
+            }
+            // Connection/network errors
+            else if (serverError.includes('connection error') || serverError.includes('timeout') || serverError.includes('timed out')) {
+                errorMsg = t('error_connection');
+            }
+            // Configuration errors
+            else if (serverError.includes('feature config failed') || serverError.includes('error configuring')) {
+                errorMsg = t('error_config_failed');
+            }
+            // Missing fields
+            else if (serverError.includes('missing required fields') || serverError.includes('missing fields')) {
                 errorMsg = t('error_missing_fields');
-            } else if (serverError.includes('decryption failed') || serverError.includes('invalid base64')) {
-                errorMsg = t('error_generic'); // Technical error
-            } else if (response.status === 400) {
-                // If generic 400 but not specific, possibly invalid credentials or parameters
+            }
+            // Decryption/technical errors (show generic message)
+            else if (serverError.includes('decryption failed') || serverError.includes('invalid base64')) {
+                errorMsg = t('error_generic');
+            }
+            // API errors - check for auth issues
+            else if (serverError.includes('api error') || serverError.includes('invalid') || serverError.includes('authentication')) {
                 errorMsg = t('error_invalid_credentials');
             }
+            // Generic 400 error - likely credentials issue
+            else if (response.status === 400) {
+                errorMsg = t('error_invalid_credentials');
+            }
+            // Server errors (500+)
+            else if (response.status >= 500) {
+                errorMsg = t('error_generic');
+            }
 
-            // Append "Server says: ..." if debug needed? No, user wants clean UI.
-            // But if it's a specific message from lambda that is useful...
-            // The Lambda messages are quite specific ("Payment failed", "User not found").
-            // Our mapping should cover them.
-
-            // Always show support button on error
+            // Always show support button on error - include raw server error for support
             stopButtonAnimation(f.submitBtn, originalHTML);
-            mt5ShowAlert(errorMsg, 'error', true);
+            mt5ShowAlert(errorMsg, 'error', true, serverError || `HTTP ${response.status}`);
         }
     } catch (err) {
         console.error("Submission error:", err);
         stopButtonAnimation(f.submitBtn, originalHTML);
-        mt5ShowAlert(t('error_generic') + (err.message ? ` (${err.message})` : ''), 'error', true);
+        mt5ShowAlert(t('error_generic'), 'error', true, err.message || 'Network error');
     } finally {
         // Double check stop in case of weird return, although handled above
         if (loadingInterval) stopButtonAnimation(f.submitBtn, originalHTML);
