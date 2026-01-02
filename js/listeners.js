@@ -43,13 +43,7 @@ export function initStepListeners(step) {
             // For now, I'll try to use the window one if I add it, or just re-implement the logic here?
             // Re-implementing logic duplicates code. Bad.
             // I will rely on `ui.updateStep1Button` and update ui.js later.
-            disclaimerCheckbox.addEventListener('change', () => {
-                // Dynamic import or rely on imported module
-                // ui.updateStep1Button() is not available yet.
-                // checking logic inline:
-                const btn = document.getElementById('step1ContinueBtn');
-                if (btn) btn.disabled = !disclaimerCheckbox.checked;
-            });
+            disclaimerCheckbox.addEventListener('change', ui.updateStep1Button);
         }
     }
 
@@ -90,19 +84,7 @@ export function initStepListeners(step) {
         inputs.forEach(id => {
             const el = document.getElementById(id);
             if (el) {
-                el.addEventListener('change', () => {
-                    // Call ui.js updateStep4Button()
-                    // Only way is if I export it.
-                    // I will assume I will export it.
-                    // ui.updateStep4Button(); 
-                    // Since I can't call it now, I'll dispatch an event?
-                    // Or just hack it:
-                    if (window.updateStep4Button) window.updateStep4Button();
-                    else {
-                        // Fallback: trigger validation
-                        // ui.validateStep(4); // this doesn't update button state usually, just returns bool
-                    }
-                });
+                el.addEventListener('change', ui.updateStep4Button);
             }
         });
     }
@@ -111,10 +93,7 @@ export function initStepListeners(step) {
     if (step === 5) {
         const cb = document.getElementById('mt5Installed');
         if (cb) {
-            cb.addEventListener('change', () => {
-                const btn = document.getElementById('step5ContinueBtn');
-                if (btn) btn.disabled = !cb.checked;
-            });
+            cb.addEventListener('change', ui.updateStep5Button);
         }
     }
 
@@ -126,11 +105,7 @@ export function initStepListeners(step) {
         inputs.forEach(id => {
             const el = document.getElementById(id);
             if (el) {
-                el.addEventListener('change', () => {
-                    // Logic for updateMetaTraderContinueButton
-                    // ...
-                    // I really need to export these functions from ui.js
-                });
+                el.addEventListener('change', ui.updateMetaTraderContinueButton);
             }
         });
     }
