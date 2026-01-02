@@ -217,10 +217,10 @@ export const translations = {
 
         legend_30_title: "30% – Optimal",
         legend_30_desc: "The perfect balance. The system operates at full potential without leverage constraints.",
-        legend_30_note: "👉 Recommended choice for stability.",
+        legend_30_note: "👉 The recommended and most versatile choice.",
 
         legend_50_title: "50% – High",
-        legend_50_desc: "Aggressive approach. Leverage may sometimes be insufficient, reducing strategy efficiency.",
+        legend_50_desc: "Aggressive approach reducing margin for error in favor of additional gains.",
         legend_50_note: "👉 For experienced users.",
 
         legend_70_title: "70% – Very High",
@@ -230,7 +230,7 @@ export const translations = {
         acknowledge_text: "I understand that 30% is the recommended level and increasing it will expose my capital to higher risk",
         warning_desc: "High exposure — increased risk of drawdowns",
         warning_50: "Very high exposure — significant risk of drawdowns",
-        warning_extreme: "Extreme exposure — critical risk of total loss",
+        warning_extreme: "Extreme exposure — in case of drawdown your capital is in real danger",
         error_invalid: "Please enter a valid amount",
         error_min: "Minimum capital required is 1 000 €",
         error_max: "Maximum capital allowed is 250 000 €",
@@ -602,10 +602,10 @@ export const translations = {
 
         legend_30_title: "30% – Optimale",
         legend_30_desc: "L'équilibre parfait. Le système fonctionne à son plein potentiel sans contrainte de levier.",
-        legend_30_note: "👉 Le choix recommandé pour la stabilité.",
+        legend_30_note: "👉 Le choix recommandé et le plus polyvalent.",
 
         legend_50_title: "50% – Élevée",
-        legend_50_desc: "Approche agressive. Le levier peut parfois manquer, réduisant l'efficacité de la stratégie.",
+        legend_50_desc: "Approche agressive qui réduit la marge d'erreur au profit de gains supplémentaires.",
         legend_50_note: "👉 Pour utilisateurs expérimentés.",
 
         legend_70_title: "70% – Très Élevée",
@@ -613,9 +613,9 @@ export const translations = {
         legend_70_note: "👉 Réservé aux profils très offensifs.",
 
         acknowledge_text: "Je comprends que 30% est le niveau recommandé et que l'augmenter exposera mon capital à un risque plus élevé",
-        warning_desc: "Exposition élevée — risque accru de drawdowns",
-        warning_50: "Exposition très élevée — risque important de drawdowns",
-        warning_extreme: "Exposition extrême — risque critique de perte totale",
+        warning_desc: "Exposition plus élevée — votre capital sera plus impacté en cas de drawdown",
+        warning_50: "Exposition très élevée — votre capital sera fortement impacté en cas de drawdown",
+        warning_extreme: "Exposition extrême — risque de perte quasi totale en cas de drawdown",
         error_invalid: "Veuillez entrer un montant valide",
         error_min: "Le capital minimum requis est de 1 000 €",
         error_max: "Le capital maximum autorisé est de 250 000 €",

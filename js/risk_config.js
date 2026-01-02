@@ -319,5 +319,9 @@ export function isRiskConfigValid() {
   var resultBox = document.getElementById("jp-result");
   var isResultVisible = resultBox && resultBox.classList.contains("jp-visible");
 
-  return validCapital && isResultVisible;
+  // Check acknowledgment checkbox (Restore logic)
+  var checkbox = document.getElementById("jp-acknowledge-checkbox");
+  var isChecked = checkbox && checkbox.checked;
+
+  return validCapital && isResultVisible && isChecked;
 }

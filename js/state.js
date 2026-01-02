@@ -2,7 +2,7 @@
 
 export const state = {
     currentStep: 0, // Start at welcome cover
-    totalSteps: 8, // 8 actual steps (1-8)
+    totalSteps: 9, // 9 actual steps (1-9)
     selectedBroker: null,
     previousStep: 0,
     currentLang: 'en', // Default language
