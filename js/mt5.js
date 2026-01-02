@@ -19,21 +19,43 @@ export function mt5ShowAlert(message, type, showSupport = false) {
     const el = document.getElementById('mt5Alert');
     if (!el) return;
 
-    let html = `<span>${message}</span>`;
+    let html = ``;
 
     if (showSupport) {
         const supportSubject = t('contact_support_subject');
-        const supportBody = t('contact_support_body');
+        // Append the specific error message in quotes to the body
+        const supportBody = `${t('contact_support_body')} "${message}"`;
         const mailto = `mailto:support@javlot.io?subject=${encodeURIComponent(supportSubject)}&body=${encodeURIComponent(supportBody)}`;
 
-        html += `
-            <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.1);">
-                <span style="display:block; margin-bottom: 8px; font-size: 0.9em;">${t('contact_support_intro')}</span>
-                <a href="${mailto}" class="step-btn" style="background-color: #4b5563; text-decoration: none; font-size: 0.9em; padding: 6px 12px; display: inline-block;">
+        // Inline layout: Message left, Button right.
+        const btnStyle = `
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white; 
+            border: 1px solid #e5e7eb; 
+            color: #1f2937; 
+            text-decoration: none; 
+            font-size: 0.875rem; 
+            font-weight: 500; 
+            padding: 8px 16px; 
+            border-radius: 8px; 
+            white-space: nowrap; 
+            flex-shrink: 0; 
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        `;
+
+        html = `
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%;">
+                <span style="flex: 1; color: #991b1b;">${message}<br><small style="opacity: 0.8; margin-top: 4px; display: block; color: #b91c1c;">${t('contact_support_intro')}</small></span>
+                <a href="${mailto}" class="support-btn" style="${btnStyle}" onmouseover="this.style.backgroundColor='#f9fafb';this.style.borderColor='#d1d5db'" onmouseout="this.style.backgroundColor='white';this.style.borderColor='#e5e7eb'">
                     ${t('contact_support_btn')}
                 </a>
             </div>
         `;
+    } else {
+        html = `<span>${message}</span>`;
     }
 
     el.innerHTML = html;

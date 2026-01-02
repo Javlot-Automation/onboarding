@@ -1860,3 +1860,5 @@
 .btn-loading-text.active { transform: translateY(0); opacity: 1; }
 .btn-loading-text.enter { transform: translateY(100%); opacity: 0; }
 .btn-loading-text.exit { transform: translateY(-100%); opacity: 0; }
+
+.btn-loading-text { color: #ffffff !important; line-height: 1.5em; }

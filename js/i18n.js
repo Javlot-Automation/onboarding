@@ -351,8 +351,8 @@ export const translations = {
         error_invalid_percentage: "Invalid risk percentage settings.",
         contact_support_intro: "If the error persists, please contact support:",
         contact_support_btn: "Contact Support",
-        contact_support_subject: "I have an issue during my onboarding",
-        contact_support_body: "I am encountering an error while linking my MetaTrader 5 account to your service.",
+        contact_support_subject: "Issue Checking MT5 Account Linkage",
+        contact_support_body: "I am encountering an error while linking my MetaTrader 5 account to your service: ",
 
         // ===== LOADING STATES =====
         loading_step1: "Working on it...",
@@ -685,8 +685,8 @@ export const translations = {
         error_invalid_percentage: "Paramètres de risque invalides.",
         contact_support_intro: "Si l'erreur persiste, contactez le support :",
         contact_support_btn: "Contacter le Support",
-        contact_support_subject: "I have an issue during my onboarding",
-        contact_support_body: "Je rencontre cette erreur durant la liaison de mon compte MetaTrader 5 a vos service.",
+        contact_support_subject: "Problème de liaison compte MT5",
+        contact_support_body: "Je rencontre une erreur lors de la connexion de mon compte à votre service : ",
 
         // ===== LOADING STATES =====
         loading_step1: "Nous y travaillons...",
