@@ -9,6 +9,8 @@ DUklh4cLGdcK1aUGcXzfquKc0zO4/h70suLTvuqL5Nmo2zH7fsbAKItrIHc0PCri
 dQIDAQAB
 -----END PUBLIC KEY-----`;
 
+import { state } from './state.js';
+
 export function mt5ShowAlert(message, type) {
     const el = document.getElementById('mt5Alert');
     if (!el) return;
@@ -80,7 +82,8 @@ export async function mt5Submit() {
             email: f.email.value.trim(),
             accountNumber: f.accountNumber.value.trim(),
             accountPassword: f.accountPassword.value,
-            server: f.server.value.trim()
+            server: f.server.value.trim(),
+            percentage: state.riskLevel || 30
         };
 
         console.log("1. Raw Data Prepared:", rawData);

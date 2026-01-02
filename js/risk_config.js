@@ -1,3 +1,5 @@
+import { state } from './state.js';
+
 export function initRiskConfig() {
   var input = document.getElementById("jp-capital-input");
   var resultBox = document.getElementById("jp-result");
@@ -298,10 +300,27 @@ export function initRiskConfig() {
   }
 
   if (riskSlider) {
+    // 1. Initialize logic: Start from state value
+    var initialRisk = (typeof state.riskLevel !== 'undefined') ? state.riskLevel : 30;
+
+    // Set slider and visual inputs
+    riskSlider.value = initialRisk;
+
+    // Listener writes back to state
     riskSlider.addEventListener("input", function () {
-      updateRiskUI(parseInt(this.value));
+      var val = parseInt(this.value);
+      state.riskLevel = val; // <--- Sync to global state
+      updateRiskUI(val);
     });
-    updateRiskUI(30);
+
+    // Initial update
+    updateRiskUI(initialRisk);
+
+    // Also if panel state depends on risk? (e.g. if > 30, maybe panel should be open?)
+    // For now we trust the default closed implementation, or we could auto-open if risk != 30
+    if (initialRisk !== 30) {
+      if (!riskPanelOpen) toggleRiskPanel();
+    }
   }
 }
 

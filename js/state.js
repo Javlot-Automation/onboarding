@@ -60,7 +60,10 @@ export const state = {
     // VT Markets
     vtmarketsSubStep: 1,
     vtmarketsContinueBtn: null,
-    vtmarketsDirection: null
+    vtmarketsDirection: null,
+
+    // Step 8 Risk Level Persistence
+    riskLevel: 30
 };
 
 // Startrader & VT Markets specific warning is handled in i18n but logic might need these keys
