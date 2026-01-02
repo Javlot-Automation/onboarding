@@ -112,6 +112,20 @@ export function initStepListeners(step) {
 
     mt5.mt5UpdateSubmitState();
 
+    // Step 7 (Verification)
+    if (step === 7) {
+        const inputs = [
+            'step7PairCorrect', 'step7LotSize', 'step7OutsideNY',
+            'step7TradeExecuted', 'step7ReadyConnect'
+        ];
+        inputs.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.addEventListener('change', ui.updateVerificationContinueButton);
+            }
+        });
+    }
+
 
     // Step 9 (Connect to Javlot - previously Step 8)
     if (step === 9) {

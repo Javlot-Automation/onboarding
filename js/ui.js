@@ -623,33 +623,99 @@ export function updateMetaTraderContinueButton() {
     state.step6ContinueBtn.disabled = shouldDisable;
 }
 
-// ... existing code ...
+function handleMetaTraderNext() {
+    // Determine max sub-steps for Step 6
+    // 6.1: Credentials
+    // 6.2: Login
+    // 6.3: Quotes
+    // 6.4: Warning/Confirm
+    const maxSubSteps = 4;
+
+    if (state.MetaTraderSubStep < maxSubSteps) {
+        state.MetaTraderDirection = 'forward';
+        state.MetaTraderSubStep++;
+        updateMetaTraderStep();
+        return;
+    }
+
+    // If we are at the last sub-step, proceed to Step 7
+    state.navDirection = 'forward';
+    state.currentStep = 7;
+    updateStep();
+}
 
 // --- Step 7 Logic ---
-// ... existing code ...
+
+function updateVerificationStep() {
+    scrollToTop();
+    const container = document.querySelector('.step-content[data-step="7"]');
+    if (!container) return;
+
+    // Internal sections logic
+    const sections = container.querySelectorAll('.verification-section');
+    sections.forEach(sec => sec.classList.remove('active'));
+
+    const currentSection = container.querySelector('.verification-section[data-verification-step="' + state.verificationSubStep + '"]');
+    if (currentSection) {
+        currentSection.classList.add('active');
+        if (state.verificationDirection) {
+            animateInElement(currentSection, state.verificationDirection);
+        }
+    }
+
+    const desc = document.getElementById('verificationStepDescription');
+    if (desc) {
+        let key = '';
+        if (state.verificationSubStep === 1) key = 'verif_desc_1';
+        else if (state.verificationSubStep === 2) key = 'verif_desc_2';
+
+        if (key) {
+            desc.textContent = t(key);
+            desc.setAttribute('data-i18n', key);
+        }
+    }
+
+    // Refresh button state for the new sub-step
+    updateVerificationContinueButton();
+    state.verificationDirection = null;
+}
 
 export function updateVerificationContinueButton() {
     if (!state.step7ContinueBtn) state.step7ContinueBtn = document.getElementById('step7ContinueBtn');
     if (!state.step7ContinueBtn) return;
 
     let shouldDisable = false;
-    // Assume verification flow might have checks?
-    // Step 7 logic isn't fully detailed in snippet but follows pattern.
-    // If Step 7 has checkboxes, we should check them.
-    // For now we leave it open unless there are specific IDs known.
-    // Looking at listeners.js, no explicit step 7 checks were listed, but I'll export just in case.
+
+    // Step 7.1 checks
+    if (state.verificationSubStep === 1) {
+        const c1 = document.getElementById('step7PairCorrect');
+        const c2 = document.getElementById('step7LotSize');
+        const c3 = document.getElementById('step7OutsideNY');
+        if (!(c1 && c1.checked && c2 && c2.checked && c3 && c3.checked)) shouldDisable = true;
+    }
+    // Step 7.2 checks
+    else if (state.verificationSubStep === 2) {
+        const c1 = document.getElementById('step7TradeExecuted');
+        const c2 = document.getElementById('step7ReadyConnect');
+        if (!(c1 && c1.checked && c2 && c2.checked)) shouldDisable = true;
+    }
+
+    state.step7ContinueBtn.disabled = shouldDisable;
 }
 
 export function updateStep6Button() { updateMetaTraderContinueButton(); }
 export function updateStep7Button() { updateVerificationContinueButton(); }
 
 function handleVerificationNext() {
+    // Step 7 has 2 sub-steps
     if (state.verificationSubStep < 2) {
         state.verificationDirection = 'forward';
         state.verificationSubStep++;
         updateVerificationStep();
         return;
     }
+
+    // Proceed to Step 8
     state.navDirection = 'forward';
     state.currentStep = 8;
     updateStep();
