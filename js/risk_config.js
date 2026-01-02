@@ -103,38 +103,48 @@ export function initRiskConfig() {
     riskWarning.classList.remove("jp-visible", "jp-warning-danger");
     estimatedEl.classList.remove("jp-result-green", "jp-result-yellow", "jp-result-red");
 
-    var stateClass, badgeText, showWarning = false, dangerWarning = false, resultColorClass;
+    var stateClass, badgeTextKey, showWarning = false, dangerWarning = false, resultColorClass;
+    var warningTextKey = "";
 
+    // Determine State
     if (riskPercent <= 30) {
       stateClass = "jp-state-green";
-      badgeText = "Recommended";
+      badgeTextKey = "risk_badge_recommended";
       resultColorClass = "jp-result-green";
     } else if (riskPercent <= 60) {
       stateClass = "jp-state-yellow";
-      badgeText = "High";
+      badgeTextKey = "risk_badge_high";
       resultColorClass = "jp-result-yellow";
       riskBadge.classList.add("jp-badge-warning");
       riskSection.classList.add("jp-border-warning");
       showWarning = true;
       if (riskPercent > 50) {
-        warningText.textContent = "Above 50%, the bot may skip some positions. Higher leverage means trades can diverge significantly. Proceed at your own risk.";
+        warningTextKey = "warning_50";
       } else {
-        warningText.textContent = "High exposure — increased risk of drawdowns";
+        warningTextKey = "warning_desc";
       }
     } else {
       stateClass = "jp-state-red";
-      badgeText = "Extreme";
+      badgeTextKey = "risk_badge_extreme";
       resultColorClass = "jp-result-red";
       riskBadge.classList.add("jp-badge-danger");
       riskSection.classList.add("jp-border-danger");
       showWarning = true;
       dangerWarning = true;
-      warningText.textContent = "Extreme risk — the bot may skip positions and high leverage can cause significant trade divergence. Proceed at your own risk.";
+      warningTextKey = "warning_extreme";
     }
 
+    // Apply basic classes
     riskSection.classList.add(stateClass);
-    riskBadge.textContent = badgeText;
     estimatedEl.classList.add(resultColorClass);
+
+    // Apply Translations
+    if (window.t) {
+      riskBadge.textContent = window.t(badgeTextKey);
+      if (showWarning && warningTextKey) {
+        warningText.textContent = window.t(warningTextKey);
+      }
+    }
 
     if (showWarning) {
       riskWarning.classList.add("jp-visible");
@@ -146,17 +156,33 @@ export function initRiskConfig() {
     updateToggleBorderColor();
     updateEstimatedResult();
 
-    // Update Legend Highlight
+    // Update Legend Highlight & Colors
     var legendItems = document.querySelectorAll(".legend-item");
-    legendItems.forEach(item => item.classList.remove("active"));
+    legendItems.forEach(item => {
+      item.classList.remove("active", "active-blue", "active-green", "active-orange", "active-red");
+    });
 
     var activeLevel = 70;
-    if (riskPercent <= 15) activeLevel = 15;
-    else if (riskPercent <= 30) activeLevel = 30;
-    else if (riskPercent <= 50) activeLevel = 50;
+    var activeColorClass = "active-red";
+
+    if (riskPercent <= 15) {
+      activeLevel = 15;
+      activeColorClass = "active-blue";
+    }
+    else if (riskPercent <= 30) {
+      activeLevel = 30;
+      activeColorClass = "active-green";
+    }
+    else if (riskPercent <= 50) {
+      activeLevel = 50;
+      activeColorClass = "active-orange";
+    }
 
     var activeItem = document.querySelector(`.legend-item[data-level="${activeLevel}"]`);
-    if (activeItem) activeItem.classList.add("active");
+    if (activeItem) {
+      activeItem.classList.add("active");
+      activeItem.classList.add(activeColorClass);
+    }
 
     // Integration point
     if (window.updateStep8Button) window.updateStep8Button();

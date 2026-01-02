@@ -19,25 +19,26 @@
         <!-- Exact content from pricing-widget(2).html starts here -->
         <div class="javlot-pricing-widget">
           <div class="jp-input-block">
-            <label for="jp-capital-input" class="jp-label">Capital (EUR)</label>
-            <input id="jp-capital-input" class="jp-input" type="text" inputmode="decimal"
-              placeholder="Enter your capital, for example 10 000">
+            <label for="jp-capital-input" class="jp-label" data-i18n="capital_label">Capital (EUR)</label>
+            <input id="jp-capital-input" class="jp-input" type="text" inputmode="decimal" placeholder=""
+              data-i18n-placeholder="capital_placeholder">
             <div id="jp-message" class="jp-message"></div>
           </div>
 
           <div id="jp-result" class="jp-result-card">
             <div class="jp-result-row">
-              <span class="jp-result-label">Capital range</span>
+              <span class="jp-result-label" data-i18n="capital_range">Capital range</span>
               <span id="jp-capital-range" class="jp-result-value"></span>
             </div>
             <div class="jp-result-row">
-              <span class="jp-result-label">Monthly fee</span>
+              <span class="jp-result-label" data-i18n="monthly_fee">Monthly fee</span>
               <span id="jp-monthly-fee" class="jp-result-value"></span>
             </div>
             <div class="jp-result-row">
               <div class="jp-result-label-group">
-                <span class="jp-result-label">Estimated monthly result*</span>
-                <span class="jp-result-sublabel"><span id="jp-exposure-text">30%</span> capital exposure</span>
+                <span class="jp-result-label" data-i18n="estimated_result">Estimated monthly result*</span>
+                <span class="jp-result-sublabel"><span id="jp-exposure-text">30%</span> <span
+                    data-i18n="capital_exposure">capital exposure</span></span>
               </div>
               <span id="jp-estimated" class="jp-result-value jp-result-green"></span>
             </div>
@@ -45,7 +46,7 @@
 
           <div id="jp-risk-toggle" class="jp-risk-toggle">
             <button id="jp-risk-toggle-btn" class="jp-risk-toggle-btn">
-              <span>Adjust risk level</span>
+              <span data-i18n="adjust_risk">Adjust risk level</span>
               <svg id="jp-toggle-icon" class="jp-toggle-icon" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd"
                   d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
@@ -56,16 +57,16 @@
 
           <div id="jp-risk-section" class="jp-risk-section">
             <div class="jp-risk-header">
-              <span class="jp-risk-title">Risk Level</span>
+              <span class="jp-risk-title" data-i18n="risk_level">Risk Level</span>
               <div class="jp-risk-value-group">
                 <span id="jp-risk-value" class="jp-risk-value">30%</span>
-                <span id="jp-risk-badge" class="jp-risk-badge">Recommended</span>
+                <span id="jp-risk-badge" class="jp-risk-badge" data-i18n="risk_badge_recommended">Recommended</span>
               </div>
             </div>
 
             <div id="jp-slider-wrapper" class="jp-slider-wrapper jp-slider-disabled">
               <div class="jp-slider-container">
-                <input id="jp-risk-slider" class="jp-risk-slider" type="range" min="15" max="100" value="30" step="1"
+                <input id="jp-risk-slider" class="jp-risk-slider" type="range" min="15" max="70" value="30" step="1"
                   disabled>
                 <div class="jp-slider-track">
                   <div id="jp-slider-fill" class="jp-slider-fill"></div>
@@ -75,7 +76,7 @@
 
               <div class="jp-risk-labels">
                 <span>15%</span>
-                <span>100%</span>
+                <span>70%</span>
               </div>
             </div>
 
@@ -84,7 +85,8 @@
                 <input type="checkbox" id="jp-acknowledge-checkbox" class="jp-toggle-input">
                 <span class="jp-toggle-slider"></span>
               </div>
-              <span class="jp-acknowledge-text">I understand that 30% is the recommended level and increasing it will
+              <span class="jp-acknowledge-text" data-i18n="acknowledge_text">I understand that 30% is the recommended
+                level and increasing it will
                 expose my capital to higher risk</span>
             </label>
 
@@ -94,11 +96,11 @@
                   d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z"
                   clip-rule="evenodd" />
               </svg>
-              <span id="jp-warning-text">High exposure — increased risk of drawdowns</span>
+              <span id="jp-warning-text" data-i18n="warning_desc">High exposure — increased risk of drawdowns</span>
             </div>
           </div>
 
-          <p id="jp-disclaimer" class="jp-disclaimer">
+          <p id="jp-disclaimer" class="jp-disclaimer" data-i18n="disclaimer">
             * Based on 7.11% average monthly performance at 30% risk level.
             Past performance does not guarantee future results.
           </p>
@@ -109,12 +111,12 @@
           <div class="legend-item" data-level="15">
             <div class="legend-header">
               <div class="legend-dot dot-blue"></div>
-              <span class="legend-title">15% – Minimale</span>
+              <span class="legend-title" data-i18n="legend_15_title">15% – Minimale</span>
             </div>
-            <p class="legend-desc">
+            <p class="legend-desc" data-i18n="legend_15_desc">
               Option la plus sécurisée. Risque limité et capital préservé, avec des gains potentiels modérés.
             </p>
-            <div class="legend-note">
+            <div class="legend-note" data-i18n="legend_15_note">
               👉 Idéal pour les profils prudents.
             </div>
           </div>
@@ -122,12 +124,12 @@
           <div class="legend-item active" data-level="30">
             <div class="legend-header">
               <div class="legend-dot dot-green"></div>
-              <span class="legend-title">30% – Optimale</span>
+              <span class="legend-title" data-i18n="legend_30_title">30% – Optimale</span>
             </div>
-            <p class="legend-desc">
+            <p class="legend-desc" data-i18n="legend_30_desc">
               L'équilibre parfait. Le système fonctionne à son plein potentiel sans contrainte de levier.
             </p>
-            <div class="legend-note">
+            <div class="legend-note" data-i18n="legend_30_note">
               👉 Le choix recommandé pour la stabilité.
             </div>
           </div>
@@ -135,12 +137,12 @@
           <div class="legend-item" data-level="50">
             <div class="legend-header">
               <div class="legend-dot dot-orange"></div>
-              <span class="legend-title">50% – Élevée</span>
+              <span class="legend-title" data-i18n="legend_50_title">50% – Élevée</span>
             </div>
-            <p class="legend-desc">
+            <p class="legend-desc" data-i18n="legend_50_desc">
               Approche agressive. Le levier peut parfois manquer, réduisant l'efficacité de la stratégie.
             </p>
-            <div class="legend-note">
+            <div class="legend-note" data-i18n="legend_50_note">
               👉 Pour utilisateurs expérimentés.
             </div>
           </div>
@@ -148,12 +150,12 @@
           <div class="legend-item" data-level="70">
             <div class="legend-header">
               <div class="legend-dot dot-red"></div>
-              <span class="legend-title">70% – Très Élevée</span>
+              <span class="legend-title" data-i18n="legend_70_title">70% – Très Élevée</span>
             </div>
-            <p class="legend-desc">
+            <p class="legend-desc" data-i18n="legend_70_desc">
               Risque critique de divergences. Le système peut devenir instable par manque de marge.
             </p>
-            <div class="legend-note">
+            <div class="legend-note" data-i18n="legend_70_note">
               👉 Réservé aux profils très offensifs.
             </div>
           </div>

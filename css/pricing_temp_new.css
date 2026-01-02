@@ -592,11 +592,46 @@
 
 .legend-item {
     opacity: 0.3;
-    transition: opacity 0.3s ease;
+    transition: all 0.3s ease;
+    padding: 12px;
+    border-radius: 8px;
 }
 
 .legend-item.active {
     opacity: 1;
+}
+
+/* Colored Active States */
+.legend-item.active-blue {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.legend-item.active-green {
+    background-color: #10b981;
+    color: white;
+}
+
+.legend-item.active-orange {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.legend-item.active-red {
+    background-color: #ef4444;
+    color: white;
+}
+
+/* Adjust text colors when active */
+.legend-item.active .legend-title,
+.legend-item.active .legend-desc,
+.legend-item.active .legend-note,
+.legend-item.active .legend-dot {
+    color: white !important;
+}
+
+.legend-item.active .legend-dot {
+    background-color: white !important;
 }
 
 .legend-header {

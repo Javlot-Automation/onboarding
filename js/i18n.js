@@ -204,9 +204,29 @@ export const translations = {
         capital_exposure: "capital exposure",
         adjust_risk: "Adjust risk level",
         risk_level: "Risk Level",
-        recommended: "Recommended",
-        high: "High",
-        extreme: "Extreme",
+
+        // Risk Badges
+        risk_badge_recommended: "Recommended",
+        risk_badge_high: "High",
+        risk_badge_extreme: "Extreme",
+
+        // Legend Items
+        legend_15_title: "15% – Minimal",
+        legend_15_desc: "Most secure option. Limited risk and preserved capital, with moderate potential gains.",
+        legend_15_note: "👉 Ideal for conservative profiles.",
+
+        legend_30_title: "30% – Optimal",
+        legend_30_desc: "The perfect balance. The system operates at full potential without leverage constraints.",
+        legend_30_note: "👉 Recommended choice for stability.",
+
+        legend_50_title: "50% – High",
+        legend_50_desc: "Aggressive approach. Leverage may sometimes be insufficient, reducing strategy efficiency.",
+        legend_50_note: "👉 For experienced users.",
+
+        legend_70_title: "70% – Very High",
+        legend_70_desc: "Critical risk of divergence. The system may become unstable due to lack of margin.",
+        legend_70_note: "👉 Reserved for very offensive profiles.",
+
         acknowledge_text: "I understand that 30% is the recommended level and increasing it will expose my capital to higher risk",
         warning_desc: "High exposure — increased risk of drawdowns",
         warning_50: "Very high exposure — significant risk of drawdowns",
@@ -559,8 +579,8 @@ export const translations = {
         step7_2_checkbox_2: "Je confirme que mon compte est prêt à être connecté à Javlot",
 
         // ===== STEP 8 (RISK) =====
-        step8_title: "Configurer l'exposition de votre Capitale",
-        step8_subtitle: "Apprenez en plus sur les risques lier a des fortes exposition et ajuster la votre selon vos preferences.",
+        step8_title: "Configurer l'exposition de votre Capital",
+        step8_subtitle: "Apprenez-en plus sur les risques liés à de fortes expositions et ajustez la vôtre selon vos préférences.",
         capital_label: "Capital (EUR)",
         capital_placeholder: "Entrez votre capital, par exemple 10 000",
         capital_range: "Fourchette de capital",
@@ -569,9 +589,29 @@ export const translations = {
         capital_exposure: "exposition du capital",
         adjust_risk: "Ajuster le niveau de risque",
         risk_level: "Niveau de Risque",
-        recommended: "Recommandé",
-        high: "Élevé",
-        extreme: "Extrême",
+
+        // Risk Badges
+        risk_badge_recommended: "Recommandé",
+        risk_badge_high: "Élevé",
+        risk_badge_extreme: "Extrême",
+
+        // Legend Items
+        legend_15_title: "15% – Minimale",
+        legend_15_desc: "Option la plus sécurisée. Risque limité et capital préservé, avec des gains potentiels modérés.",
+        legend_15_note: "👉 Idéal pour les profils prudents.",
+
+        legend_30_title: "30% – Optimale",
+        legend_30_desc: "L'équilibre parfait. Le système fonctionne à son plein potentiel sans contrainte de levier.",
+        legend_30_note: "👉 Le choix recommandé pour la stabilité.",
+
+        legend_50_title: "50% – Élevée",
+        legend_50_desc: "Approche agressive. Le levier peut parfois manquer, réduisant l'efficacité de la stratégie.",
+        legend_50_note: "👉 Pour utilisateurs expérimentés.",
+
+        legend_70_title: "70% – Très Élevée",
+        legend_70_desc: "Risque critique de divergences. Le système peut devenir instable par manque de marge.",
+        legend_70_note: "👉 Réservé aux profils très offensifs.",
+
         acknowledge_text: "Je comprends que 30% est le niveau recommandé et que l'augmenter exposera mon capital à un risque plus élevé",
         warning_desc: "Exposition élevée — risque accru de drawdowns",
         warning_50: "Exposition très élevée — risque important de drawdowns",
