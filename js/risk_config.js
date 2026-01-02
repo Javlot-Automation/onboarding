@@ -93,7 +93,8 @@ export function initRiskConfig() {
     riskValueEl.textContent = riskPercent + "%";
     exposureTextEl.textContent = riskPercent + "%";
 
-    var fillPercent = ((riskPercent - 15) / 85) * 100;
+    // Min 15, Max 70 -> Range = 55
+    var fillPercent = ((riskPercent - 15) / 55) * 100;
     sliderFill.style.width = fillPercent + "%";
     sliderThumb.style.left = fillPercent + "%";
 
