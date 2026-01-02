@@ -737,12 +737,17 @@ window.updateMetaTraderContinueButton = updateMetaTraderContinueButton;
 window.updateVerificationContinueButton = updateVerificationContinueButton;
 window.updateStep8Button = updateStep8Button;
 
+// Debug/Test function to jump steps
+window.debugGoToStep = function (stepNum) {
+    state.currentStep = stepNum;
+    updateStep();
+};
+
 // Function from Step 8 HTML (missing in backup but required for UI)
 window.togglePasswordVisibility = function (id) {
     const input = document.getElementById(id);
     if (!input) return;
     const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
     input.setAttribute('type', type);
-    // Optional: toggle icon class if icon exists within the button
 };
 

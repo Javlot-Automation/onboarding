@@ -1,30 +1,28 @@
-import { t } from './i18n.js';
-
 export function initRiskConfig() {
-  const input = document.getElementById("jp-capital-input");
-  const resultBox = document.getElementById("jp-result");
-  const msg = document.getElementById("jp-message");
-  const capitalRangeEl = document.getElementById("jp-capital-range");
-  const monthlyFeeEl = document.getElementById("jp-monthly-fee");
-  const estimatedEl = document.getElementById("jp-estimated");
-  const exposureTextEl = document.getElementById("jp-exposure-text");
-  const disclaimerEl = document.getElementById("jp-disclaimer");
-  const riskToggle = document.getElementById("jp-risk-toggle");
-  const riskToggleBtn = document.getElementById("jp-risk-toggle-btn");
-  const riskSection = document.getElementById("jp-risk-section");
-  const riskSlider = document.getElementById("jp-risk-slider");
-  const riskValueEl = document.getElementById("jp-risk-value");
-  const riskBadge = document.getElementById("jp-risk-badge");
-  const sliderFill = document.getElementById("jp-slider-fill");
-  const sliderThumb = document.getElementById("jp-slider-thumb");
-  const sliderWrapper = document.getElementById("jp-slider-wrapper");
-  const acknowledgeCheckbox = document.getElementById("jp-acknowledge-checkbox");
-  const riskWarning = document.getElementById("jp-risk-warning");
-  const warningText = document.getElementById("jp-warning-text");
+  var input = document.getElementById("jp-capital-input");
+  var resultBox = document.getElementById("jp-result");
+  var msg = document.getElementById("jp-message");
+  var capitalRangeEl = document.getElementById("jp-capital-range");
+  var monthlyFeeEl = document.getElementById("jp-monthly-fee");
+  var estimatedEl = document.getElementById("jp-estimated");
+  var exposureTextEl = document.getElementById("jp-exposure-text");
+  var disclaimerEl = document.getElementById("jp-disclaimer");
+  var riskToggle = document.getElementById("jp-risk-toggle");
+  var riskToggleBtn = document.getElementById("jp-risk-toggle-btn");
+  var riskSection = document.getElementById("jp-risk-section");
+  var riskSlider = document.getElementById("jp-risk-slider");
+  var riskValueEl = document.getElementById("jp-risk-value");
+  var riskBadge = document.getElementById("jp-risk-badge");
+  var sliderFill = document.getElementById("jp-slider-fill");
+  var sliderThumb = document.getElementById("jp-slider-thumb");
+  var sliderWrapper = document.getElementById("jp-slider-wrapper");
+  var acknowledgeCheckbox = document.getElementById("jp-acknowledge-checkbox");
+  var riskWarning = document.getElementById("jp-risk-warning");
+  var warningText = document.getElementById("jp-warning-text");
 
-  let currentCapitalMin = 0;
-  const basePerformance = 0.0711;
-  let riskPanelOpen = false;
+  var currentCapitalMin = 0;
+  var basePerformance = 0.0711;
+  var riskPanelOpen = false;
 
   function formatEuro(value) {
     if (isNaN(value)) return "";
@@ -67,7 +65,7 @@ export function initRiskConfig() {
   function updateToggleBorderColor() {
     if (!riskPanelOpen) return;
 
-    const riskPercent = parseInt(riskSlider.value);
+    var riskPercent = parseInt(riskSlider.value);
     if (riskPercent <= 30) {
       riskToggleBtn.style.borderColor = "";
     } else if (riskPercent <= 60) {
@@ -87,7 +85,7 @@ export function initRiskConfig() {
       riskSlider.value = 30;
       updateRiskUI(30);
     }
-    // Update button state in app
+    // Update button state (integration point)
     if (window.updateStep8Button) window.updateStep8Button();
   }
 
@@ -95,7 +93,7 @@ export function initRiskConfig() {
     riskValueEl.textContent = riskPercent + "%";
     exposureTextEl.textContent = riskPercent + "%";
 
-    const fillPercent = ((riskPercent - 15) / 85) * 100;
+    var fillPercent = ((riskPercent - 15) / 85) * 100;
     sliderFill.style.width = fillPercent + "%";
     sliderThumb.style.left = fillPercent + "%";
 
@@ -105,33 +103,33 @@ export function initRiskConfig() {
     riskWarning.classList.remove("jp-visible", "jp-warning-danger");
     estimatedEl.classList.remove("jp-result-green", "jp-result-yellow", "jp-result-red");
 
-    let stateClass, badgeText, showWarning = false, dangerWarning = false, resultColorClass;
+    var stateClass, badgeText, showWarning = false, dangerWarning = false, resultColorClass;
 
     if (riskPercent <= 30) {
       stateClass = "jp-state-green";
-      badgeText = t("recommended");
+      badgeText = "Recommended";
       resultColorClass = "jp-result-green";
     } else if (riskPercent <= 60) {
       stateClass = "jp-state-yellow";
-      badgeText = t("high");
+      badgeText = "High";
       resultColorClass = "jp-result-yellow";
       riskBadge.classList.add("jp-badge-warning");
       riskSection.classList.add("jp-border-warning");
       showWarning = true;
       if (riskPercent > 50) {
-        warningText.textContent = t("warning_50");
+        warningText.textContent = "Above 50%, the bot may skip some positions. Higher leverage means trades can diverge significantly. Proceed at your own risk.";
       } else {
-        warningText.textContent = t("warning_desc");
+        warningText.textContent = "High exposure — increased risk of drawdowns";
       }
     } else {
       stateClass = "jp-state-red";
-      badgeText = t("extreme");
+      badgeText = "Extreme";
       resultColorClass = "jp-result-red";
       riskBadge.classList.add("jp-badge-danger");
       riskSection.classList.add("jp-border-danger");
       showWarning = true;
       dangerWarning = true;
-      warningText.textContent = t("warning_extreme");
+      warningText.textContent = "Extreme risk — the bot may skip positions and high leverage can cause significant trade divergence. Proceed at your own risk.";
     }
 
     riskSection.classList.add(stateClass);
@@ -148,22 +146,22 @@ export function initRiskConfig() {
     updateToggleBorderColor();
     updateEstimatedResult();
 
-    // Trigger button update via window/global function if needed
+    // Integration point
     if (window.updateStep8Button) window.updateStep8Button();
   }
 
   function updateEstimatedResult() {
     if (currentCapitalMin <= 0) return;
 
-    const riskPercent = parseInt(riskSlider.value);
-    const multiplier = getRiskMultiplier(riskPercent);
-    const estimatedMonthly = currentCapitalMin * basePerformance * multiplier;
+    var riskPercent = parseInt(riskSlider.value);
+    var multiplier = getRiskMultiplier(riskPercent);
+    var estimatedMonthly = currentCapitalMin * basePerformance * multiplier;
 
     estimatedEl.textContent = "+" + formatEuroDecimal(estimatedMonthly) + " /month";
   }
 
   function updatePricing() {
-    let raw = input.value || "";
+    var raw = input.value || "";
     raw = raw.replace(/\s/g, "").replace(/,/g, ".");
 
     if (raw === "") {
@@ -180,7 +178,7 @@ export function initRiskConfig() {
       return;
     }
 
-    const capital = parseFloat(raw);
+    var capital = parseFloat(raw);
 
     if (isNaN(capital) || capital <= 0) {
       resultBox.classList.remove("jp-visible");
@@ -190,7 +188,7 @@ export function initRiskConfig() {
       riskToggleBtn.classList.remove("jp-active");
       riskToggleBtn.style.borderColor = "";
       riskPanelOpen = false;
-      msg.textContent = t("error_invalid");
+      msg.textContent = "Please enter a valid amount.";
       currentCapitalMin = 0;
       if (window.updateStep8Button) window.updateStep8Button();
       return;
@@ -204,7 +202,7 @@ export function initRiskConfig() {
       riskToggleBtn.classList.remove("jp-active");
       riskToggleBtn.style.borderColor = "";
       riskPanelOpen = false;
-      msg.textContent = t("error_min");
+      msg.textContent = "Minimum capital: 1 000 €";
       currentCapitalMin = 0;
       if (window.updateStep8Button) window.updateStep8Button();
       return;
@@ -218,19 +216,19 @@ export function initRiskConfig() {
       riskToggleBtn.classList.remove("jp-active");
       riskToggleBtn.style.borderColor = "";
       riskPanelOpen = false;
-      msg.textContent = t("error_max");
+      msg.textContent = "Contact us for amounts above 250 000 €";
       currentCapitalMin = 0;
       if (window.updateStep8Button) window.updateStep8Button();
       return;
     }
 
-    let tier = Math.floor(capital / 1000);
+    var tier = Math.floor(capital / 1000);
     if (tier < 1) tier = 1;
     if (tier > 250) tier = 250;
 
-    const capitalMin = tier * 1000;
-    const capitalMax = capitalMin + 999;
-    const monthlyFee = 19.90 + (tier - 1) * 20;
+    var capitalMin = tier * 1000;
+    var capitalMax = capitalMin + 999;
+    var monthlyFee = 19.90 + (tier - 1) * 20;
 
     currentCapitalMin = capitalMin;
 
@@ -246,7 +244,6 @@ export function initRiskConfig() {
     if (window.updateStep8Button) window.updateStep8Button();
   }
 
-  // Event listeners
   if (input) {
     input.addEventListener("input", updatePricing);
     input.value = "10000";
@@ -270,18 +267,18 @@ export function initRiskConfig() {
 }
 
 export function isRiskConfigValid() {
-  const input = document.getElementById("jp-capital-input");
+  var input = document.getElementById("jp-capital-input");
   if (!input) return false;
 
-  const raw = input.value.replace(/\s/g, "").replace(/,/g, ".");
-  const capital = parseFloat(raw);
+  var raw = input.value.replace(/\s/g, "").replace(/,/g, ".");
+  var capital = parseFloat(raw);
 
   // Basic constraints
-  const validCapital = !isNaN(capital) && capital >= 1000 && capital <= 250000;
+  var validCapital = !isNaN(capital) && capital >= 1000 && capital <= 250000;
 
   // Also check if result box is visible, implying calculations are valid
-  const resultBox = document.getElementById("jp-result");
-  const isResultVisible = resultBox && resultBox.classList.contains("jp-visible");
+  var resultBox = document.getElementById("jp-result");
+  var isResultVisible = resultBox && resultBox.classList.contains("jp-visible");
 
   return validCapital && isResultVisible;
 }

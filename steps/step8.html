@@ -7,28 +7,28 @@
           preference.</p>
       </div>
 
+      <!-- Exact content from pricing-widget(2).html starts here -->
       <div class="javlot-pricing-widget">
         <div class="jp-input-block">
-          <label for="jp-capital-input" class="jp-label" data-i18n="capital_label">Capital (EUR)</label>
+          <label for="jp-capital-input" class="jp-label">Capital (EUR)</label>
           <input id="jp-capital-input" class="jp-input" type="text" inputmode="decimal"
-            data-i18n-placeholder="capital_placeholder" placeholder="Enter your capital, for example 10 000">
+            placeholder="Enter your capital, for example 10 000">
           <div id="jp-message" class="jp-message"></div>
         </div>
 
         <div id="jp-result" class="jp-result-card">
           <div class="jp-result-row">
-            <span class="jp-result-label" data-i18n="capital_range">Capital range</span>
+            <span class="jp-result-label">Capital range</span>
             <span id="jp-capital-range" class="jp-result-value"></span>
           </div>
           <div class="jp-result-row">
-            <span class="jp-result-label" data-i18n="monthly_fee">Monthly fee</span>
+            <span class="jp-result-label">Monthly fee</span>
             <span id="jp-monthly-fee" class="jp-result-value"></span>
           </div>
           <div class="jp-result-row">
             <div class="jp-result-label-group">
-              <span class="jp-result-label" data-i18n="estimated_result">Estimated monthly result*</span>
-              <span class="jp-result-sublabel"><span id="jp-exposure-text">30%</span> <span
-                  data-i18n="capital_exposure">capital exposure</span></span>
+              <span class="jp-result-label">Estimated monthly result*</span>
+              <span class="jp-result-sublabel"><span id="jp-exposure-text">30%</span> capital exposure</span>
             </div>
             <span id="jp-estimated" class="jp-result-value jp-result-green"></span>
           </div>
@@ -36,7 +36,7 @@
 
         <div id="jp-risk-toggle" class="jp-risk-toggle">
           <button id="jp-risk-toggle-btn" class="jp-risk-toggle-btn">
-            <span data-i18n="adjust_risk">Adjust risk level</span>
+            <span>Adjust risk level</span>
             <svg id="jp-toggle-icon" class="jp-toggle-icon" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd"
                 d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
@@ -47,10 +47,10 @@
 
         <div id="jp-risk-section" class="jp-risk-section">
           <div class="jp-risk-header">
-            <span class="jp-risk-title" data-i18n="risk_level">Risk Level</span>
+            <span class="jp-risk-title">Risk Level</span>
             <div class="jp-risk-value-group">
               <span id="jp-risk-value" class="jp-risk-value">30%</span>
-              <span id="jp-risk-badge" class="jp-risk-badge" data-i18n="recommended">Recommended</span>
+              <span id="jp-risk-badge" class="jp-risk-badge">Recommended</span>
             </div>
           </div>
 
@@ -75,8 +75,8 @@
               <input type="checkbox" id="jp-acknowledge-checkbox" class="jp-toggle-input">
               <span class="jp-toggle-slider"></span>
             </div>
-            <span class="jp-acknowledge-text" data-i18n="acknowledge_text">I understand that 30% is the recommended
-              level and increasing it will expose my capital to higher risk</span>
+            <span class="jp-acknowledge-text">I understand that 30% is the recommended level and increasing it will
+              expose my capital to higher risk</span>
           </label>
 
           <div id="jp-risk-warning" class="jp-risk-warning">
@@ -89,11 +89,12 @@
           </div>
         </div>
 
-        <p id="jp-disclaimer" class="jp-disclaimer" data-i18n="disclaimer">
+        <p id="jp-disclaimer" class="jp-disclaimer">
           * Based on 7.11% average monthly performance at 30% risk level.
           Past performance does not guarantee future results.
         </p>
       </div>
+      <!-- End of exact content -->
 
       <div class="button-group">
         <button type="button" class="btn-prev" onclick="prevStep()" data-i18n="btn_back">Back</button>
