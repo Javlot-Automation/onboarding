@@ -61,6 +61,12 @@ export function initRiskConfig() {
       riskToggleBtn.classList.remove("jp-active");
       riskSection.classList.remove("jp-visible");
       riskToggleBtn.style.borderColor = "";
+
+      // Reset to default (30%) when closing panel
+      // checking/unchecking logic handled by this implicit reset
+      state.riskLevel = 30;
+      if (riskSlider) riskSlider.value = 30;
+      updateRiskUI(30);
     }
   }
 

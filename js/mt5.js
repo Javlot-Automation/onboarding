@@ -59,10 +59,7 @@ export function mt5UpdateSubmitState() {
 }
 
 export async function mt5Submit() {
-    console.log("=== MT5 SUBMIT V2 START ===");
-    const f = mt5GetFields();
     if (!f.submitBtn) {
-        console.error("Submit button not found");
         return;
     }
 
@@ -86,10 +83,7 @@ export async function mt5Submit() {
             percentage: state.riskLevel || 30
         };
 
-        console.log("1. Raw Data Prepared:", rawData);
-
         // 2. Encrypt Data
-        console.log("2. Helper: Starting Encryption with Public Key...");
         // Check if JSEncrypt is available
         if (typeof JSEncrypt === 'undefined') {
             throw new Error("JSEncrypt library is not loaded.");
@@ -99,7 +93,6 @@ export async function mt5Submit() {
         encrypt.setPublicKey(MT5_PUBLIC_KEY);
 
         const jsonString = JSON.stringify(rawData);
-        console.log("   - JSON String length:", jsonString.length);
 
         const encryptedData = encrypt.encrypt(jsonString);
 
@@ -107,15 +100,11 @@ export async function mt5Submit() {
             throw new Error("Encryption failed. Data might be too long for RSA key.");
         }
 
-        console.log("3. Encryption Successful. Encrypted Data Length:", encryptedData.length);
-
         // 3. Send to Lambda
         const payload = {
             encrypted: true,
             data: encryptedData
         };
-
-        console.log("4. Final Payload to Send:", JSON.stringify(payload, null, 2));
 
         const response = await fetch('https://5x18r6txri.execute-api.us-west-2.amazonaws.com/Prod/webflow/webhook', {
             method: 'POST',
@@ -123,10 +112,7 @@ export async function mt5Submit() {
             body: JSON.stringify(payload)
         });
 
-        console.log("5. Network Response Status:", response.status);
-
         if (response.ok) {
-            console.log("=== SUBMISSION SUCCESS ===");
             mt5ShowAlert('Account setup successful! Your MT5 account has been securely linked.', 'success');
 
             // Reset Form (Wait a bit or redirect? Backup just resets form)
@@ -142,7 +128,6 @@ export async function mt5Submit() {
             throw new Error('Server returned ' + response.status);
         }
     } catch (err) {
-        console.error("=== SUBMISSION ERROR ===", err);
         // Extract useful error info if possible, or just generic
         mt5ShowAlert('An error occurred during secure submission. Please try again.', 'error');
     } finally {
