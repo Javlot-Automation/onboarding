@@ -727,11 +727,14 @@ import { initRiskConfig, isRiskConfigValid } from './risk_config.js';
 export function updateStep8Button() {
     if (!state.step8ContinueBtn) state.step8ContinueBtn = document.getElementById('step8ContinueBtn');
     if (!state.step8ContinueBtn) return;
-    state.step8ContinueBtn.disabled = !isRiskConfigValid();
+    // Always enabled as requested
+    state.step8ContinueBtn.disabled = false;
 }
 
 function handleStep8Next() {
-    if (!isRiskConfigValid()) return;
+    // Validation bypassed as requested
+    // if (!isRiskConfigValid()) return;
+
     state.navDirection = 'forward';
     state.currentStep = 9;
     updateStep();
