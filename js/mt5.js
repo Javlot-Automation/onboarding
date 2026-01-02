@@ -224,7 +224,7 @@ export async function mt5Submit() {
             data: encryptedData
         };
 
-        const response = await fetch('https://5x18r6txri.execute-api.us-west-2.amazonaws.com/Prod/webflow/webhook', {
+        const response = await fetch('https://bdpzmvhvl4.execute-api.us-west-2.amazonaws.com/Prod/webflow/webhook', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
