@@ -280,7 +280,7 @@ export function initRiskConfig() {
     currentCapitalMin = capitalMin;
 
     capitalRangeEl.textContent = formatEuro(capitalMin) + " – " + formatEuro(capitalMax);
-    monthlyFeeEl.textContent = formatEuroDecimal(monthlyFee) + " /month";
+    if (monthlyFeeEl) monthlyFeeEl.textContent = formatEuroDecimal(monthlyFee) + " /month";
 
     resultBox.classList.add("jp-visible");
     riskToggle.classList.add("jp-visible");
