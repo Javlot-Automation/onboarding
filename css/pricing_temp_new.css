@@ -603,36 +603,56 @@
 
 /* Colored Active States */
 .legend-item.active-blue {
-    background-color: #3b82f6;
-    color: white;
+    background-color: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 .legend-item.active-green {
-    background-color: #10b981;
-    color: white;
+    background-color: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
 .legend-item.active-orange {
-    background-color: #f59e0b;
-    color: white;
+    background-color: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.2);
 }
 
 .legend-item.active-red {
-    background-color: #ef4444;
-    color: white;
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
 }
 
 /* Adjust text colors when active */
-.legend-item.active .legend-title,
-.legend-item.active .legend-desc,
-.legend-item.active .legend-note,
-.legend-item.active .legend-dot {
-    color: white !important;
+.legend-item.active-blue .legend-title,
+.legend-item.active-blue .legend-desc,
+.legend-item.active-blue .legend-note {
+    color: #2563eb !important;
+    /* Slightly darker blue for text readability */
 }
 
-.legend-item.active .legend-dot {
-    background-color: white !important;
+.legend-item.active-green .legend-title,
+.legend-item.active-green .legend-desc,
+.legend-item.active-green .legend-note {
+    color: #059669 !important;
+    /* Darker green */
 }
+
+.legend-item.active-orange .legend-title,
+.legend-item.active-orange .legend-desc,
+.legend-item.active-orange .legend-note {
+    color: #d97706 !important;
+    /* Darker orange */
+}
+
+.legend-item.active-red .legend-title,
+.legend-item.active-red .legend-desc,
+.legend-item.active-red .legend-note {
+    color: #dc2626 !important;
+    /* Darker red */
+}
+
+/* Ensure dots keep their original color (no longer white) */
+/* .legend-item.active .legend-dot rule removed as it was empty */
 
 .legend-header {
     display: flex;
