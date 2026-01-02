@@ -30,7 +30,7 @@ import { initRiskConfig } from './risk_config.js';
 // I should update ui.js to export them.
 
 export function initStepListeners(step) {
-    console.log('Initializing listeners for step:', step);
+    // Initializing listeners for step
 
     // Step 1
     if (step === 1) {

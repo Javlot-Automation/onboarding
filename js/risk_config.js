@@ -91,6 +91,7 @@ export function initRiskConfig() {
       sliderWrapper.classList.add("jp-slider-disabled");
       riskSlider.disabled = true;
       riskSlider.value = 30;
+      state.riskLevel = 30; // <--- Sync state
       updateRiskUI(30);
     }
     // Update button state (integration point)

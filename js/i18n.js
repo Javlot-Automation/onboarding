@@ -36,7 +36,6 @@ export const translations = {
         sidebar_step6_sub: "Connect MT5",
         sidebar_step7: "Verification Trade",
         sidebar_step7_sub: "Validate account",
-        sidebar_step7_sub: "Validate account",
         sidebar_step8: "Risk Exposure",
         sidebar_step8_sub: "Configure Risk",
         sidebar_step9: "Connect to Javlot",
@@ -189,8 +188,6 @@ export const translations = {
         step7_2_warning: `<strong>Before proceeding with any action, please read this entire step carefully.</strong>`,
         step7_2_content: `Once you have confirmed the above, proceed with the trade by pressing either <strong>"Sell by Market"</strong> or <strong>"Buy by Market"</strong>.<br><br>Once the trade is executed, wait at least 15 seconds, then close it. The position must remain open for <strong>at least 15 seconds</strong>, or the broker verification will fail.<br><br>After closing, you may see a small negative balance in your account. This is completely normal and expected as part of the verification process.`,
         step7_2_checkbox_1: "I confirm that I have executed and closed the verification trade",
-        step7_2_checkbox_2: "I confirm that my account is now ready to be connected to Javlot",
-
         step7_2_checkbox_2: "I confirm that my account is now ready to be connected to Javlot",
 
         // ===== STEP 8 (RISK) =====
@@ -395,7 +392,6 @@ export const translations = {
         sidebar_step6_sub: "Connecter MT5",
         sidebar_step7: "Trade de vérification",
         sidebar_step7_sub: "Valider le compte",
-        sidebar_step7_sub: "Valider le compte",
         sidebar_step8: "Exposition au Risque",
         sidebar_step8_sub: "Configurer le Risque",
         sidebar_step9: "Connexion à Javlot",
@@ -591,8 +587,6 @@ export const translations = {
         step7_2_warning: `<strong>Avant toute action, lisez attentivement l'intégralité de cette étape.</strong>`,
         step7_2_content: `Une fois tout confirmé, lancez le trade via <strong>"Vendre au marché"</strong> ou <strong>"Acheter au marché"</strong>.<br><br>Après exécution, attendez au moins 15 secondes, puis fermez la position. Elle doit rester ouverte <strong>au moins 15 secondes</strong>, sinon la vérification échouera.<br><br>Après la clôture, un petit solde négatif peut apparaître. C'est normal dans ce processus.`,
         step7_2_checkbox_1: "Je confirme avoir exécuté et fermé le trade de vérification",
-        step7_2_checkbox_2: "Je confirme que mon compte est prêt à être connecté à Javlot",
-
         step7_2_checkbox_2: "Je confirme que mon compte est prêt à être connecté à Javlot",
 
         // ===== STEP 8 (RISK) =====

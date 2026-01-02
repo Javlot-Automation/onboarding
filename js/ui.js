@@ -246,7 +246,7 @@ export function nextStep() {
         state.currentStep++;
         updateStep();
     } else {
-        console.log('End of flow reached');
+        // End of flow reached
     }
 }
 
