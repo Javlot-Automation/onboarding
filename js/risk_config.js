@@ -146,6 +146,18 @@ export function initRiskConfig() {
     updateToggleBorderColor();
     updateEstimatedResult();
 
+    // Update Legend Highlight
+    var legendItems = document.querySelectorAll(".legend-item");
+    legendItems.forEach(item => item.classList.remove("active"));
+
+    var activeLevel = 70;
+    if (riskPercent <= 15) activeLevel = 15;
+    else if (riskPercent <= 30) activeLevel = 30;
+    else if (riskPercent <= 50) activeLevel = 50;
+
+    var activeItem = document.querySelector(`.legend-item[data-level="${activeLevel}"]`);
+    if (activeItem) activeItem.classList.add("active");
+
     // Integration point
     if (window.updateStep8Button) window.updateStep8Button();
   }
