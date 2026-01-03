@@ -92,14 +92,14 @@ export function updateNYSessionStatus() {
             isSessionActive = false;
             isMarketClosed = true;
 
-            // Calculate next Monday's opening time (13:30 UTC)
+            // Calculate next Monday's opening time (7:00 UTC = 8:00 Paris)
             let nextMonday = new Date(now);
             if (dayOfWeek === 6) { // Saturday
                 nextMonday.setDate(nextMonday.getDate() + 2); // +2 days to Monday
             } else { // Sunday
                 nextMonday.setDate(nextMonday.getDate() + 1); // +1 day to Monday
             }
-            nextMonday.setUTCHours(13, 30, 0, 0);
+            nextMonday.setUTCHours(7, 0, 0, 0);
 
             // Format opening time in local timezone
             const openTimeLocal = nextMonday.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
