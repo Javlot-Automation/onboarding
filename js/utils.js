@@ -107,7 +107,10 @@ export function updateNYSessionStatus() {
             // Get weekend message template
             let msg = translations[state.currentLang]['ny_market_closed_weekend'];
             msg = msg.replace('{openTime}', openTimeLocal);
-            timeRemainingMsg = msg;
+
+            // Add blocking reason
+            const blockReason = translations[state.currentLang]['block_reason_weekend'];
+            timeRemainingMsg = `${msg}<br><br><em style="font-size: 12px; opacity: 0.85;">${blockReason}</em>`;
 
         } else if (isLateNight) {
             // Markets closed from 23h to 00h Paris time
@@ -128,7 +131,10 @@ export function updateNYSessionStatus() {
 
             const minsLabel = state.currentLang === 'fr' ? 'min' : 'm';
             msg = msg.replace('{remaining}', `${diffMins}${minsLabel}`);
-            timeRemainingMsg = msg;
+
+            // Add blocking reason
+            const blockReason = translations[state.currentLang]['block_reason_late_night'];
+            timeRemainingMsg = `${msg}<br><br><em style="font-size: 12px; opacity: 0.85;">${blockReason}</em>`;
 
         } else if (now >= start && now <= end) {
             // Session is active (within trading hours on a weekday)
@@ -153,7 +159,7 @@ export function updateNYSessionStatus() {
             let msg = translations[state.currentLang]['ny_session_active_msg'];
             msg = msg.replace('{endTime}', endLocal).replace('{remaining}', remainingStr);
 
-            timeRemainingMsg = msg;
+            timeRemainingMsg = `${msg}<br><br><em style=\"font-size: 12px; opacity: 0.85;\">${translations[state.currentLang]['block_reason_session_active']}</em>`;
         } else {
             isSessionActive = false;
 
@@ -254,7 +260,15 @@ export function updateEconomicAnnouncementsDisplay() {
     if (!container) return;
 
     const times = getEconomicAnnouncementTimes();
-    container.textContent = times.join(' • ');
+
+    // Calculate and display timezone offset
+    const timezoneOffset = new Date().getTimezoneOffset();
+    const offsetHours = -timezoneOffset / 60; // Convert to hours (negative because getTimezoneOffset returns opposite)
+    const offsetSign = offsetHours >= 0 ? '+' : '';
+    const tzLabel = state.currentLang === 'fr' ? 'UTC' : 'GMT';
+    const timezoneStr = `(${tzLabel}${offsetSign}${offsetHours})`;
+
+    container.innerHTML = `${times.join(' • ')} <span style="font-weight: 400; color: #6b7280;">${timezoneStr}</span>`;
 }
 
 // --- i18n Logic ---
