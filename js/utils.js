@@ -70,6 +70,11 @@ export function updateNYSessionStatus() {
         // Check if it's weekend (markets closed)
         const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
 
+        // Check if it's late night (23:00-00:00 Paris time = 22:00-23:00 UTC)
+        // Paris is UTC+1, so 23:00 Paris = 22:00 UTC
+        const currentUTCHour = now.getUTCHours();
+        const isLateNight = (currentUTCHour >= 22 && currentUTCHour < 23);
+
         // Define Session Window in UTC for TODAY
         // Session is 13:30 UTC to 16:30 UTC
         const start = new Date();
@@ -79,11 +84,13 @@ export function updateNYSessionStatus() {
         end.setUTCHours(16, 30, 0, 0);   // 16:30 UTC
 
         let isSessionActive = false;
+        let isMarketClosed = false;
         let timeRemainingMsg = "";
 
         if (isWeekend) {
             // Markets are closed on weekends
             isSessionActive = false;
+            isMarketClosed = true;
 
             // Calculate next Monday's opening time (13:30 UTC)
             let nextMonday = new Date(now);
@@ -100,6 +107,27 @@ export function updateNYSessionStatus() {
             // Get weekend message template
             let msg = translations[state.currentLang]['ny_market_closed_weekend'];
             msg = msg.replace('{openTime}', openTimeLocal);
+            timeRemainingMsg = msg;
+
+        } else if (isLateNight) {
+            // Markets closed from 23h to 00h Paris time
+            isSessionActive = false;
+            isMarketClosed = true;
+
+            // Calculate next morning opening (market reopens after midnight)
+            let nextOpen = new Date(now);
+            nextOpen.setUTCHours(23, 0, 0, 0); // 00:00 Paris time
+
+            const diffMs = nextOpen - now;
+            const diffMins = Math.max(0, Math.floor(diffMs / 60000));
+
+            let msg = translations[state.currentLang]['ny_market_closed_late'] ||
+                (state.currentLang === 'fr'
+                    ? 'Les marchés sont fermés pendant la clôture journalière. Réouverture dans {remaining}'
+                    : 'Markets are closed for daily maintenance. Reopening in {remaining}');
+
+            const minsLabel = state.currentLang === 'fr' ? 'min' : 'm';
+            msg = msg.replace('{remaining}', `${diffMins}${minsLabel}`);
             timeRemainingMsg = msg;
 
         } else if (now >= start && now <= end) {
@@ -163,10 +191,11 @@ export function updateNYSessionStatus() {
         }
 
         // Render
-        statusContainer.className = isSessionActive ? 'warning-box error' : 'warning-box success';
-        statusContainer.style.backgroundColor = isSessionActive ? '#FEF2F2' : '#F0FDF4'; // Red-50 vs Green-50
-        statusContainer.style.border = isSessionActive ? '1px solid #DC2626' : '1px solid #16A34A';
-        statusContainer.style.color = isSessionActive ? '#991B1B' : '#166534';
+        const isBlocked = isSessionActive || isMarketClosed;
+        statusContainer.className = isBlocked ? 'warning-box error' : 'warning-box success';
+        statusContainer.style.backgroundColor = isBlocked ? '#FEF2F2' : '#F0FDF4'; // Red-50 vs Green-50
+        statusContainer.style.border = isBlocked ? '1px solid #DC2626' : '1px solid #16A34A';
+        statusContainer.style.color = isBlocked ? '#991B1B' : '#166534';
         statusContainer.style.padding = '12px';
         statusContainer.style.borderRadius = '8px';
         statusContainer.style.fontSize = '14px';
@@ -176,7 +205,7 @@ export function updateNYSessionStatus() {
         let statusLabel;
         if (isSessionActive) {
             statusLabel = state.currentLang === 'fr' ? 'Session Active' : 'Session Active';
-        } else if (isWeekend) {
+        } else if (isMarketClosed) {
             statusLabel = state.currentLang === 'fr' ? 'Marchés Fermés' : 'Markets Closed';
         } else {
             statusLabel = state.currentLang === 'fr' ? 'Session Fermée' : 'Session Closed';
@@ -184,9 +213,48 @@ export function updateNYSessionStatus() {
 
         statusContainer.innerHTML = `<strong style="color: inherit;">${statusLabel} : </strong> ${timeRemainingMsg}`;
 
+        // Store blocked state for button disabling
+        window.isMarketBlockedForStep6 = isBlocked;
+
+        // Update button state if function exists
+        if (typeof window.updateStep6Button === 'function') {
+            window.updateStep6Button();
+        }
+
     } catch (e) {
         console.error("Error updating NY Status:", e);
     }
+}
+
+// Economic announcements helper - converts Paris times to local timezone
+export function getEconomicAnnouncementTimes() {
+    // Paris-based times (UTC+1) for economic announcements
+    const parisHours = [
+        { hour: 9, minute: 30 },
+        { hour: 13, minute: 30 },
+        { hour: 14, minute: 15 },
+        { hour: 14, minute: 30 },
+        { hour: 15, minute: 30 },
+        { hour: 16, minute: 0 },
+        { hour: 20, minute: 0 },
+        { hour: 20, minute: 30 }
+    ];
+
+    // Convert Paris time to local time
+    return parisHours.map(time => {
+        const parisDate = new Date();
+        // Paris is UTC+1, set UTC time to Paris time - 1 hour
+        parisDate.setUTCHours(time.hour - 1, time.minute, 0, 0);
+        return parisDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    });
+}
+
+export function updateEconomicAnnouncementsDisplay() {
+    const container = document.getElementById('economic-announcements-list');
+    if (!container) return;
+
+    const times = getEconomicAnnouncementTimes();
+    container.textContent = times.join(' • ');
 }
 
 // --- i18n Logic ---
@@ -264,8 +332,10 @@ export function applyTranslations() {
     // 4. Update dynamic elements like NY hours
     updateNYHoursDisplay();
     updateNYSessionStatus();
+    updateEconomicAnnouncementsDisplay();
     // Safety check: retry after a brief delay to ensure DOM is ready and no interference
     setTimeout(updateNYHoursDisplay, 50);
+    setTimeout(updateEconomicAnnouncementsDisplay, 50);
 }
 
 // Expose to window for inline HTML onclick handlers

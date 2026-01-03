@@ -180,6 +180,9 @@ export const translations = {
         ny_session_active_msg: "We detect that the New York session is still ongoing until {endTime} (Ends in {remaining})",
         ny_session_inactive_msg: "You can proceed, the session is not active. It will resume in {remaining}",
         ny_market_closed_weekend: "Markets are closed on weekends. Trading will resume on Monday at {openTime}",
+        ny_market_closed_late: "Markets are closed for daily maintenance. Reopening in {remaining}",
+        economic_announcements_title: "Economic Announcements",
+        economic_announcements_desc: "These times are when major economic news are typically released. We recommend waiting 10-15 minutes before trading during these periods:",
 
         // ===== STEP 7 =====
         step7_title: "Account Verification Trade",
@@ -598,6 +601,9 @@ export const translations = {
         ny_session_active_msg: "Nous détectons que la session de New York est encore en cours jusqu'à {endTime} (Se termine dans {remaining})",
         ny_session_inactive_msg: "Vous pouvez y aller, la session n'est pas en cours. Elle reprendra dans {remaining}",
         ny_market_closed_weekend: "Les marchés sont fermés le week-end. Le trading reprendra lundi à {openTime}",
+        ny_market_closed_late: "Les marchés sont fermés pour la clôture journalière. Réouverture dans {remaining}",
+        economic_announcements_title: "Annonces Économiques",
+        economic_announcements_desc: "Ces heures correspondent aux moments où les principales annonces économiques sont généralement publiées. Nous vous recommandons d'attendre 10-15 minutes avant de trader pendant ces périodes :",
 
         // ===== STEP 7 =====
         step7_title: "Trade de vérification",
