@@ -253,17 +253,9 @@ export async function mt5Submit() {
 
         if (response.ok) {
             stopButtonAnimation(f.submitBtn, originalHTML);
-            mt5ShowAlert('Account setup successful! Your MT5 account has been securely linked.', 'success');
 
-            // Reset Form
-            f.email.value = '';
-            f.accountNumber.value = '';
-            f.accountPassword.value = '';
-            f.server.value = '';
-            f.confirmCorrect.checked = false;
-            f.confirmSecure.checked = false;
-
-            // Maybe redirect or show success state?
+            // Show success screen instead of just an alert
+            showSuccessScreen();
         } else {
             console.error("Server error response:", data);
 
@@ -326,3 +318,71 @@ export async function mt5Submit() {
         mt5UpdateSubmitState();
     }
 }
+
+// --- Success Screen ---
+function showSuccessScreen() {
+    const stepContent = document.querySelector('.step-content[data-step="9"] .step-content-body');
+    if (!stepContent) return;
+
+    // Hide sidebar and navigation
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) sidebar.style.display = 'none';
+
+    const buttonGroup = document.querySelector('.step-content[data-step="9"] .button-group');
+    if (buttonGroup) buttonGroup.style.display = 'none';
+
+    // Create success screen HTML
+    stepContent.innerHTML = `
+        <div class="success-screen">
+            <div class="success-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+            
+            <h1 class="success-title">${t('success_title')}</h1>
+            <p class="success-subtitle">${t('success_subtitle')}</p>
+            
+            <div class="success-next-steps">
+                <h3 class="success-next-title">${t('success_next_steps')}</h3>
+                
+                <div class="success-step-card">
+                    <div class="success-step-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <span>${t('success_step1')}</span>
+                </div>
+                
+                <div class="success-step-card">
+                    <div class="success-step-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <span>${t('success_step2')}</span>
+                </div>
+                
+                <div class="success-step-card">
+                    <div class="success-step-icon telegram-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                        </svg>
+                    </div>
+                    <span>${t('success_step3')}</span>
+                </div>
+            </div>
+            
+            <a href="${t('success_telegram_url')}" target="_blank" rel="noopener noreferrer" class="telegram-btn">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                </svg>
+                ${t('success_telegram_btn')}
+            </a>
+        </div>
+    `;
+}
+
+// TEMPORARY: Expose for testing - REMOVE BEFORE PRODUCTION
+window.testSuccessScreen = showSuccessScreen;

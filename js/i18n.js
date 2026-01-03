@@ -359,6 +359,16 @@ export const translations = {
         loading_step1: "Working on it...",
         loading_step2: "Setting everything up...",
         loading_step3: "Almost there...",
+
+        // ===== SUCCESS SCREEN =====
+        success_title: "Congratulations!",
+        success_subtitle: "We confirm that your MetaTrader 5 account is now connected to our automation.",
+        success_next_steps: "Next Steps",
+        success_step1: "Monitor your account performance via MetaTrader 5 app",
+        success_step2: "Enjoy a 100% passive trading system",
+        success_step3: "Join our Telegram to share your experience with Javlot",
+        success_telegram_btn: "Join Telegram Community",
+        success_telegram_url: "https://t.me/+loDGDVczMYo0NGQ8",
     },
 
     fr: {
@@ -694,6 +704,16 @@ export const translations = {
         loading_step1: "Nous y travaillons...",
         loading_step2: "On met tout en place...",
         loading_step3: "Nous y sommes presque...",
+
+        // ===== SUCCESS SCREEN =====
+        success_title: "Félicitations !",
+        success_subtitle: "Nous vous confirmons que votre compte MetaTrader 5 est connecté à notre automatisation.",
+        success_next_steps: "Prochaines étapes",
+        success_step1: "Visualiser l'évolution de votre compte via l'application MetaTrader 5",
+        success_step2: "Profitez d'un système 100% passif",
+        success_step3: "Rejoignez notre Telegram pour partager votre expérience avec Javlot",
+        success_telegram_btn: "Rejoindre la communauté Telegram",
+        success_telegram_url: "https://t.me/+C3HTAZ9qXVdlMTU0",
     }
 };
 
