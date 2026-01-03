@@ -104,16 +104,13 @@ export function updateNYSessionStatus() {
             // Format opening time in local timezone
             const openTimeLocal = nextMonday.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-            // Get weekend message template
-            let msg = translations[state.currentLang]['ny_market_closed_weekend'];
+            // Get weekend message - single combined message
+            let msg = translations[state.currentLang]['ny_market_closed_weekend_full'];
             msg = msg.replace('{openTime}', openTimeLocal);
-
-            // Add blocking reason
-            const blockReason = translations[state.currentLang]['block_reason_weekend'];
-            timeRemainingMsg = `${msg}<br><br><em style="font-size: 12px; opacity: 0.85;">${blockReason}</em>`;
+            timeRemainingMsg = msg;
 
         } else if (isLateNight) {
-            // Markets closed from 23h to 00h Paris time
+            // Markets closed from 23h to 00h Paris time (end of daily session)
             isSessionActive = false;
             isMarketClosed = true;
 
@@ -124,17 +121,12 @@ export function updateNYSessionStatus() {
             const diffMs = nextOpen - now;
             const diffMins = Math.max(0, Math.floor(diffMs / 60000));
 
-            let msg = translations[state.currentLang]['ny_market_closed_late'] ||
-                (state.currentLang === 'fr'
-                    ? 'Les marchés sont fermés pendant la clôture journalière. Réouverture dans {remaining}'
-                    : 'Markets are closed for daily maintenance. Reopening in {remaining}');
-
             const minsLabel = state.currentLang === 'fr' ? 'min' : 'm';
-            msg = msg.replace('{remaining}', `${diffMins}${minsLabel}`);
 
-            // Add blocking reason
-            const blockReason = translations[state.currentLang]['block_reason_late_night'];
-            timeRemainingMsg = `${msg}<br><br><em style="font-size: 12px; opacity: 0.85;">${blockReason}</em>`;
+            // Get late night message - single combined message
+            let msg = translations[state.currentLang]['ny_market_closed_late_full'];
+            msg = msg.replace('{remaining}', `${diffMins}${minsLabel}`);
+            timeRemainingMsg = msg;
 
         } else if (now >= start && now <= end) {
             // Session is active (within trading hours on a weekday)
