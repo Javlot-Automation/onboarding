@@ -2377,3 +2377,169 @@
             color: #9CA3AF;
             font-weight: 400;
         }
+
+        /* ========================================
+           HELP MODAL STYLES
+           ======================================== */
+        .help-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+
+        .help-modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .help-modal {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .help-modal-overlay.active .help-modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .help-modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: #f3f4f6;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            padding: 0;
+        }
+
+        .help-modal-close:hover {
+            background: #e5e7eb;
+        }
+
+        .help-modal-close svg {
+            width: 18px;
+            height: 18px;
+            color: #6b7280;
+        }
+
+        .help-modal-icon {
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .help-modal-icon svg {
+            width: 28px;
+            height: 28px;
+            color: #374151;
+        }
+
+        .help-modal-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 24px;
+        }
+
+        .help-modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .help-modal-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .help-modal-btn svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .help-modal-btn-email {
+            background: #000000;
+            color: #ffffff;
+        }
+
+        .help-modal-btn-email:hover {
+            background: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .help-modal-btn-telegram {
+            background: #0088cc;
+            color: #ffffff;
+        }
+
+        .help-modal-btn-telegram:hover {
+            background: #0077b5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.35);
+        }
+
+        @media (max-width: 480px) {
+            .help-modal {
+                padding: 24px;
+                margin: 16px;
+            }
+
+            .help-modal-title {
+                font-size: 16px;
+            }
+
+            .help-modal-btn {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+        }
+
+        /* Button style for need-help-link (convert from <a> to <button>) */
+        button.need-help-link {
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }

@@ -16,6 +16,9 @@ export const translations = {
 
         // ===== COMMON =====
         need_help: "Need Help?",
+        help_modal_title: "How would you like to contact us?",
+        help_modal_email_btn: "Send an Email",
+        help_modal_telegram_btn: "Contact us on Telegram",
         btn_continue: "Continue",
         btn_back: "Back",
         btn_setup_account: "Setup my account",
@@ -369,7 +372,7 @@ export const translations = {
         success_step2: "Enjoy a 100% passive trading system",
         success_step3: "Join our Telegram, invite your friends and share your experience with Javlot",
         success_telegram_btn: "Join Telegram Community",
-        success_telegram_url: "https://t.me/+loDGDVczMYo0NGQ8",
+        success_telegram_url: "https://t.me/javloten",
         success_close_msg: "You can safely close this window now.",
     },
 
@@ -388,6 +391,9 @@ export const translations = {
 
         // ===== COMMUN =====
         need_help: "Besoin d'aide ?",
+        help_modal_title: "Comment souhaitez-vous nous contacter ?",
+        help_modal_email_btn: "Envoyer un Email",
+        help_modal_telegram_btn: "Nous contacter sur Telegram",
         btn_continue: "Continuer",
         btn_back: "Retour",
         btn_setup_account: "Configurer mon compte",
@@ -716,7 +722,7 @@ export const translations = {
         success_step2: "Profitez d'un système 100% passif",
         success_step3: "Rejoignez notre Telegram, invitez vos amis et partagez votre expérience avec Javlot",
         success_telegram_btn: "Rejoindre la communauté Telegram",
-        success_telegram_url: "https://t.me/+C3HTAZ9qXVdlMTU0",
+        success_telegram_url: "https://t.me/javlotfr",
         success_close_msg: "Vous pouvez fermer cette fenêtre en toute sécurité désormais.",
     }
 };
