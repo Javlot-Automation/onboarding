@@ -65,7 +65,10 @@ export function updateNYSessionStatus() {
 
         // Current time
         const now = new Date();
-        const nowUTC = now.getTime(); // millis
+        const dayOfWeek = now.getDay(); // 0 = Sunday, 6 = Saturday
+
+        // Check if it's weekend (markets closed)
+        const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
 
         // Define Session Window in UTC for TODAY
         // Session is 13:30 UTC to 16:30 UTC
@@ -78,9 +81,29 @@ export function updateNYSessionStatus() {
         let isSessionActive = false;
         let timeRemainingMsg = "";
 
-        // Logic to determine if active
-        // If now is between start and end
-        if (now >= start && now <= end) {
+        if (isWeekend) {
+            // Markets are closed on weekends
+            isSessionActive = false;
+
+            // Calculate next Monday's opening time (13:30 UTC)
+            let nextMonday = new Date(now);
+            if (dayOfWeek === 6) { // Saturday
+                nextMonday.setDate(nextMonday.getDate() + 2); // +2 days to Monday
+            } else { // Sunday
+                nextMonday.setDate(nextMonday.getDate() + 1); // +1 day to Monday
+            }
+            nextMonday.setUTCHours(13, 30, 0, 0);
+
+            // Format opening time in local timezone
+            const openTimeLocal = nextMonday.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            // Get weekend message template
+            let msg = translations[state.currentLang]['ny_market_closed_weekend'];
+            msg = msg.replace('{openTime}', openTimeLocal);
+            timeRemainingMsg = msg;
+
+        } else if (now >= start && now <= end) {
+            // Session is active (within trading hours on a weekday)
             isSessionActive = true;
 
             // Calculate remaining time until end
@@ -114,6 +137,14 @@ export function updateNYSessionStatus() {
                 nextStart.setDate(nextStart.getDate() + 1);
             }
 
+            // If next start falls on weekend, skip to Monday
+            let nextDay = nextStart.getDay();
+            if (nextDay === 6) { // Saturday
+                nextStart.setDate(nextStart.getDate() + 2);
+            } else if (nextDay === 0) { // Sunday
+                nextStart.setDate(nextStart.getDate() + 1);
+            }
+
             const diffMs = nextStart - now;
             const diffHrs = Math.floor(diffMs / 3600000);
             const diffMins = Math.floor((diffMs % 3600000) / 60000);
@@ -141,7 +172,17 @@ export function updateNYSessionStatus() {
         statusContainer.style.fontSize = '14px';
         statusContainer.style.marginTop = '14px';
 
-        statusContainer.innerHTML = `<strong style="color: inherit;">${isSessionActive ? (state.currentLang === 'fr' ? 'Session Active' : 'Session Active') : (state.currentLang === 'fr' ? 'Session Fermée' : 'Session Closed')} : </strong> ${timeRemainingMsg}`;
+        // Determine status label
+        let statusLabel;
+        if (isSessionActive) {
+            statusLabel = state.currentLang === 'fr' ? 'Session Active' : 'Session Active';
+        } else if (isWeekend) {
+            statusLabel = state.currentLang === 'fr' ? 'Marchés Fermés' : 'Markets Closed';
+        } else {
+            statusLabel = state.currentLang === 'fr' ? 'Session Fermée' : 'Session Closed';
+        }
+
+        statusContainer.innerHTML = `<strong style="color: inherit;">${statusLabel} : </strong> ${timeRemainingMsg}`;
 
     } catch (e) {
         console.error("Error updating NY Status:", e);

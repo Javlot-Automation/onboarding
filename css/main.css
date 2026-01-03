@@ -2370,3 +2370,10 @@
                 padding: 14px;
             }
         }
+
+        .success-close-msg {
+            margin-top: 24px;
+            font-size: 0.875rem;
+            color: #9CA3AF;
+            font-weight: 400;
+        }

@@ -380,9 +380,8 @@ function showSuccessScreen() {
                 </svg>
                 ${t('success_telegram_btn')}
             </a>
+            
+            <p class="success-close-msg">${t('success_close_msg')}</p>
         </div>
     `;
 }
-
-// TEMPORARY: Expose for testing - REMOVE BEFORE PRODUCTION
-window.testSuccessScreen = showSuccessScreen;

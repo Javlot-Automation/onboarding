@@ -176,6 +176,7 @@ export const translations = {
         step6_4_desc: "Your trading account is fully setup and ready for the anti-bot validation procedure.",
         ny_session_active_msg: "We detect that the New York session is still ongoing until {endTime} (Ends in {remaining})",
         ny_session_inactive_msg: "You can proceed, the session is not active. It will resume in {remaining}",
+        ny_market_closed_weekend: "Markets are closed on weekends. Trading will resume on Monday at {openTime}",
 
         // ===== STEP 7 =====
         step7_title: "Account Verification Trade",
@@ -369,6 +370,7 @@ export const translations = {
         success_step3: "Join our Telegram to share your experience with Javlot",
         success_telegram_btn: "Join Telegram Community",
         success_telegram_url: "https://t.me/+loDGDVczMYo0NGQ8",
+        success_close_msg: "You can safely close this window now.",
     },
 
     fr: {
@@ -589,6 +591,7 @@ export const translations = {
         step6_4_desc: "Votre compte est configuré et prêt pour la validation anti-bot.",
         ny_session_active_msg: "Nous détectons que la session de New York est encore en cours jusqu'à {endTime} (Se termine dans {remaining})",
         ny_session_inactive_msg: "Vous pouvez y aller, la session n'est pas en cours. Elle reprendra dans {remaining}",
+        ny_market_closed_weekend: "Les marchés sont fermés le week-end. Le trading reprendra lundi à {openTime}",
 
         // ===== STEP 7 =====
         step7_title: "Trade de vérification",
@@ -714,6 +717,7 @@ export const translations = {
         success_step3: "Rejoignez notre Telegram pour partager votre expérience avec Javlot",
         success_telegram_btn: "Rejoindre la communauté Telegram",
         success_telegram_url: "https://t.me/+C3HTAZ9qXVdlMTU0",
+        success_close_msg: "Vous pouvez fermer cette fenêtre en toute sécurité désormais.",
     }
 };
 
