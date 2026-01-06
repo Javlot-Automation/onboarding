@@ -451,7 +451,32 @@ function handleDepositNext() {
             updateDepositStep();
             return;
         }
-        // Simplified Logic: Vantage, Axi, Startrader, Vtmarkets all go to step 3
+
+        // Startrader validation - two checkboxes at step 4.2
+        if (state.selectedBroker === 'startrader') {
+            const c1 = document.getElementById('step4StartraderRightAccount');
+            const c2 = document.getElementById('step4StartraderMin1000');
+            if (!(c1 && c1.checked)) return alert(t('alert_right_account'));
+            if (!(c2 && c2.checked)) return alert(t('alert_deposit_amount'));
+            state.depositDirection = 'forward';
+            state.depositSubStep = 3;
+            updateDepositStep();
+            return;
+        }
+
+        // VTMarkets validation - two checkboxes at step 4.2
+        if (state.selectedBroker === 'vtmarkets') {
+            const c1 = document.getElementById('step4VtmarketsRightAccount');
+            const c2 = document.getElementById('step4VtmarketsMin1000');
+            if (!(c1 && c1.checked)) return alert(t('alert_right_account'));
+            if (!(c2 && c2.checked)) return alert(t('alert_deposit_amount'));
+            state.depositDirection = 'forward';
+            state.depositSubStep = 3;
+            updateDepositStep();
+            return;
+        }
+
+        // Simplified Logic: Vantage, Axi go to step 3 (no checkboxes at step 4.2)
         state.depositDirection = 'forward';
         state.depositSubStep = 3;
         updateDepositStep();
@@ -460,9 +485,8 @@ function handleDepositNext() {
 
     // 4.3 Broker Specific
     if (state.depositSubStep === 3) {
-        // ... Logic to verify checks then go to Step 5 or 4.4 (Vantage)
+        // Vantage goes to step 4.4
         if (state.selectedBroker === 'vantage') {
-            // Confirmations
             const c1 = document.getElementById('step4VantageAccountConfirm');
             const c2 = document.getElementById('step4VantageDepositMin');
             if (!(c1 && c1.checked) || !(c2 && c2.checked)) return alert(t('alert_confirm_details'));
@@ -472,7 +496,26 @@ function handleDepositNext() {
             return;
         }
 
-        // Others -> Step 5
+        // AXI validation - two checkboxes required
+        if (state.selectedBroker === 'axi') {
+            const c1 = document.getElementById('step4AxiAmount1000');
+            const c2 = document.getElementById('step4AxiFundedCorrectly');
+            if (!(c1 && c1.checked) || !(c2 && c2.checked)) return alert(t('alert_confirm_details'));
+        }
+
+        // Startrader validation - one checkbox required
+        if (state.selectedBroker === 'startrader') {
+            const c1 = document.getElementById('step4StartraderFunded');
+            if (!(c1 && c1.checked)) return alert(t('alert_account_funded'));
+        }
+
+        // VTMarkets validation - one checkbox required
+        if (state.selectedBroker === 'vtmarkets') {
+            const c1 = document.getElementById('step4VtmarketsFunded');
+            if (!(c1 && c1.checked)) return alert(t('alert_account_funded'));
+        }
+
+        // All brokers at step 4.3 (except Vantage) -> go to Step 5
         state.navDirection = 'forward';
         state.currentStep = 5;
         updateStep();
@@ -532,7 +575,18 @@ export function updateStep4Button() {
             const c1 = document.getElementById('step4PuprimeRightAccount');
             const c2 = document.getElementById('step4PuprimeAmount1000');
             if (!(c1 && c1.checked && c2 && c2.checked)) shouldDisable = true;
+        } else if (state.selectedBroker === 'startrader') {
+            // Startrader has two checkboxes at step 4.2
+            const c1 = document.getElementById('step4StartraderRightAccount');
+            const c2 = document.getElementById('step4StartraderMin1000');
+            if (!(c1 && c1.checked && c2 && c2.checked)) shouldDisable = true;
+        } else if (state.selectedBroker === 'vtmarkets') {
+            // VTMarkets has two checkboxes at step 4.2
+            const c1 = document.getElementById('step4VtmarketsRightAccount');
+            const c2 = document.getElementById('step4VtmarketsMin1000');
+            if (!(c1 && c1.checked && c2 && c2.checked)) shouldDisable = true;
         }
+        // Note: Vantage and Axi don't have checkboxes at step 4.2
     }
     else if (state.depositSubStep === 3) {
         if (state.selectedBroker === 'puprime') {
@@ -542,10 +596,18 @@ export function updateStep4Button() {
             const c1 = document.getElementById('step4VantageAccountConfirm');
             const c2 = document.getElementById('step4VantageDepositMin');
             if (!(c1 && c1.checked && c2 && c2.checked)) shouldDisable = true;
-        } else {
-            // Axi, Startrader, etc
-            const fundedId = `step4${state.selectedBroker.charAt(0).toUpperCase() + state.selectedBroker.slice(1)}Funded`;
-            const c1 = document.getElementById(fundedId);
+        } else if (state.selectedBroker === 'axi') {
+            // AXI has two checkboxes at step 4.3
+            const c1 = document.getElementById('step4AxiAmount1000');
+            const c2 = document.getElementById('step4AxiFundedCorrectly');
+            if (!(c1 && c1.checked && c2 && c2.checked)) shouldDisable = true;
+        } else if (state.selectedBroker === 'startrader') {
+            // Startrader has one checkbox at step 4.3
+            const c1 = document.getElementById('step4StartraderFunded');
+            if (!(c1 && c1.checked)) shouldDisable = true;
+        } else if (state.selectedBroker === 'vtmarkets') {
+            // VTMarkets has one checkbox at step 4.3
+            const c1 = document.getElementById('step4VtmarketsFunded');
             if (!(c1 && c1.checked)) shouldDisable = true;
         }
     }
