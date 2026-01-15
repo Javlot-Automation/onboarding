@@ -238,7 +238,7 @@ export async function mt5Submit() {
             data: encryptedData
         };
 
-        const response = await fetch('http://prod-webflow-form-alb-2082518894.us-west-2.elb.amazonaws.com/', {
+        const response = await fetch('https://webhook.javlot.io/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
