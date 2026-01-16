@@ -211,8 +211,9 @@ export function updateNYSessionStatus() {
 
         statusContainer.innerHTML = `<strong style="color: inherit;">${statusLabel} : </strong> ${timeRemainingMsg}`;
 
-        // Store blocked state for button disabling
-        window.isMarketBlockedForStep6 = isBlocked;
+        // Note: Blocking removed - status is now informational only
+        // The variable is kept for potential future use but not used for blocking
+        window.isMarketBlockedForStep6 = false; // Always false - no blocking
 
         // Update button state if function exists
         if (typeof window.updateStep6Button === 'function') {

@@ -684,8 +684,7 @@ export function updateMetaTraderContinueButton() {
     else if (state.MetaTraderSubStep === 4) {
         const c = document.getElementById('MetaTraderOutsideNY');
         if (!(c && c.checked)) shouldDisable = true;
-        // Also block if markets are closed (weekend or late night)
-        if (window.isMarketBlockedForStep6) shouldDisable = true;
+        // Note: Market blocking removed - users are informed but not blocked
     }
 
     state.step6ContinueBtn.disabled = shouldDisable;
