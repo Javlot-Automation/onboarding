@@ -325,7 +325,7 @@ function showSuccessScreen() {
     if (!stepContent) return;
 
     // Hide sidebar and navigation
-    const sidebar = document.querySelector('.sidebar');
+    const sidebar = document.querySelector('.sidebar-steps');
     if (sidebar) sidebar.style.display = 'none';
 
     const buttonGroup = document.querySelector('.step-content[data-step="9"] .button-group');

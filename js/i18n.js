@@ -3,7 +3,7 @@ import { state } from './state.js';
 export const translations = {
     en: {
         // ===== WELCOME PAGE =====
-        welcome_title: "Payment Confirmed!",
+        welcome_title: "Welcome Aboard!",
         welcome_subtitle: "Your 14-day free trial is now active. Complete the onboarding below to activate your services.",
         welcome_duration_label: "Estimated duration",
         welcome_duration_value: "Less than 10 minutes",
@@ -386,7 +386,7 @@ export const translations = {
 
     fr: {
         // ===== PAGE D'ACCUEIL =====
-        welcome_title: "Paiement confirmé !",
+        welcome_title: "Bienvenue à bord !",
         welcome_subtitle: "Votre essai gratuit de 14 jours est maintenant actif. Complétez l'onboarding ci-dessous pour activer vos services.",
         welcome_duration_label: "Durée estimée",
         welcome_duration_value: "Moins de 10 minutes",
